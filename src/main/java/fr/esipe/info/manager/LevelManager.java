@@ -32,6 +32,6 @@ public class LevelManager {
         System.out.println(board);
     }
 
-    public void update()
+    public void update(){}
 
 }
