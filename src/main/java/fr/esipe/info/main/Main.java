@@ -1,7 +1,10 @@
 package fr.esipe.info.main;
 
+import fr.esipe.info.manager.LevelManager;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("coucou");
+
+        LevelManager level = new LevelManager("bob", 2, 2);
     }
 }

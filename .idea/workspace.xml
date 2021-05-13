@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/EnumEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumOp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumProp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Name.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Property.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Word.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
+    </list>
+    <list id="687bdaea-e13b-4689-9045-510bbb9277ac" name="Changes by mikem" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -39,6 +46,27 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumOp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Name.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Operator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumProp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Property.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="4" changelist="8461305a-9437-4b38-a7fd-0da851b889bf" />
+        <range start1="4" end1="5" start2="6" end2="8" changelist="687bdaea-e13b-4689-9045-510bbb9277ac" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectId" id="1sU2EbRuzCyswBGV5RBWqT8nk2S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -50,9 +78,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/lib/zen5.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25873017" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -60,14 +89,19 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\lib" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="fr.esipe.info" />
+    </key>
   </component>
-  <component name="RunManager" selected="Maven.BabaIsYou [clean,install,validate]">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="15" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="fr.esipe.info.main.Main" />
       <module name="BabaIsYou" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fr.esipe.info.main.*" />
+          <option name="PATTERN" value="fr.esipe.info.manager.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -132,7 +166,7 @@
       <option name="presentableId" value="Default" />
       <updated>1620912738925</updated>
       <workItem from="1620912740455" duration="1000" />
-      <workItem from="1620912850844" duration="807000" />
+      <workItem from="1620912850844" duration="8162000" />
     </task>
     <servers />
   </component>
