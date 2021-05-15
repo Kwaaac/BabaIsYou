@@ -1,8 +1,8 @@
 package fr.esipe.info.manager;
 
 import fr.esipe.info.game.BoardEntity;
-import fr.esipe.info.game.EnumEntity;
-import fr.esipe.info.game.words.Name;
+import fr.esipe.info.game.enums.EnumEntity;
+import fr.esipe.info.game.words.Noun;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,7 +21,7 @@ public class LevelManager {
             for(int j = 0; j < width; j++){
 
                 var linked = new LinkedList<BoardEntity>();
-                linked.add(new Name(EnumEntity.BABA));
+                linked.add(new Noun(EnumEntity.BABA));
 
                 arrayList.add(linked);
 
@@ -31,7 +31,4 @@ public class LevelManager {
 
         System.out.println(board);
     }
-
-    public void update(){}
-
 }

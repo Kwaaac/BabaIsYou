@@ -1,4 +1,4 @@
-package fr.esipe.info.game.words;
+package fr.esipe.info.game.enums;
 
 public enum EnumProp {
     YOU,

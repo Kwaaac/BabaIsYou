@@ -1,4 +1,4 @@
-package fr.esipe.info.game;
+package fr.esipe.info.game.enums;
 
 public enum EnumEntity {
     BABA,
