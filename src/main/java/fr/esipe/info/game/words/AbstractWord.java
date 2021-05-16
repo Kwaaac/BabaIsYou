@@ -9,6 +9,8 @@ public abstract class AbstractWord implements Word {
 
     @Override
     public String toString() {
-        return "|\t " + word + "\t |";
+        return "Word{" +
+                word +
+                '}';
     }
 }

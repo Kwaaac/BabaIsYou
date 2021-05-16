@@ -1,34 +1,22 @@
 package fr.esipe.info.manager;
 
+import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.BoardEntity;
-import fr.esipe.info.game.enums.EnumEntity;
-import fr.esipe.info.game.words.Noun;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class LevelManager {
     private final String levelName;
     private final List<List<List<BoardEntity>>> board;
+    private final EncryptionDecorator encoded;
 
-    public LevelManager(String levelName, int width, int height) {
+    public LevelManager(String levelName, EncryptionDecorator encoded){
         this.levelName = levelName;
+        this.encoded = encoded;
+        this.board = this.encoded.readData();
+    }
 
-        this.board = new ArrayList<>(height);
-        for (int i = 0; i < height; i++) {
-            var arrayList = new ArrayList<List<BoardEntity>>();
-            for(int j = 0; j < width; j++){
-
-                var linked = new LinkedList<BoardEntity>();
-                linked.add(new Noun(EnumEntity.BABA));
-
-                arrayList.add(linked);
-
-            }
-            board.add(arrayList);
-        }
-
-        System.out.println(board);
+    public void displayBoard() {
+        this.board.forEach(System.out::println);
     }
 }

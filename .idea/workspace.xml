@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="Factory creation for any word">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/NounFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/OperatorFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/PropertyFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/WordFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Operation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/levels/level00.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/levels/level01.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/levels/level04.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/OperatorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/factories/OperatorFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/EnumEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/EnumProp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Noun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Property.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Noun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Noun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
     </list>
@@ -29,16 +25,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="M" />
+        <option value="Brice Mikembo &lt;mikembo.brice@outlook.fr&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
@@ -78,11 +83,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/fr/esipe/info" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25873017" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -98,6 +103,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="fr.esipe.info.main.Main" />
       <module name="BabaIsYou" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/fr/esipe/info" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="fr.esipe.info.manager.*" />
@@ -167,8 +173,21 @@
       <workItem from="1620912740455" duration="1000" />
       <workItem from="1620912850844" duration="8162000" />
       <workItem from="1621034216260" duration="2000" />
-      <workItem from="1621065138883" duration="1737000" />
+      <workItem from="1621065138883" duration="2254000" />
+      <workItem from="1621070462358" duration="23638000" />
+      <workItem from="1621171697602" duration="7000" />
+      <workItem from="1621176608447" duration="1583000" />
+      <workItem from="1621178222720" duration="2553000" />
+      <workItem from="1621180809091" duration="7615000" />
     </task>
+    <task id="LOCAL-00001" summary="Factory creation for any word">
+      <created>1621069928143</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1621069928143</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +197,10 @@
     <MESSAGE value="Factory creation for any word" />
     <option name="LAST_COMMIT_MESSAGE" value="Factory creation for any word" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BabaIsYou$Main.ic" NAME="Main Coverage Results" MODIFIED="1620925781059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

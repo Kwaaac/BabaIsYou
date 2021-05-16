@@ -4,7 +4,6 @@ import fr.esipe.info.game.enums.EnumOp;
 import fr.esipe.info.game.words.Operator;
 import fr.esipe.info.game.words.Word;
 
-import java.util.Locale;
 import java.util.Objects;
 
 public class OperatorFactory extends WordFactory{
