@@ -10,13 +10,33 @@ public class LevelManager {
     private final List<List<List<BoardEntity>>> board;
     private final EncryptionDecorator encoded;
 
-    public LevelManager(String levelName, EncryptionDecorator encoded){
+    public LevelManager(String levelName, EncryptionDecorator encoded) {
         this.levelName = levelName;
         this.encoded = encoded;
         this.board = this.encoded.readData();
     }
 
     public void displayBoard() {
-        this.board.forEach(System.out::println);
+        var strRow = new StringBuilder();
+
+        for (var row : board) {
+            strRow.append("_____".repeat(row.size())).append("\n");
+            for (var col : row) {
+                strRow.append("|");
+                if (col.isEmpty()) {
+                    strRow.append("    ");
+                    continue;
+                }
+
+                for (var entity : col) {
+                    strRow.append(entity.printCommandLineEntity());
+                }
+
+            }
+            strRow.append("|\n");
+        }
+
+        System.out.println(strRow);
     }
+
 }

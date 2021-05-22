@@ -39,4 +39,9 @@ public class Entity implements BoardEntity {
                 noun +
                 '}';
     }
+
+    @Override
+    public String printCommandLineEntity() {
+        return noun.toString();
+    }
 }

@@ -14,22 +14,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class EncryptionDecorator{
+public class EncryptionDecorator {
 
     private final String fileName;
 
-    public EncryptionDecorator(String fileName){
+    public EncryptionDecorator(String fileName) {
         Objects.requireNonNull(fileName);
         this.fileName = fileName;
     }
 
-    public List<List<List<BoardEntity>>> readData(){
+    public List<List<List<BoardEntity>>> readData() {
         char[] buffer = null;
         File file = new File(fileName);
-        try(FileReader reader = new FileReader(file)){
+        try (FileReader reader = new FileReader(file)) {
             buffer = new char[(int) file.length()];
             reader.read(buffer);
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         assert buffer != null;
@@ -41,7 +41,7 @@ public class EncryptionDecorator{
         List<List<List<BoardEntity>>> result = initBoard(data);
         Iterator<String> iterator = data.lines().iterator();
         for (List<List<BoardEntity>> lists : result) {
-            if(iterator.hasNext()) {
+            if (iterator.hasNext()) {
                 String line = iterator.next();
                 decodeLine(lists, line, legend);
             }
@@ -54,20 +54,20 @@ public class EncryptionDecorator{
      * @param legend enum legend
      * @return wordfactory which match with this legend
      */
-    private WordFactory getCorrectWordFactory(Legend legend){
-        return switch (legend.getType()){
-            case NOUN ->  new NounFactory();
-            case OPERATOR ->  new OperatorFactory();
-            case PROPERTY ->  new PropertyFactory();
-            default ->  null;
+    private WordFactory getCorrectWordFactory(Legend legend) {
+        return switch (legend.getType()) {
+            case NOUN -> new NounFactory();
+            case OPERATOR -> new OperatorFactory();
+            case PROPERTY -> new PropertyFactory();
+            default -> null;
         };
     }
 
 
-    private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend){
+    private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend) {
         int indexString = 0;
         WordFactory wordFactory;
-        for(int i = 0; i < line.size(); i++){
+        for (int i = 0; i < line.size(); i++) {
             int finalIndexString = indexString;
             Legend temp = legend.stream().filter(l -> l.getaChar() == dataLine.charAt(finalIndexString)).findFirst().get();
             wordFactory = getCorrectWordFactory(temp);
@@ -88,7 +88,7 @@ public class EncryptionDecorator{
      * @param data file data
      * @return height of the board
      */
-    private int heightBoard(String data){
+    private int heightBoard(String data) {
         Objects.requireNonNull(data);
         return (int) data.lines().count();
     }
@@ -98,10 +98,10 @@ public class EncryptionDecorator{
      * @param data file data
      * @return width of the board
      */
-    private int widthBoard(String data){
+    private int widthBoard(String data) {
         Objects.requireNonNull(data);
         int count;
-        for(count = 0; data.charAt(count) != '\r'; count++);
+        for (count = 0; data.charAt(count) != '\r'; count++) ;
         return count;
     }
 
@@ -110,13 +110,13 @@ public class EncryptionDecorator{
      * @param data file data
      * @return board in 3D from this file data
      */
-    private List<List<List<BoardEntity>>> initBoard(String data){
+    private List<List<List<BoardEntity>>> initBoard(String data) {
         int height = heightBoard(data);
         int width = widthBoard(data);
         List<List<List<BoardEntity>>> board = new ArrayList<>(height);
-        for(int line = 0; line < height; line++){
+        for (int line = 0; line < height; line++) {
             var arrayList = new ArrayList<List<BoardEntity>>();
-            for(int column = 0; column < width; column++){
+            for (int column = 0; column < width; column++) {
                 var linked = new LinkedList<BoardEntity>();
                 arrayList.add(linked);
             }

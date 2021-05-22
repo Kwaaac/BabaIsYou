@@ -43,7 +43,7 @@ public enum Legend {
     private final Type type;
     private final String name;
 
-    private Legend(char aChar, Type type, String name) {
+    Legend(char aChar, Type type, String name) {
         Objects.requireNonNull(type);
         Objects.requireNonNull(name);
         this.aChar = aChar;
