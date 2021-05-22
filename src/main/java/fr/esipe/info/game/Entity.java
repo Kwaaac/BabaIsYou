@@ -1,5 +1,7 @@
 package fr.esipe.info.game;
 
+import fr.esipe.info.game.enums.EnumOp;
+import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
@@ -24,6 +26,11 @@ public class Entity implements BoardEntity {
 
     public Noun getNoun() {
         return noun;
+    }
+
+    @Override
+    public boolean usesProperties(EnumOp op, EnumProp prop) {
+        return noun.hasProperty(op, prop);
     }
 
     @Override
