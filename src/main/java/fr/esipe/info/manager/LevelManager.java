@@ -17,22 +17,26 @@ public class LevelManager {
     }
 
     public void displayBoard() {
+        var strRow = new StringBuilder();
+
         for (var row : board) {
-            System.out.print("_".repeat(row.size() *5) + "\n");
+            strRow.append("_____".repeat(row.size())).append("\n");
             for (var col : row) {
-                System.out.print("|");
-                if(col.isEmpty()){
-                    System.out.print("    ");
+                strRow.append("|");
+                if (col.isEmpty()) {
+                    strRow.append("    ");
                     continue;
                 }
 
                 for (var entity : col) {
-                    System.out.print(entity.displayNoun());
+                    strRow.append(entity.displayNoun());
                 }
 
             }
-            System.out.print("|");
-            System.out.println();
+            strRow.append("|\n");
         }
+
+        System.out.println(strRow);
     }
+
 }
