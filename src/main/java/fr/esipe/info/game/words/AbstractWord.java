@@ -22,7 +22,6 @@ public abstract class AbstractWord implements Word {
     public String printCommandLineEntity() {
         var res = word;
 
-
         res = textColor() + res;
 
         if (word.length() == 2) {
