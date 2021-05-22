@@ -26,4 +26,5 @@ public class Noun extends AbstractWord implements Word{
     public Map<EnumOp, List<EnumProp>> getProperties() {
         return properties;
     }
+
 }

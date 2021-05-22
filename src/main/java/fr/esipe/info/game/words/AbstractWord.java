@@ -13,4 +13,15 @@ public abstract class AbstractWord implements Word {
                 word +
                 '}';
     }
+
+    @Override
+    public String displayNoun() {
+        if (word.length() == 2) {
+            return " " + word + " ";
+        }
+        else if (word.length() == 3) {
+            return  word + " ";
+        }
+        return word;
+    }
 }
