@@ -1,5 +1,5 @@
 package fr.esipe.info.game;
 
 public interface BoardEntity {
-    String displayNoun();
+    String printCommandLineEntity();
 }

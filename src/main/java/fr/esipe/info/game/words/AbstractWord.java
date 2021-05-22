@@ -19,7 +19,7 @@ public abstract class AbstractWord implements Word {
     }
 
     @Override
-    public String displayNoun() {
+    public String printCommandLineEntity() {
         var res = word;
 
 

@@ -29,7 +29,7 @@ public class LevelManager {
                 }
 
                 for (var entity : col) {
-                    strRow.append(entity.displayNoun());
+                    strRow.append(entity.printCommandLineEntity());
                 }
 
             }

@@ -41,7 +41,7 @@ public class Entity implements BoardEntity {
     }
 
     @Override
-    public String displayNoun() {
+    public String printCommandLineEntity() {
         return noun.toString();
     }
 }
