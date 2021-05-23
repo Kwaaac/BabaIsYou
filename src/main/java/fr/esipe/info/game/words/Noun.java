@@ -11,18 +11,27 @@ import java.util.List;
 import java.util.Map;
 
 public class Noun extends AbstractWord implements Word {
-    private final Map<EnumOp, List<EnumProp>> properties;
+    private static final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
 
     public Noun(EnumEntity word) {
         super(word.name());
-        this.properties = new HashMap<>();
     }
 
     public void addProperty(EnumOp op, EnumProp prop) {
-        if (!this.properties.containsKey(op)) {
-            this.properties.put(op, new ArrayList<>());
+        if (!properties.containsKey(op)) {
+            properties.put(op, new ArrayList<>());
         }
-        this.properties.get(op).add(prop);
+        properties.get(op).add(prop);
+    }
+
+    public boolean hasProperty(EnumOp op, EnumProp prop) {
+        var props = properties.get(op);
+
+        if (props == null) {
+            return false;
+        }
+
+        return props.contains(prop);
     }
 
 

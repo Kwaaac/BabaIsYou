@@ -1,49 +1,36 @@
 package fr.esipe.info.game;
 
-import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.enums.EnumEntity;
-import fr.esipe.info.game.states.State;
+import fr.esipe.info.game.enums.EnumOp;
+import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
 
 public class Entity implements BoardEntity {
-    private static State state;
     private Noun noun;
-    private VectorCoord coord;
-    private EnumEntity entity;
 
-    public Entity(EnumEntity entity) {
-        Objects.requireNonNull(entity);
-        this.entity = entity;
-        this.coord = new VectorCoord(0,0);
+    public Entity(Noun noun) {
+        Objects.requireNonNull(noun);
+        this.noun = noun;
     }
 
-    @Override
-    public void changeState(State state){
-        this.state = state;
+    public Entity(Entity target) {
+        if (target != null) {
+            this.noun = target.noun;
+        }
     }
 
-    @Override
-    public State getState(){
-        return this.state;
-    }
-
-    public EnumEntity getEntity(){
-        return this.entity;
-    }
-
-    public VectorCoord getCoord(){
-        return this.coord;
-    }
-
-    public void setCoord(VectorCoord coord){
-        this.coord.setxCoord(coord.getxCoord());
-        this.coord.setyCoord(coord.getyCoord());
+    public Entity clone() {
+        return new Entity(this);
     }
 
     public Noun getNoun() {
         return noun;
+    }
+
+    @Override
+    public boolean usesProperties(EnumOp op, EnumProp prop) {
+        return noun.hasProperty(op, prop);
     }
 
     @Override
@@ -62,11 +49,6 @@ public class Entity implements BoardEntity {
 
     @Override
     public String printCommandLineEntity() {
-        return entity.toString();
-    }
-
-    @Override
-    public boolean isWord() {
-        return false;
+        return noun.toString();
     }
 }
