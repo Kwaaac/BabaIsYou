@@ -6,8 +6,8 @@ import fr.esipe.info.factories.PropertyFactory;
 import fr.esipe.info.factories.WordFactory;
 import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.Entity;
+import fr.esipe.info.game.enums.EnumEntity;
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.words.Noun;
 
 import java.io.File;
 import java.io.FileReader;
@@ -74,7 +74,7 @@ public class EncryptionDecorator {
             if (!temp.equals(Legend.BLANK)) {
                 if (wordFactory == null) {
                     wordFactory = new NounFactory();
-                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName())));
+                    line.get(i).add(new Entity(EnumEntity.valueOf(temp.getName().toUpperCase())));
                 } else {
                     line.get(i).add(wordFactory.createWord(temp.getName()));
                 }

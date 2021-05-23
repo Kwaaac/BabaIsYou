@@ -1,25 +1,45 @@
 package fr.esipe.info.game;
 
+import fr.esipe.info.VectorCoord;
+import fr.esipe.info.game.enums.EnumEntity;
+import fr.esipe.info.game.states.State;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
 
 public class Entity implements BoardEntity {
+    private static State state;
     private Noun noun;
+    private VectorCoord coord;
+    private EnumEntity entity;
 
-    public Entity(Noun noun) {
-        Objects.requireNonNull(noun);
-        this.noun = noun;
+    public Entity(EnumEntity entity) {
+        Objects.requireNonNull(entity);
+        this.entity = entity;
+        this.coord = new VectorCoord(0,0);
     }
 
-    public Entity(Entity target) {
-        if (target != null) {
-            this.noun = target.noun;
-        }
+    @Override
+    public void changeState(State state){
+        this.state = state;
     }
 
-    public Entity clone() {
-        return new Entity(this);
+    @Override
+    public State getState(){
+        return this.state;
+    }
+
+    public EnumEntity getEntity(){
+        return this.entity;
+    }
+
+    public VectorCoord getCoord(){
+        return this.coord;
+    }
+
+    public void setCoord(VectorCoord coord){
+        this.coord.setxCoord(coord.getxCoord());
+        this.coord.setyCoord(coord.getyCoord());
     }
 
     public Noun getNoun() {
@@ -42,6 +62,11 @@ public class Entity implements BoardEntity {
 
     @Override
     public String printCommandLineEntity() {
-        return noun.toString();
+        return entity.toString();
+    }
+
+    @Override
+    public boolean isWord() {
+        return false;
     }
 }
