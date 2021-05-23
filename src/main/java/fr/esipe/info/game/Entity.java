@@ -1,23 +1,26 @@
 package fr.esipe.info.game;
 
+import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.EnumOp;
 import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
 
-public class Entity implements BoardEntity {
+public class Entity extends GameObject implements BoardEntity {
     private Noun noun;
 
-    public Entity(Noun noun) {
-        Objects.requireNonNull(noun);
-        this.noun = noun;
+    public Entity(Noun noun, VectorCoord vc) {
+        super(Objects.requireNonNull(vc));
+        this.noun = Objects.requireNonNull(noun);
     }
 
     public Entity(Entity target) {
-        if (target != null) {
-            this.noun = target.noun;
-        }
+        this(target.noun, target.getPos());
+    }
+
+    public Entity(Noun word) {
+        this(word, VectorCoord.vectorOutOfTheLoop());
     }
 
     public Entity clone() {
@@ -26,6 +29,10 @@ public class Entity implements BoardEntity {
 
     public Noun getNoun() {
         return noun;
+    }
+
+    public void changeNoun(Noun noun) {
+        this.noun = noun;
     }
 
     @Override
@@ -38,6 +45,11 @@ public class Entity implements BoardEntity {
         if (!(o instanceof Entity)) return false;
         Entity entity = (Entity) o;
         return entity.noun == noun;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(noun);
     }
 
     @Override

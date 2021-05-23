@@ -1,5 +1,6 @@
 package fr.esipe.info.files;
 
+import fr.esipe.info.VectorCoord;
 import fr.esipe.info.factories.NounFactory;
 import fr.esipe.info.factories.OperatorFactory;
 import fr.esipe.info.factories.PropertyFactory;
@@ -37,15 +38,18 @@ public class EncryptionDecorator {
     }
 
     private List<List<List<BoardEntity>>> decode(String data) {
+        int i = 0;
         List<Legend> legend = Arrays.asList(Legend.values());
         List<List<List<BoardEntity>>> result = initBoard(data);
         Iterator<String> iterator = data.lines().iterator();
+
         for (List<List<BoardEntity>> lists : result) {
-            if (iterator.hasNext()) {
-                String line = iterator.next();
-                decodeLine(lists, line, legend);
-            }
+            String line = iterator.next();
+            decodeLine(lists, line, legend, i);
+
+            i++;
         }
+
         return result;
     }
 
@@ -64,19 +68,26 @@ public class EncryptionDecorator {
     }
 
 
-    private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend) {
+    private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend, int lineIndex) {
         int indexString = 0;
         WordFactory wordFactory;
         for (int i = 0; i < line.size(); i++) {
+            var vectorCoord = new VectorCoord(lineIndex, i);
             int finalIndexString = indexString;
             Legend temp = legend.stream().filter(l -> l.getaChar() == dataLine.charAt(finalIndexString)).findFirst().get();
             wordFactory = getCorrectWordFactory(temp);
             if (!temp.equals(Legend.BLANK)) {
                 if (wordFactory == null) {
                     wordFactory = new NounFactory();
-                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName())));
+
+                    /*TODO: check si on peut pas faire mieux qu'un vecteur out of the loop pour les nom dans les entity
+                    * Peut-être avec interface au lieu de classes abtraite --> faire une factory d'entity qui gère dedans les vectors plutôt qu'ici
+                    * 
+                    * */
+
+                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName(), VectorCoord.vectorOutOfTheLoop())));
                 } else {
-                    line.get(i).add(wordFactory.createWord(temp.getName()));
+                    line.get(i).add(wordFactory.createWord(temp.getName(), vectorCoord));
                 }
             }
             indexString++;

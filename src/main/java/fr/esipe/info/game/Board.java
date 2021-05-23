@@ -56,9 +56,8 @@ public class Board {
         checkVector(vc);
         return board.get(vc.getxCoord()).get(vc.getyCoord());
     }
-    
-    @Override
 
+    @Override
     public String toString() {
         var strRow = new StringBuilder();
 

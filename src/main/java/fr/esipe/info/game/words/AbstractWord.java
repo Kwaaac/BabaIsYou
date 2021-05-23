@@ -1,11 +1,14 @@
 package fr.esipe.info.game.words;
 
+import fr.esipe.info.VectorCoord;
+import fr.esipe.info.game.GameObject;
 import fr.esipe.info.game.enums.ColorPrint;
 
-public abstract class AbstractWord implements Word {
+public abstract class AbstractWord extends GameObject implements Word {
     private final String word;
 
-    public AbstractWord(String word) {
+    public AbstractWord(String word, VectorCoord vc) {
+        super(vc);
         this.word = word;
     }
 
