@@ -1,5 +1,6 @@
 package fr.esipe.info.game.words;
 
+import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.ColorPrint;
 import fr.esipe.info.game.enums.EnumEntity;
 import fr.esipe.info.game.enums.EnumOp;
@@ -13,8 +14,8 @@ import java.util.Map;
 public class Noun extends AbstractWord implements Word {
     private static final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
 
-    public Noun(EnumEntity word) {
-        super(word.name());
+    public Noun(EnumEntity word, VectorCoord vc) {
+        super(word.name(), vc);
     }
 
     public void addProperty(EnumOp op, EnumProp prop) {

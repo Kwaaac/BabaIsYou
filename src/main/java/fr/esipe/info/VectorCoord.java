@@ -1,15 +1,21 @@
 package fr.esipe.info;
 
+import java.util.Objects;
+
 public class VectorCoord {
     private int xCoord;
     private int yCoord;
 
     public VectorCoord(int xCoord, int yCoord) {
-        if (xCoord < 0 || yCoord < 0) {
+        if (xCoord < -1 || yCoord < -1) {
             throw new IllegalArgumentException("Coordinates cannot be negative");
         }
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+    }
+
+    public static VectorCoord vectorOutOfTheLoop() {
+        return new VectorCoord(-1, -1);
     }
 
     /*==================================*/
@@ -61,4 +67,16 @@ public class VectorCoord {
         this.yCoord += vc.getyCoord();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VectorCoord that = (VectorCoord) o;
+        return xCoord == that.xCoord && yCoord == that.yCoord;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xCoord, yCoord);
+    }
 }
