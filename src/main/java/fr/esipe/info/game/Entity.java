@@ -14,16 +14,6 @@ public class Entity implements BoardEntity {
         this.noun = noun;
     }
 
-    public Entity(Entity target) {
-        if (target != null) {
-            this.noun = target.noun;
-        }
-    }
-
-    public Entity clone() {
-        return new Entity(this);
-    }
-
     public Noun getNoun() {
         return noun;
     }
