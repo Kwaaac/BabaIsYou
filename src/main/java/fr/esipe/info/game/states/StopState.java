@@ -1,19 +1,15 @@
 package fr.esipe.info.game.states;
 
-public class StopState implements State{
+import fr.esipe.info.game.strategies.ActionNone;
 
-    @Override
-    public boolean isPushable() {
-        return false;
+public class StopState extends State{
+
+    public StopState() {
+        super(new ActionNone());
     }
 
     @Override
-    public boolean isSteppable() {
-        return false;
-    }
-
-    @Override
-    public boolean isMovable() {
-        return false;
+    public boolean isStop() {
+        return true;
     }
 }

@@ -1,15 +1,11 @@
 package fr.esipe.info.game.states;
 
-public class PushState implements State{
+import fr.esipe.info.game.strategies.ActionNone;
 
-    @Override
-    public boolean isPushable() {
-        return true;
-    }
+public class PushState extends State{
 
-    @Override
-    public boolean isSteppable() {
-        return false;
+    public PushState() {
+        super(new ActionNone());
     }
 
     @Override

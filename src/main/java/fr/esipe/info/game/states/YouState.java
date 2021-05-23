@@ -1,19 +1,16 @@
 package fr.esipe.info.game.states;
 
-public class YouState implements State{
+import fr.esipe.info.game.strategies.ActionNone;
 
-    @Override
-    public boolean isPushable() {
-        return false;
+public class YouState extends State{
+
+    public YouState() {
+        super(new ActionNone());
     }
 
     @Override
-    public boolean isSteppable() {
-        return false;
-    }
-
-    @Override
-    public boolean isMovable() {
+    public boolean isYou() {
         return true;
     }
+
 }

@@ -1,20 +1,16 @@
 package fr.esipe.info.game.states;
 
-public class WinState implements State{
+import fr.esipe.info.game.strategies.ActionNone;
 
+public class WinState extends State{
 
-    @Override
-    public boolean isPushable() {
-        return false;
+    public WinState() {
+        super(new ActionNone());
     }
 
     @Override
-    public boolean isSteppable() {
+    public boolean isWin() {
         return true;
     }
 
-    @Override
-    public boolean isMovable() {
-        return false;
-    }
 }

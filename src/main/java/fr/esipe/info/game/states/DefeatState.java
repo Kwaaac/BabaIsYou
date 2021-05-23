@@ -1,18 +1,15 @@
 package fr.esipe.info.game.states;
 
-public class DefeatState implements State{
-    @Override
-    public boolean isPushable() {
-        return false;
+import fr.esipe.info.game.strategies.ActionDefeat;
+
+public class DefeatState extends State{
+
+    public DefeatState() {
+        super(new ActionDefeat());
     }
 
     @Override
-    public boolean isSteppable() {
+    public boolean isDefeat() {
         return true;
-    }
-
-    @Override
-    public boolean isMovable() {
-        return false;
     }
 }

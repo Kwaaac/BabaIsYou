@@ -3,28 +3,42 @@ package fr.esipe.info.game;
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.EnumOp;
 import fr.esipe.info.game.enums.EnumProp;
+import fr.esipe.info.game.states.NoneState;
+import fr.esipe.info.game.states.State;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
 
 public class Entity extends GameObject implements BoardEntity {
     private Noun noun;
+    private State state;
 
-    public Entity(Noun noun, VectorCoord vc) {
+    public Entity(Noun noun, VectorCoord vc, State state) {
         super(Objects.requireNonNull(vc));
+        Objects.requireNonNull(state);
+        this.state = state;
         this.noun = Objects.requireNonNull(noun);
     }
 
-    public Entity(Entity target) {
-        this(target.noun, target.getPos());
+    public Entity(Noun noun){
+        this(noun, new VectorCoord(0,0), new NoneState());
     }
 
-    public Entity(Noun word) {
-        this(word, VectorCoord.vectorOutOfTheLoop());
+    public Entity(Entity target) {
+        this(target.noun, target.getPos(), target.state);
     }
 
     public Entity clone() {
         return new Entity(this);
+    }
+
+    public void changeState(State state){
+        Objects.requireNonNull(state);
+        this.state = state;
+    }
+
+    public State getState(){
+        return this.state;
     }
 
     public Noun getNoun() {
