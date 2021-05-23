@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Noun extends AbstractWord implements Word {
-    private static final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
+    private final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
 
     public Noun(EnumEntity word, VectorCoord vc) {
         super(word.name(), vc);
@@ -43,5 +43,6 @@ public class Noun extends AbstractWord implements Word {
     public Map<EnumOp, List<EnumProp>> getProperties() {
         return properties;
     }
+
 
 }

@@ -1,13 +1,11 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.enums.EnumOp;
-import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.words.Noun;
 
 import java.util.Objects;
 
-public class Entity extends GameObject implements BoardEntity {
+public class Entity extends AbstractGameObject implements BoardEntity {
     private Noun noun;
 
     public Entity(Noun noun, VectorCoord vc) {
@@ -36,8 +34,8 @@ public class Entity extends GameObject implements BoardEntity {
     }
 
     @Override
-    public boolean usesProperties(EnumOp op, EnumProp prop) {
-        return noun.hasProperty(op, prop);
+    public boolean isEntity() {
+        return true;
     }
 
     @Override

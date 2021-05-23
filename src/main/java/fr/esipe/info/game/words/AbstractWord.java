@@ -1,10 +1,12 @@
 package fr.esipe.info.game.words;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.GameObject;
+import fr.esipe.info.game.AbstractGameObject;
 import fr.esipe.info.game.enums.ColorPrint;
 
-public abstract class AbstractWord extends GameObject implements Word {
+import java.util.Objects;
+
+public abstract class AbstractWord extends AbstractGameObject implements Word {
     private final String word;
 
     public AbstractWord(String word, VectorCoord vc) {
@@ -34,5 +36,19 @@ public abstract class AbstractWord extends GameObject implements Word {
         }
 
         return res + ColorPrint.ANSI_RESET.getAsciiCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AbstractWord that = (AbstractWord) o;
+        return Objects.equals(word, that.word);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), word);
     }
 }

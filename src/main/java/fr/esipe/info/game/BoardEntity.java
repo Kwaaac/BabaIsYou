@@ -1,12 +1,9 @@
 package fr.esipe.info.game;
 
-import fr.esipe.info.game.enums.EnumOp;
-import fr.esipe.info.game.enums.EnumProp;
-
-public interface BoardEntity {
+public interface BoardEntity extends GameObject {
     String printCommandLineEntity();
 
-    default boolean usesProperties(EnumOp op, EnumProp prop) {
+    default boolean isEntity(){
         return false;
     }
 }

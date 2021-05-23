@@ -81,11 +81,10 @@ public class EncryptionDecorator {
                     wordFactory = new NounFactory();
 
                     /*TODO: check si on peut pas faire mieux qu'un vecteur out of the loop pour les nom dans les entity
-                    * Peut-être avec interface au lieu de classes abtraite --> faire une factory d'entity qui gère dedans les vectors plutôt qu'ici
-                    * 
-                    * */
-
-                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName(), VectorCoord.vectorOutOfTheLoop())));
+                     * Peut-être avec interface au lieu de classes abtraite --> faire une factory d'entity qui gère dedans les vectors plutôt qu'ici
+                     *
+                     * */
+                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName(), VectorCoord.vectorOutOfTheLoop()), vectorCoord));
                 } else {
                     line.get(i).add(wordFactory.createWord(temp.getName(), vectorCoord));
                 }
@@ -116,8 +115,7 @@ public class EncryptionDecorator {
         return count;
     }
 
-    /***
-     *
+    /**
      * @param data file data
      * @return board in 3D from this file data
      */

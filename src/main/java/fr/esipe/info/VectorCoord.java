@@ -67,6 +67,11 @@ public class VectorCoord {
         this.yCoord += vc.getyCoord();
     }
 
+    public static VectorCoord addTwoVectors(VectorCoord vc1, VectorCoord vc2) {
+        return new VectorCoord(vc1.xCoord + vc2.xCoord, vc1.yCoord + vc2.yCoord);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -16,9 +16,10 @@ public class Main {
             LevelManager levelManager = new LevelManager("bob", encoded);
             levelManager.displayBoard();
 
-            while (true) {
-                levelManager.processEvent(context.pollEvent());
+            while (levelManager.processEvent(context.pollEvent())) {
+
             }
         });
+
     }
 }
