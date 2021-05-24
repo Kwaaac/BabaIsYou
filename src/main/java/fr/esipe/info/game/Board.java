@@ -60,7 +60,7 @@ public class Board {
         return board.get(vc.getxCoord()).get(vc.getyCoord());
     }
 
-    private boolean removeEntity(BoardEntity entity) {
+    public boolean removeEntity(BoardEntity entity) {
         Objects.requireNonNull(entity);
         var pos = entity.getPos();
         return board.get(pos.getxCoord()).get(pos.getyCoord()).remove(entity);
@@ -149,6 +149,7 @@ public class Board {
 
     public static void removeBoardEntityFromBoard(BoardEntity boardEntity){
         /* Suppression du boardentity */
+
         System.out.println("Suppression du BoardEntity: " + boardEntity);
     }
 
