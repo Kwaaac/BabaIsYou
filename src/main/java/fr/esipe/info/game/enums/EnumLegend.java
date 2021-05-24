@@ -1,6 +1,6 @@
 package fr.esipe.info.game.enums;
 
-public enum EnumEntity {
+public enum EnumLegend {
     BABA,
     FLAG,
     WALL,

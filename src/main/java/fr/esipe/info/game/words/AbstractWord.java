@@ -1,12 +1,13 @@
 package fr.esipe.info.game.words;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.GameObject;
-import fr.esipe.info.game.enums.ColorPrint;
+import fr.esipe.info.game.AbstractGameObject;
 import fr.esipe.info.game.states.PushState;
 import fr.esipe.info.game.states.State;
 
-public abstract class AbstractWord extends GameObject implements Word {
+import java.util.Objects;
+
+public abstract class AbstractWord extends AbstractGameObject implements Word {
     private final String word;
     private final State state;
 
@@ -26,17 +27,16 @@ public abstract class AbstractWord extends GameObject implements Word {
     }
 
     @Override
-    public String printCommandLineEntity() {
-        var res = word;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AbstractWord that = (AbstractWord) o;
+        return Objects.equals(word, that.word);
+    }
 
-        res = textColor() + res;
-
-        if (word.length() == 2) {
-            res = " " + res + " ";
-        } else if (word.length() == 3) {
-            res += " ";
-        }
-
-        return res + ColorPrint.ANSI_RESET.getAsciiCode();
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), word);
     }
 }

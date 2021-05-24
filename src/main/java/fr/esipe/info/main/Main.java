@@ -1,23 +1,27 @@
 package fr.esipe.info.main;
 
-import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.Entity;
-import fr.esipe.info.game.enums.EnumEntity;
-import fr.esipe.info.game.words.Noun;
+import fr.esipe.info.files.EncryptionDecorator;
+import fr.esipe.info.game.enums.Level;
+import fr.esipe.info.manager.LevelManager;
+import fr.umlv.zen5.Application;
+
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        /*Application.run(Color.BLACK, context -> {
+
+        Application.run(Color.BLACK, context -> {
 
             EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileName());
             LevelManager levelManager = new LevelManager("bob", encoded);
             levelManager.displayBoard();
 
-            while (true) {
-                levelManager.processEvent(context.pollEvent());
+            while (levelManager.processEvent(context.pollEvent())) {
+
             }
-        });*/
-        var entity = new Entity(new Noun(EnumEntity.BABA, new VectorCoord(0,0)));
-        entity.executeAllActions(entity);
+
+            context.exit(0);
+        });
+
     }
 }

@@ -1,8 +1,6 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.enums.EnumOp;
-import fr.esipe.info.game.enums.EnumProp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,12 @@ public class Board {
         this.board = board;
         this.height = board.size();
         this.width = board.get(0).size();
+        /* TODO: remove this: Temporary adding you prop to Babas */
+
+        playerIsYou.add(board.get(4).get(1).get(0));
+        // setPlayable();
     }
+
 
     /**
      * Method that fecth the entity with the "YOU" property
@@ -33,17 +36,17 @@ public class Board {
     private void setPlayable() {
         playerIsYou.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
-            if (entity.usesProperties(EnumOp.IS, EnumProp.YOU)) {
-                playerIsYou.add(entity);
-            }
+
         })));
     }
 
-    private void checkVector(VectorCoord vc) {
+    private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
-        if (vc.getxCoord() > height || vc.getyCoord() > width) {
+        if (!isInsideBoard(vc)) {
             throw new IllegalArgumentException("The given vector is not acceptable. It fetch outside the board");
         }
+
+        return vc;
     }
 
     /**
@@ -55,6 +58,56 @@ public class Board {
     private List<BoardEntity> getEntitiesFromVector(VectorCoord vc) {
         checkVector(vc);
         return board.get(vc.getxCoord()).get(vc.getyCoord());
+    }
+
+    private boolean removeEntity(BoardEntity entity) {
+        Objects.requireNonNull(entity);
+        var pos = entity.getPos();
+        return board.get(pos.getxCoord()).get(pos.getyCoord()).remove(entity);
+    }
+
+    private boolean addEntity(BoardEntity entity) {
+        Objects.requireNonNull(entity);
+        var pos = entity.getPos();
+        return board.get(pos.getxCoord()).get(pos.getyCoord()).add(entity);
+    }
+
+    /**
+     * @param entityPos
+     * @param mvtVector
+     * @return
+     */
+    private VectorCoord normalizeMovementVector(VectorCoord entityPos, VectorCoord mvtVector) {
+        VectorCoord newPos;
+
+        try {
+            newPos = checkVector(VectorCoord.addTwoVectors(entityPos, mvtVector));
+        } catch (IllegalArgumentException e) {
+            newPos = entityPos;
+        }
+
+        return newPos;
+    }
+
+    private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
+        Objects.requireNonNull(entity);
+        Objects.requireNonNull(vc);
+        var newPos = normalizeMovementVector(entity.getPos(), vc);
+
+        if (!removeEntity(entity)) {
+            return false;
+        }
+        entity.setPos(newPos);
+
+        return addEntity(entity);
+    }
+
+
+    private boolean isInsideBoard(VectorCoord vc) {
+        var x = vc.getxCoord();
+        var y = vc.getyCoord();
+
+        return x >= 0 && x < height && y >= 0 && y < width;
     }
 
     @Override
@@ -86,7 +139,12 @@ public class Board {
     }
 
     public void move(VectorCoord vc) {
+        System.out.println(playerIsYou);
+        for (BoardEntity entity : playerIsYou) {
+            moveEntity(entity, vc);
+        }
 
+        System.out.println(this);
     }
 
     public static void removeBoardEntityFromBoard(BoardEntity boardEntity){

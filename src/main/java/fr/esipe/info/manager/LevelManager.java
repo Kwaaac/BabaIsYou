@@ -11,8 +11,8 @@ public class LevelManager {
     private final Board board;
     private final EncryptionDecorator encoded;
 
-    private boolean win = false;
-    private boolean lose = false;
+    private static boolean win = false;
+    private static boolean lose = false;
 
     public LevelManager(String levelName, EncryptionDecorator encoded) {
         this.levelName = levelName;
@@ -27,20 +27,40 @@ public class LevelManager {
     }
 
 
-    public void processEvent(Event event) {
+    public boolean processEvent(Event event) {
         if (event == null) {
-            return;
+            return true;
         }
 
         if (event.getAction().equals(Event.Action.KEY_PRESSED)) {
             switch (event.getKey()) {
-                case UP -> board.move(VectorCoord.vectorUP());
-                case DOWN -> board.move(VectorCoord.vectorDOWN());
-                case LEFT -> board.move(VectorCoord.vectorLEFT());
-                case RIGHT -> board.move(VectorCoord.vectorRIGHT());
+                case UP:
+                    board.move(VectorCoord.vectorUP());
+                    break;
+
+                case DOWN:
+                    board.move(VectorCoord.vectorDOWN());
+                    break;
+
+                case LEFT:
+                    board.move(VectorCoord.vectorLEFT());
+                    break;
+
+                case RIGHT:
+                    board.move(VectorCoord.vectorRIGHT());
+                    break;
+
+                case UNDEFINED:
+                    return false;
+
+                case S:
+                    /*TODO: Sauvegarde*/
+                    break;
             }
         }
 
+
+        return true;
     }
 
     public static void removeEntity(BoardEntity boardEntity){
@@ -54,5 +74,13 @@ public class LevelManager {
 
     public boolean isLose() {
         return lose;
+    }
+
+    public static void win() {
+        LevelManager.win = true;
+    }
+
+    public static void lose() {
+        LevelManager.lose = true;
     }
 }
