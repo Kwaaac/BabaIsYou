@@ -19,6 +19,8 @@ public class Main {
             while (levelManager.processEvent(context.pollEvent())) {
 
             }
+
+            context.exit(0);
         });
 
     }

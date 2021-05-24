@@ -1,64 +1,93 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.words.Noun;
+import fr.esipe.info.game.enums.ColorPrint;
+import fr.esipe.info.game.enums.Legend;
+import fr.esipe.info.game.enums.Type;
 
 import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
-    private Noun noun;
+    private Legend entity;
 
-    public Entity(Noun noun, VectorCoord vc) {
+    public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
-        this.noun = Objects.requireNonNull(noun);
+        this.entity = Objects.requireNonNull(enumEntity);
     }
 
     public Entity(Entity target) {
-        this(target.noun, target.getPos());
-    }
-
-    public Entity(Noun word) {
-        this(word, VectorCoord.vectorOutOfTheLoop());
+        this(target.entity, target.getPos());
     }
 
     public Entity clone() {
         return new Entity(this);
     }
 
-    public Noun getNoun() {
-        return noun;
+    public Legend getNoun() {
+        return entity;
     }
 
-    public void changeNoun(Noun noun) {
-        this.noun = noun;
-    }
-
-    @Override
-    public boolean isEntity() {
-        return true;
+    public void changeNoun(Legend noun) {
+        this.entity = noun;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Entity)) return false;
-        Entity entity = (Entity) o;
-        return entity.noun == noun;
+    public boolean isNoun() {
+        return entity.getType() == Type.NOUN;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(noun);
+    public boolean isOperator() {
+        return entity.getType() == Type.OPERATOR;
     }
+
+    @Override
+    public boolean isProperty() {
+        return entity.getType() == Type.PROPERTY;
+    }
+
+    @Override
+    public boolean isWord() {
+        return entity.getType() != Type.ENTITY;
+    }
+
 
     @Override
     public String toString() {
         return "Entity{" +
-                noun +
+                entity +
                 '}';
     }
 
     @Override
     public String printCommandLineEntity() {
-        return noun.toString();
+        var res = entity.getName().toUpperCase();
+
+        if (res.length() == 2) {
+            res = " " + res + " ";
+        } else if (res.length() == 3) {
+            res += " ";
+        }
+
+        return entity.getTextColor() + res + ColorPrint.ANSI_RESET.getAsciiCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Entity entity1 = (Entity) o;
+        return entity == entity1.entity;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), entity);
+    }
+
+    @Override
+    public int compareTo(Entity o) {
+        return Integer.compare(entity.getWeight(), o.entity.getWeight());
     }
 }

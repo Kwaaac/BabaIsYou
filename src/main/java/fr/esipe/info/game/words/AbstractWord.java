@@ -2,7 +2,6 @@ package fr.esipe.info.game.words;
 
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.AbstractGameObject;
-import fr.esipe.info.game.enums.ColorPrint;
 
 import java.util.Objects;
 
@@ -21,21 +20,6 @@ public abstract class AbstractWord extends AbstractGameObject implements Word {
 
     String textColor() {
         return "";
-    }
-
-    @Override
-    public String printCommandLineEntity() {
-        var res = word;
-
-        res = textColor() + res;
-
-        if (word.length() == 2) {
-            res = " " + res + " ";
-        } else if (word.length() == 3) {
-            res += " ";
-        }
-
-        return res + ColorPrint.ANSI_RESET.getAsciiCode();
     }
 
     @Override

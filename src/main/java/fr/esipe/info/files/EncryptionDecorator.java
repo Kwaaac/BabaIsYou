@@ -8,7 +8,6 @@ import fr.esipe.info.factories.WordFactory;
 import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.Entity;
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.words.Noun;
 
 import java.io.File;
 import java.io.FileReader;
@@ -70,24 +69,12 @@ public class EncryptionDecorator {
 
     private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend, int lineIndex) {
         int indexString = 0;
-        WordFactory wordFactory;
         for (int i = 0; i < line.size(); i++) {
             var vectorCoord = new VectorCoord(lineIndex, i);
             int finalIndexString = indexString;
             Legend temp = legend.stream().filter(l -> l.getaChar() == dataLine.charAt(finalIndexString)).findFirst().get();
-            wordFactory = getCorrectWordFactory(temp);
             if (!temp.equals(Legend.BLANK)) {
-                if (wordFactory == null) {
-                    wordFactory = new NounFactory();
-
-                    /*TODO: check si on peut pas faire mieux qu'un vecteur out of the loop pour les nom dans les entity
-                     * Peut-être avec interface au lieu de classes abtraite --> faire une factory d'entity qui gère dedans les vectors plutôt qu'ici
-                     *
-                     * */
-                    line.get(i).add(new Entity((Noun) wordFactory.createWord(temp.getName(), VectorCoord.vectorOutOfTheLoop()), vectorCoord));
-                } else {
-                    line.get(i).add(wordFactory.createWord(temp.getName(), vectorCoord));
-                }
+                line.get(i).add(new Entity(temp, vectorCoord));
             }
             indexString++;
         }

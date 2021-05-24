@@ -1,9 +1,13 @@
 package fr.esipe.info.game;
 
-public interface BoardEntity extends GameObject {
+public interface BoardEntity extends GameObject, Comparable<Entity> {
     String printCommandLineEntity();
 
-    default boolean isEntity(){
-        return false;
-    }
+    boolean isWord();
+
+    boolean isNoun();
+
+    boolean isOperator();
+
+    boolean isProperty();
 }
