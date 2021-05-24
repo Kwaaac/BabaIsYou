@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Noun extends AbstractWord implements Word {
-    /**
-     * ATTENTION : commun à tous les noms non ?
-     * */
     private final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
 
     public Noun(EnumLegend word, VectorCoord vc) {

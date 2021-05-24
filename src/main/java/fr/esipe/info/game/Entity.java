@@ -2,9 +2,11 @@ package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.ColorPrint;
+import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.states.*;
 import fr.esipe.info.game.enums.Type;
+import fr.esipe.info.game.states.*;
+import fr.esipe.info.game.words.Noun;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,17 +20,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.states = new LinkedList<>();
-    }
-
-    public Entity(Noun noun){
-        this(noun, new VectorCoord(0,0));
-    }
-
-    public Entity(Entity target) {
-        this(target.entity, target.getPos());
-    }
-    public Entity clone() {
-        return new Entity(this);
     }
 
     public Legend getNoun() {
