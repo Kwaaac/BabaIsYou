@@ -1,10 +1,6 @@
 package fr.esipe.info.files;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.factories.NounFactory;
-import fr.esipe.info.factories.OperatorFactory;
-import fr.esipe.info.factories.PropertyFactory;
-import fr.esipe.info.factories.WordFactory;
 import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.Entity;
 import fr.esipe.info.game.enums.Legend;
@@ -50,20 +46,6 @@ public class EncryptionDecorator {
         }
 
         return result;
-    }
-
-    /***
-     * function to get the correct wordfactory to create word among noun, operator and property
-     * @param legend enum legend
-     * @return wordfactory which match with this legend
-     */
-    private WordFactory getCorrectWordFactory(Legend legend) {
-        return switch (legend.getType()) {
-            case NOUN -> new NounFactory();
-            case OPERATOR -> new OperatorFactory();
-            case PROPERTY -> new PropertyFactory();
-            default -> null;
-        };
     }
 
 

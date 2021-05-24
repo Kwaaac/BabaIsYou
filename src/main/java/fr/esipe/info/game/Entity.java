@@ -6,7 +6,6 @@ import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.states.*;
-import fr.esipe.info.game.words.Noun;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +24,8 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public Legend getNoun() {
         return entity;
     }
+
+    @Override
     public boolean hasProperty(EnumProp prop){
         return this.states.stream().anyMatch(state -> state.getProp().equals(prop));
     }
@@ -50,11 +51,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     @Override
     public boolean isNoun() {
         return entity.getType() == Type.NOUN;
-    }
-
-    @Override
-    public boolean isWord() {
-        return false;
     }
 
     @Override
