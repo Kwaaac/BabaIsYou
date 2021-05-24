@@ -3,6 +3,7 @@ package fr.esipe.info.manager;
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
+import fr.esipe.info.game.BoardEntity;
 import fr.umlv.zen5.Event;
 
 public class LevelManager {
@@ -40,6 +41,10 @@ public class LevelManager {
             }
         }
 
+    }
+
+    public static void removeEntity(BoardEntity boardEntity){
+        Board.removeBoardEntityFromBoard(boardEntity);
     }
 
 

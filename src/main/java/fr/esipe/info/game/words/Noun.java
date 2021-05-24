@@ -12,10 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Noun extends AbstractWord implements Word {
-    private static final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
+    /**
+     * ATTENTION : commun à tous les noms non ?
+     * */
+    private final Map<EnumOp, List<EnumProp>> properties = new HashMap<>();
 
     public Noun(EnumEntity word, VectorCoord vc) {
         super(word.name(), vc);
+        properties.put(EnumOp.IS, List.of(EnumProp.HOT, EnumProp.DEFEAT, EnumProp.SINK));
     }
 
     public void addProperty(EnumOp op, EnumProp prop) {
@@ -23,6 +27,10 @@ public class Noun extends AbstractWord implements Word {
             properties.put(op, new ArrayList<>());
         }
         properties.get(op).add(prop);
+    }
+
+    public List<EnumProp> getPropertiesWithIs(){
+        return properties.get(EnumOp.IS);
     }
 
     public boolean hasProperty(EnumOp op, EnumProp prop) {
@@ -35,13 +43,7 @@ public class Noun extends AbstractWord implements Word {
         return props.contains(prop);
     }
 
-
     String textColor() {
         return ColorPrint.ANSI_RED.getAsciiCode();
     }
-
-    public Map<EnumOp, List<EnumProp>> getProperties() {
-        return properties;
-    }
-
 }

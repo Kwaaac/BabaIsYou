@@ -1,6 +1,7 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
+import fr.esipe.info.manager.GameManager;
 
 import java.util.Objects;
 
@@ -21,6 +22,11 @@ public class GameObject {
 
     public void addPos(VectorCoord pos) {
         this.pos.addVector(pos);
+    }
+
+    public void destroy(){
+        GameManager.getInstance().removeGameObject((BoardEntity) this);
+        System.out.println("Destroyed: " + this);
     }
 
     @Override

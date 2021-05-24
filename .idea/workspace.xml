@@ -4,26 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="Factory creation for any word">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/HotState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/MeltState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/NoneState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/SinkState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" afterDir="false" />
+    <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/NormalState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/DefeatState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/DefeatState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/HotState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/HotState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/MeltState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/MeltState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/NoneState.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/PushState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/PushState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/SinkState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/SinkState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/StopState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/StopState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/WinState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/WinState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/YouState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/YouState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/WinState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/YouState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/AbstractWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Noun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Noun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/words/Word.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
     </list>
     <list id="687bdaea-e13b-4689-9045-510bbb9277ac" name="Changes by mikem" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,11 +101,11 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="ignore.preview.features.used" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/fr/esipe/info" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.25873017" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -124,15 +134,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -201,6 +209,7 @@
       <workItem from="1621686645346" duration="1812000" />
       <workItem from="1621720455849" duration="4498000" />
       <workItem from="1621757315596" duration="4090000" />
+      <workItem from="1621844832927" duration="6682000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>
@@ -216,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621191944979</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Create Class for each property">
+      <created>1621769262614</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621769262614</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +253,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="import board from file" />
     <MESSAGE value="Factory creation for any word" />
-    <option name="LAST_COMMIT_MESSAGE" value="Factory creation for any word" />
+    <MESSAGE value="Create Class for each property" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Class for each property" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

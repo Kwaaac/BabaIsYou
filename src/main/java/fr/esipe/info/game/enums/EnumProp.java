@@ -1,6 +1,7 @@
 package fr.esipe.info.game.enums;
 
 public enum EnumProp {
+    NONE,
     YOU,
     WIN,
     STOP,
@@ -8,6 +9,5 @@ public enum EnumProp {
     MELT,
     HOT,
     DEFEAT,
-    SINK,
-    ALONE // Non superposable
+    SINK;
 }

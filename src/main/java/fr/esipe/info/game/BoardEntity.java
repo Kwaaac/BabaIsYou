@@ -9,4 +9,7 @@ public interface BoardEntity {
     default boolean usesProperties(EnumOp op, EnumProp prop) {
         return false;
     }
+
+    default void executeAllActions(BoardEntity to){}
+    boolean isWord();
 }

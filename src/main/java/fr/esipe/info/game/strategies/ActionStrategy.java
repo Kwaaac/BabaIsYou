@@ -1,9 +1,9 @@
 package fr.esipe.info.game.strategies;
 
-import fr.esipe.info.game.Entity;
+import fr.esipe.info.game.BoardEntity;
 
 public interface ActionStrategy {
-    void execute(Entity from, Entity to);
+    void execute(BoardEntity from, BoardEntity to);
     default void displayMessage(String message){
         System.out.println(message);
     }

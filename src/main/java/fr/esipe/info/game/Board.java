@@ -89,4 +89,9 @@ public class Board {
 
     }
 
+    public static void removeBoardEntityFromBoard(BoardEntity boardEntity){
+        /* Suppression du boardentity */
+        System.out.println("Suppression du BoardEntity: " + boardEntity);
+    }
+
 }

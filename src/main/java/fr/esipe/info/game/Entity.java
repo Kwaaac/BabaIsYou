@@ -3,55 +3,62 @@ package fr.esipe.info.game;
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.EnumOp;
 import fr.esipe.info.game.enums.EnumProp;
-import fr.esipe.info.game.states.NoneState;
-import fr.esipe.info.game.states.State;
+import fr.esipe.info.game.states.*;
 import fr.esipe.info.game.words.Noun;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Entity extends GameObject implements BoardEntity {
-    private Noun noun;
-    private State state;
+    private final Noun noun;
+    private final List<State> states;
 
-    public Entity(Noun noun, VectorCoord vc, State state) {
+    public Entity(Noun noun, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
-        Objects.requireNonNull(state);
-        this.state = state;
         this.noun = Objects.requireNonNull(noun);
+        this.states = new LinkedList<>();
     }
 
     public Entity(Noun noun){
-        this(noun, new VectorCoord(0,0), new NoneState());
+        this(noun, new VectorCoord(0,0));
     }
 
     public Entity(Entity target) {
-        this(target.noun, target.getPos(), target.state);
+        this(target.noun, target.getPos());
     }
 
     public Entity clone() {
         return new Entity(this);
     }
 
-    public void changeState(State state){
-        Objects.requireNonNull(state);
-        this.state = state;
+    public boolean hasProperty(EnumProp prop){
+        return this.states.stream().anyMatch(state -> state.getProp().equals(prop));
     }
 
-    public State getState(){
-        return this.state;
+    public void addState(EnumProp enumProp){
+        switch (enumProp){
+            case SINK -> this.states.add(new SinkState());
+            case MELT -> this.states.add(new MeltState());
+            case HOT -> this.states.add(new HotState());
+            case DEFEAT -> this.states.add(new DefeatState());
+            case PUSH -> this.states.add(new PushState());
+            case STOP -> this.states.add(new StopState());
+        }
     }
 
-    public Noun getNoun() {
-        return noun;
-    }
-
-    public void changeNoun(Noun noun) {
-        this.noun = noun;
+    public void removeState(EnumProp enumProp){
+        this.states.removeIf(state -> state.getProp().equals(enumProp));
     }
 
     @Override
     public boolean usesProperties(EnumOp op, EnumProp prop) {
         return noun.hasProperty(op, prop);
+    }
+
+    @Override
+    public boolean isWord() {
+        return false;
     }
 
     @Override

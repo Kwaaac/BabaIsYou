@@ -1,5 +1,7 @@
 package fr.esipe.info.manager;
 
+import fr.esipe.info.game.BoardEntity;
+
 public class GameManager {
     /**
      * Be declared volatile so that double check lock would work correctly
@@ -7,22 +9,27 @@ public class GameManager {
     private static volatile GameManager instance;
     private LevelManager levelManager;
 
-    private GameManager(LevelManager levelManager) {
-        this.levelManager = levelManager;
+    private GameManager() {
+
     }
 
-    public static GameManager getInstance(LevelManager levelManager) {
+    public static GameManager getInstance() {
         GameManager result = instance;
         if (result != null) {
             return result;
         }
         synchronized (GameManager.class) {
             if (instance == null) {
-                instance = new GameManager(levelManager);
+                instance = new GameManager();
             }
             return instance;
         }
     }
 
 
+    public static void removeGameObject(BoardEntity boardEntity) {
+        if(boardEntity != null){
+            LevelManager.removeEntity(boardEntity);
+        }
+    }
 }
