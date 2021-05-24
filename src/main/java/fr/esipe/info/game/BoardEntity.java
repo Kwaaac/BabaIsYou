@@ -1,6 +1,9 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.game.enums.EnumProp;
+import fr.esipe.info.game.states.State;
+
+import java.util.List;
 
 public interface BoardEntity extends GameObject, Comparable<Entity> {
     String printCommandLineEntity();
@@ -14,4 +17,12 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
     boolean isOperator();
 
     boolean isProperty();
+
+    void executeAllActions(BoardEntity entity);
+
+    boolean isSteppable();
+
+    boolean isMovable();
+
+    List<State> getStates();
 }

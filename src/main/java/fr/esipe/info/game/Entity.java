@@ -19,6 +19,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.states = new LinkedList<>();
+        this.states.add(new WinState());
     }
 
     public Legend getNoun() {
@@ -61,6 +62,26 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     @Override
     public boolean isProperty() {
         return entity.getType() == Type.PROPERTY;
+    }
+
+    @Override
+    public void executeAllActions(BoardEntity to) {
+        this.states.forEach(state -> state.getActionStrategy().execute(this,to));
+    }
+
+    @Override
+    public boolean isSteppable() {
+        return this.states.stream().anyMatch(State::isSteppable);
+    }
+
+    @Override
+    public boolean isMovable() {
+        return this.states.stream().anyMatch(State::isMovable);
+    }
+
+    @Override
+    public List<State> getStates() {
+        return this.states;
     }
 
     @Override

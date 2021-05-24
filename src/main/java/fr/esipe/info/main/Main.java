@@ -2,6 +2,7 @@ package fr.esipe.info.main;
 
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.enums.Level;
+import fr.esipe.info.manager.GameManager;
 import fr.esipe.info.manager.LevelManager;
 import fr.umlv.zen5.Application;
 
@@ -14,9 +15,11 @@ public class Main {
 
             EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileName());
             LevelManager levelManager = new LevelManager("bob", encoded);
+            GameManager gameManager = GameManager.getInstance();
+            gameManager.setLevelManager(levelManager);
             levelManager.displayBoard();
 
-            while (levelManager.processEvent(context.pollEvent())) {
+            while (levelManager.processEvent(context.pollEvent()) && !levelManager.isLose() && !levelManager.isWin()) {
 
             }
 

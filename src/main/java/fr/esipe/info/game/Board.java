@@ -1,6 +1,7 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
+import fr.esipe.info.game.states.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,17 +90,10 @@ public class Board {
         return newPos;
     }
 
-    private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
-        Objects.requireNonNull(entity);
-        Objects.requireNonNull(vc);
-        var newPos = normalizeMovementVector(entity.getPos(), vc);
+    public static void removeBoardEntityFromBoard(BoardEntity boardEntity) {
+        /* Suppression du boardentity */
 
-        if (!removeEntity(entity)) {
-            return false;
-        }
-        entity.setPos(newPos);
-
-        return addEntity(entity);
+        System.out.println("Suppression du BoardEntity: " + boardEntity);
     }
 
 
@@ -134,23 +128,42 @@ public class Board {
         return strRow.toString();
     }
 
-    private boolean isMoveAuthorized() {
-        return true;
+    private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
+        Objects.requireNonNull(entity);
+        Objects.requireNonNull(vc);
+        var newPos = normalizeMovementVector(entity.getPos(), vc);
+        if (!this.isMoveAuthorized(newPos)) {
+            return false;
+        }
+        if (!removeEntity(entity)) {
+            return false;
+        }
+        entity.setPos(newPos);
+        System.out.println("Se déplace : " + entity);
+        return addEntity(entity);
+    }
+
+    private boolean isMoveAuthorized(VectorCoord vectorCoord) {
+        var entitiesInNewCoord = this.getEntitiesFromVector(vectorCoord);
+        if (entitiesInNewCoord.isEmpty()) {
+            return true;
+        }
+        return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().anyMatch(State::isSteppable));
     }
 
     public void move(VectorCoord vc) {
         System.out.println(playerIsYou);
         for (BoardEntity entity : playerIsYou) {
-            moveEntity(entity, vc);
+            entity.executeAllActions(entity);
+            var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(null);
+            if (moveEntity(entity, vc)) {
+                entity.executeAllActions(to);
+            }
+
+            System.out.println(this.getEntitiesFromVector(entity.getPos()));
         }
 
         System.out.println(this);
-    }
-
-    public static void removeBoardEntityFromBoard(BoardEntity boardEntity){
-        /* Suppression du boardentity */
-
-        System.out.println("Suppression du BoardEntity: " + boardEntity);
     }
 
 }
