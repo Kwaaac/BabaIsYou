@@ -18,11 +18,15 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
 
     boolean isProperty();
 
-    void executeAllActions(BoardEntity entity);
+    void executeAction(BoardEntity entity);
 
     boolean isSteppable();
 
     boolean isMovable();
 
     List<State> getStates();
+
+    boolean iAmWin();
+
+    boolean iAmDefeat();
 }

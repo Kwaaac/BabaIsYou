@@ -7,6 +7,7 @@ import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.states.*;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +20,9 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.states = new LinkedList<>();
-        this.states.add(new PushState());
+        this.states.add(new SinkState());
+        this.states.add(new NormalState());
+        Collections.sort(this.states);
     }
 
     public Legend getNoun() {
@@ -66,8 +69,15 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     }
 
     @Override
-    public void executeAllActions(BoardEntity to) {
-        this.states.forEach(state -> state.getActionStrategy().execute(this,to));
+    public void executeAction(BoardEntity to) {
+        State state = this.states.stream().findFirst().orElse(new NormalState());
+        if(this.iAmWin()){
+            state = new WinState();
+        }
+        else if(this.iAmDefeat()){
+            state = new DefeatState();
+        }
+        state.getActionStrategy().execute(this,to);
     }
 
     @Override
@@ -128,5 +138,15 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     @Override
     public int compareTo(Entity o) {
         return Integer.compare(entity.getWeight(), o.entity.getWeight());
+    }
+
+    @Override
+    public boolean iAmWin(){
+        return this.states.stream().anyMatch(state -> state.getProp().equals(EnumProp.WIN));
+    }
+
+    @Override
+    public boolean iAmDefeat(){
+        return this.states.stream().anyMatch(state -> state.getProp().equals(EnumProp.DEFEAT));
     }
 }

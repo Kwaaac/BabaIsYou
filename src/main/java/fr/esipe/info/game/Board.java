@@ -125,6 +125,7 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
+        System.out.println(entity.getStates());
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
         if(nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())){
@@ -154,13 +155,16 @@ public class Board {
 
     public void move(VectorCoord vc) {
         for (BoardEntity entity : playerIsYou) {
-            entity.executeAllActions(entity);
+            entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(null);
             if (moveEntity(entity, vc)) {
-                entity.executeAllActions(to);
+                entity.executeAction(to);
             }
         }
         System.out.println(this);
     }
 
+    public List<BoardEntity> getPlayerIsYou() {
+        return playerIsYou;
+    }
 }

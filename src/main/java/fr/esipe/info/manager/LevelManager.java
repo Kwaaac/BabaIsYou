@@ -63,7 +63,7 @@ public class LevelManager {
         return true;
     }
 
-    public void removeEntity(BoardEntity boardEntity){
+    public void removeEntity(BoardEntity boardEntity) {
         this.board.removeEntity(boardEntity);
     }
 

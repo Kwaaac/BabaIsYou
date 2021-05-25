@@ -5,7 +5,7 @@ import fr.esipe.info.game.strategies.ActionStrategy;
 
 import java.util.Objects;
 
-public abstract class State {
+public abstract class State implements Comparable<State>{
     private final EnumProp prop;
     private final ActionStrategy actionStrategy;
 
@@ -28,5 +28,15 @@ public abstract class State {
 
     public boolean isMovable(){
         return false;
+    }
+
+    @Override
+    public int compareTo(State state){
+        return state.prop.getWeight() - this.prop.getWeight();
+    }
+
+    @Override
+    public String toString() {
+        return prop.toString();
     }
 }
