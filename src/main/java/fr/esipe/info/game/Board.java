@@ -90,12 +90,6 @@ public class Board {
         return newPos;
     }
 
-    public static void removeBoardEntityFromBoard(BoardEntity boardEntity) {
-        /* Suppression du boardentity */
-
-        System.out.println("Suppression du BoardEntity: " + boardEntity);
-    }
-
 
     private boolean isInsideBoard(VectorCoord vc) {
         var x = vc.getxCoord();
@@ -132,6 +126,10 @@ public class Board {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
         var newPos = normalizeMovementVector(entity.getPos(), vc);
+        var nextEntity = this.getFirstEntityFromList(newPos);
+        if(nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())){
+            this.moveEntity(nextEntity, vc);
+        }
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }
@@ -139,8 +137,11 @@ public class Board {
             return false;
         }
         entity.setPos(newPos);
-        System.out.println("Se déplace : " + entity);
         return addEntity(entity);
+    }
+
+    private BoardEntity getFirstEntityFromList(VectorCoord vc){
+        return this.getEntitiesFromVector(vc).stream().findFirst().orElse(null);
     }
 
     private boolean isMoveAuthorized(VectorCoord vectorCoord) {
@@ -152,17 +153,13 @@ public class Board {
     }
 
     public void move(VectorCoord vc) {
-        System.out.println(playerIsYou);
         for (BoardEntity entity : playerIsYou) {
             entity.executeAllActions(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(null);
             if (moveEntity(entity, vc)) {
                 entity.executeAllActions(to);
             }
-
-            System.out.println(this.getEntitiesFromVector(entity.getPos()));
         }
-
         System.out.println(this);
     }
 

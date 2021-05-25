@@ -19,7 +19,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.states = new LinkedList<>();
-        this.states.add(new NormalState());
+        this.states.add(new PushState());
     }
 
     public Legend getNoun() {
