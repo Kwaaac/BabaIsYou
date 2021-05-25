@@ -84,4 +84,12 @@ public class VectorCoord {
     public int hashCode() {
         return Objects.hash(xCoord, yCoord);
     }
+
+    @Override
+    public String toString() {
+        return "VectorCoord{" +
+                "xCoord=" + xCoord +
+                ", yCoord=" + yCoord +
+                '}';
+    }
 }
