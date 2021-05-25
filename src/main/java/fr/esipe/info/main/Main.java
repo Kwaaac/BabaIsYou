@@ -11,7 +11,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        Application.run(Color.BLACK, context -> {
+        Application.run(new Color(0f, 0f, 0f, .0f), context -> {
 
             EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileName());
             LevelManager levelManager = new LevelManager("bob", encoded);
