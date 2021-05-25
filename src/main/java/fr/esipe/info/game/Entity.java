@@ -19,7 +19,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.states = new LinkedList<>();
-        this.states.add(new WinState());
+        this.states.add(new NormalState());
     }
 
     public Legend getNoun() {
@@ -34,6 +34,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public void changeNoun(Legend noun) {
         this.entity = noun;
     }
+
     public void addState(EnumProp enumProp){
         switch (enumProp){
             case SINK -> this.states.add(new SinkState());
