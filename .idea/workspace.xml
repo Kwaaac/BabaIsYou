@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabaIsYou.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BabaIsYou.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
     </list>
     <list id="687bdaea-e13b-4689-9045-510bbb9277ac" name="Changes by mikem" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +103,7 @@
       <recent name="fr.esipe.info" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Maven.BabaIsYou [clean,compile,package,install]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="15" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -117,7 +120,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BabaIsYou [clean,install,validate]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BabaIsYou [clean,compile,package,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -129,8 +143,9 @@
             <option name="goals">
               <list>
                 <option value="clean" />
+                <option value="compile" />
+                <option value="package" />
                 <option value="install" />
-                <option value="validate" />
               </list>
             </option>
             <option name="pomFileName" />
@@ -146,7 +161,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Maven.BabaIsYou [clean,install,validate]" />
+      <item itemvalue="Maven.BabaIsYou [clean,compile,package,install]" />
     </list>
     <recent_temporary>
       <list>
@@ -188,6 +203,7 @@
       <workItem from="1621931927641" duration="866000" />
       <workItem from="1621943795195" duration="1000" />
       <workItem from="1621958636761" duration="579000" />
+      <workItem from="1622142838488" duration="1053000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>

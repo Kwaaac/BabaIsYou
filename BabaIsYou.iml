@@ -12,5 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="zen5" level="project" />
+    <orderEntry type="library" name="Maven: org.example.fr.umlv.zen5:zen5:5.0" level="project" />
   </component>
 </module>
