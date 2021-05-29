@@ -35,7 +35,7 @@ public class GameManager {
     }
 
     public void removeGameObject(BoardEntity boardEntity) {
-        if(boardEntity != null){
+        if (boardEntity != null) {
             levelManager.removeEntity(boardEntity);
         }
     }

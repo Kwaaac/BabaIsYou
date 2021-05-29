@@ -1,6 +1,6 @@
 package fr.esipe.info.game;
 
-import fr.esipe.info.game.enums.EnumProp;
+import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.State;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public interface BoardEntity extends GameObject, Comparable<Entity> {
     String printCommandLineEntity();
 
-    boolean hasProperty(EnumProp prop);
+    Legend getLegend();
 
     boolean isWord();
 
@@ -25,8 +25,4 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
     boolean isMovable();
 
     List<State> getStates();
-
-    boolean iAmWin();
-
-    boolean iAmDefeat();
 }

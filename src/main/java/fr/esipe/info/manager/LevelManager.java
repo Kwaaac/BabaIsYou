@@ -18,8 +18,6 @@ public class LevelManager {
         this.levelName = levelName;
         this.encoded = encoded;
         this.board = new Board(this.encoded.readData());
-
-
     }
 
     public void displayBoard() {

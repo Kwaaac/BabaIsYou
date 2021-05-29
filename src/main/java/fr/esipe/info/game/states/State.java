@@ -5,11 +5,11 @@ import fr.esipe.info.game.strategies.ActionStrategy;
 
 import java.util.Objects;
 
-public abstract class State implements Comparable<State>{
+public abstract class State implements Comparable<State> {
     private final EnumProp prop;
     private final ActionStrategy actionStrategy;
 
-    public State(ActionStrategy actionStrategy, EnumProp prop){
+    public State(ActionStrategy actionStrategy, EnumProp prop) {
         this.actionStrategy = Objects.requireNonNull(actionStrategy);
         this.prop = Objects.requireNonNull(prop);
     }
@@ -22,16 +22,16 @@ public abstract class State implements Comparable<State>{
         return prop;
     }
 
-    public boolean isSteppable(){
+    public boolean isSteppable() {
         return !this.isMovable();
     }
 
-    public boolean isMovable(){
+    public boolean isMovable() {
         return false;
     }
 
     @Override
-    public int compareTo(State state){
+    public int compareTo(State state) {
         return state.prop.getWeight() - this.prop.getWeight();
     }
 

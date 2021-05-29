@@ -1,6 +1,8 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
+import fr.esipe.info.game.enums.EnumProp;
+import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.State;
 
 import java.util.ArrayList;
@@ -10,11 +12,13 @@ import java.util.Objects;
 public class Board {
     private final List<List<List<BoardEntity>>> board;
     private final List<BoardEntity> playerIsYou = new ArrayList<>();
+
     private final int height;
     private final int width;
 
     public Board(List<List<List<BoardEntity>>> board) {
         Objects.requireNonNull(board);
+
         if (board.isEmpty() || board.get(0).isEmpty()) {
             throw new IllegalArgumentException("The board must be not empty");
         }
@@ -26,8 +30,13 @@ public class Board {
 
         playerIsYou.add(board.get(4).get(1).get(0));
         // setPlayable();
-    }
 
+        Rules.add(Legend.WALL_ENTITY, EnumProp.STOP);
+        Rules.add(Legend.BABA_ENTITY, EnumProp.YOU);
+        Rules.add(Legend.FLAG_ENTITY, EnumProp.WIN);
+        Rules.add(Legend.ROCK_ENTITY, EnumProp.PUSH);
+
+    }
 
     /**
      * Method that fecth the entity with the "YOU" property
@@ -150,6 +159,7 @@ public class Board {
         if (entitiesInNewCoord.isEmpty()) {
             return true;
         }
+
         return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().anyMatch(State::isSteppable));
     }
 
