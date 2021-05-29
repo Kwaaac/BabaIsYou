@@ -37,7 +37,7 @@ public class EncryptionDecorator {
 
             i++;
         }
-        
+
         return result;
     }
 

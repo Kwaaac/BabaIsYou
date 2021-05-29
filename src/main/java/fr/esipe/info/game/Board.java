@@ -3,7 +3,8 @@ package fr.esipe.info.game;
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.states.State;
+import fr.esipe.info.game.rule.Rules;
+import fr.esipe.info.game.states.NormalState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,10 @@ public class Board {
         this.board = board;
         this.height = board.size();
         this.width = board.get(0).size();
-        /* TODO: remove this: Temporary adding you prop to Babas */
 
-        playerIsYou.add(board.get(4).get(1).get(0));
-        // setPlayable();
+        updateRules();
 
-        Rules.add(Legend.WALL_ENTITY, EnumProp.STOP);
-        Rules.add(Legend.BABA_ENTITY, EnumProp.YOU);
-        Rules.add(Legend.FLAG_ENTITY, EnumProp.WIN);
-        Rules.add(Legend.ROCK_ENTITY, EnumProp.PUSH);
+        Rules.displayRules();
     }
 
     /**
@@ -45,9 +41,65 @@ public class Board {
     private void setPlayable() {
         playerIsYou.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
-
+            if (entity != null && !entity.isWord()) {
+                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
+                    System.out.println("test");
+                }
+                var test = Rules.hasProperty(entity.getLegend(), EnumProp.YOU);
+                if (test) {
+                    playerIsYou.add(entity);
+                }
+            }
         })));
+        System.out.println(playerIsYou);
     }
+
+    private void swapEntities(BoardEntity from, BoardEntity to) {
+
+    }
+
+    /**
+     * add a new Rule to the game or swap every entity
+     *
+     * @param entity the noun
+     * @param dir    the direction (Normally either DOWN or RIGHT)
+     */
+    private void createRuleOrSwapEntity(BoardEntity entity, VectorCoord dir) {
+        var vectorn1 = VectorCoord.addTwoVectors(entity.getPos(), dir);
+        var vectorn2 = VectorCoord.addTwoVectors(vectorn1, dir);
+        BoardEntity entityOperator;
+        BoardEntity thirdEntity;
+        try {
+            entityOperator = getFirstEntityFromList(vectorn1);
+            thirdEntity = getFirstEntityFromList(vectorn2);
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+        if (entityOperator != null && thirdEntity != null && entityOperator.isOperator()) {
+            if (thirdEntity.isProperty()) {
+                Rules.add(entity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
+            }
+            if (thirdEntity.isNoun()) {
+                swapEntities(entity, thirdEntity);
+            }
+        }
+    }
+
+    private void updateRules() {
+        Rules.clearStates();
+        board.forEach(row -> row.forEach(cell -> cell.stream().findFirst().ifPresent(entity -> {
+            if (entity.isNoun()) {
+                createRuleOrSwapEntity(entity, VectorCoord.vectorDOWN());
+                createRuleOrSwapEntity(entity, VectorCoord.vectorRIGHT());
+            }
+
+            if (entity.isWord()) {
+                Rules.add(entity.getLegend(), EnumProp.PUSH);
+            }
+        })));
+        setPlayable();
+    }
+
 
     private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
@@ -159,24 +211,26 @@ public class Board {
             return true;
         }
 
-        return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().anyMatch(State::isSteppable));
+        return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().findFirst().orElse(new NormalState()).isSteppable());
     }
 
     public void move(VectorCoord vc) {
+        var flagUpdate = false;
+
         for (BoardEntity entity : playerIsYou) {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
-                if (to.getLegend().equals(Legend.FLAG_ENTITY)) {
-                    System.out.println("bob");
-                }
                 entity.executeAction(to);
+                if (to.isWord()) {
+                    flagUpdate = true;
+                }
             }
         }
-        System.out.println(this);
-    }
 
-    public List<BoardEntity> getPlayerIsYou() {
-        return playerIsYou;
+        if (flagUpdate) {
+            updateRules();
+        }
+        System.out.println(this);
     }
 }

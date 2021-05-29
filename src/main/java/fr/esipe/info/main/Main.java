@@ -13,7 +13,7 @@ public class Main {
 
         Application.run(new Color(0f, 0f, 0f, .0f), context -> {
 
-            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileStream());
+            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_01.getFileStream());
             LevelManager levelManager = new LevelManager("bob", encoded);
             GameManager gameManager = GameManager.getInstance();
             gameManager.setLevelManager(levelManager);

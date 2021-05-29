@@ -25,7 +25,7 @@ public class LevelManager {
     }
 
 
-    public boolean processEvent(Event event) {
+    public boolean processEvent(Event event)  {
         if (event == null) {
             return true;
         }

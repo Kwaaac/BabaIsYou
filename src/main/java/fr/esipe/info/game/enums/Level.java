@@ -8,11 +8,11 @@ import java.util.Objects;
  */
 public enum Level {
     LEVEL_00("/levels/level00.txt"),
-    LEVEL_01("resources/levels/level01.txt"),
-    LEVEL_02("resources/levels/level02.txt"),
-    LEVEL_03("resources/levels/level03.txt"),
-    LEVEL_04("resources/levels/level04.txt"),
-    LEVEL_05("resources/levels/level05.txt");
+    LEVEL_01("/levels/level01.txt"),
+    LEVEL_02("/levels/level02.txt"),
+    LEVEL_03("/levels/level03.txt"),
+    LEVEL_04("/levels/level04.txt"),
+    LEVEL_05("/levels/level05.txt");
 
 
     private String fileName;

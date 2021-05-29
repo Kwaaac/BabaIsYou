@@ -39,4 +39,17 @@ public abstract class State implements Comparable<State> {
     public String toString() {
         return prop.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        State state = (State) o;
+        return prop == state.prop;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prop);
+    }
 }

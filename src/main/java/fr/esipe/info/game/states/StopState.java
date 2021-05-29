@@ -9,12 +9,12 @@ public class StopState extends State {
     }
 
     @Override
-    public boolean isSteppable(){
+    public boolean isSteppable() {
         return false;
     }
 
     @Override
-    public boolean isMovable(){
+    public boolean isMovable() {
         return false;
     }
 }

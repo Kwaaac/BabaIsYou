@@ -4,6 +4,7 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.ColorPrint;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
+import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.game.states.State;
 
 import java.util.List;
