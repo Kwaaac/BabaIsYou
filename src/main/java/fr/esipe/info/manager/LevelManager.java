@@ -1,37 +1,84 @@
 package fr.esipe.info.manager;
 
+import fr.esipe.info.VectorCoord;
+import fr.esipe.info.files.EncryptionDecorator;
+import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
-import fr.esipe.info.game.EnumEntity;
-import fr.esipe.info.game.words.Name;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import fr.umlv.zen5.Event;
 
 public class LevelManager {
     private final String levelName;
-    private final List<List<List<BoardEntity>>> board;
+    private final Board board;
+    private final EncryptionDecorator encoded;
 
-    public LevelManager(String levelName, int width, int height) {
+    private static boolean win = false;
+    private static boolean lose = false;
+
+    public LevelManager(String levelName, EncryptionDecorator encoded) {
         this.levelName = levelName;
+        this.encoded = encoded;
+        this.board = new Board(this.encoded.readData());
+    }
 
-        this.board = new ArrayList<>(height);
-        for (int i = 0; i < height; i++) {
-            var arrayList = new ArrayList<List<BoardEntity>>();
-            for(int j = 0; j < width; j++){
-
-                var linked = new LinkedList<BoardEntity>();
-                linked.add(new Name(EnumEntity.BABA));
-
-                arrayList.add(linked);
-
-            }
-            board.add(arrayList);
-        }
-
+    public void displayBoard() {
         System.out.println(board);
     }
 
-    public void update(){}
 
+    public boolean processEvent(Event event)  {
+        if (event == null) {
+            return true;
+        }
+
+        if (event.getAction().equals(Event.Action.KEY_PRESSED)) {
+            switch (event.getKey()) {
+                case UP:
+                    board.move(VectorCoord.vectorUP());
+                    break;
+
+                case DOWN:
+                    board.move(VectorCoord.vectorDOWN());
+                    break;
+
+                case LEFT:
+                    board.move(VectorCoord.vectorLEFT());
+                    break;
+
+                case RIGHT:
+                    board.move(VectorCoord.vectorRIGHT());
+                    break;
+
+                case UNDEFINED:
+                    return false;
+
+                case S:
+                    /*TODO: Sauvegarde*/
+                    break;
+            }
+        }
+
+
+        return true;
+    }
+
+    public void removeEntity(BoardEntity boardEntity) {
+        this.board.removeEntity(boardEntity);
+    }
+
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public boolean isLose() {
+        return lose;
+    }
+
+    public static void win() {
+        LevelManager.win = true;
+    }
+
+    public static void lose() {
+        LevelManager.lose = true;
+    }
 }

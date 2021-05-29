@@ -1,4 +1,28 @@
 package fr.esipe.info.game;
 
-public interface BoardEntity {
+import fr.esipe.info.game.enums.Legend;
+import fr.esipe.info.game.states.State;
+
+import java.util.List;
+
+public interface BoardEntity extends GameObject, Comparable<Entity> {
+    String printCommandLineEntity();
+
+    Legend getLegend();
+
+    boolean isWord();
+
+    boolean isNoun();
+
+    boolean isOperator();
+
+    boolean isProperty();
+
+    void executeAction(BoardEntity entity);
+
+    boolean isSteppable();
+
+    boolean isMovable();
+
+    List<State> getStates();
 }
