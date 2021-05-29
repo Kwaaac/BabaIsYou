@@ -43,6 +43,9 @@ public class Entity extends AbstractGameObject implements BoardEntity {
 
     @Override
     public void executeAction(BoardEntity to) {
+        if (to.getLegend().equals(Legend.BLANK)) {
+            return;
+        }
         State state = Rules.getFirstState(to.getLegend());
         state.getActionStrategy().execute(this, to);
     }

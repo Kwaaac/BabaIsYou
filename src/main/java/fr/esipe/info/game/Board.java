@@ -166,7 +166,7 @@ public class Board {
     public void move(VectorCoord vc) {
         for (BoardEntity entity : playerIsYou) {
             entity.executeAction(entity);
-            var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(null);
+            var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
                 entity.executeAction(to);
             }
