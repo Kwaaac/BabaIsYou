@@ -5,31 +5,24 @@ import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.Entity;
 import fr.esipe.info.game.enums.Legend;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EncryptionDecorator {
 
-    private final String fileName;
+    private final BufferedReader file;
 
-    public EncryptionDecorator(String fileName) {
-        Objects.requireNonNull(fileName);
-        this.fileName = fileName;
+    public EncryptionDecorator(InputStream file) {
+        Objects.requireNonNull(file);
+        this.file = new BufferedReader(
+                new InputStreamReader(file));
     }
 
     public List<List<List<BoardEntity>>> readData() {
-        char[] buffer = null;
-        File file = new File(fileName);
-        try (FileReader reader = new FileReader(file)) {
-            buffer = new char[(int) file.length()];
-            reader.read(buffer);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        assert buffer != null;
-        return this.decode(new String(buffer));
+        return this.decode(file.lines().collect(Collectors.joining("\r")));
     }
 
     private List<List<List<BoardEntity>>> decode(String data) {
