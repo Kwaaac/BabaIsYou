@@ -14,14 +14,19 @@ public class Rules {
     private static final Map<Legend, List<State>> states = new HashMap<>();
 
     /**
-     * Check if the given entity has the given state
+     * Check if the given entity every properties
      *
      * @param legend the given entity
-     * @param prop   the given state
+     * @param props  the given state
      * @return True is the state is assiociated with the entity, False otherwise
      */
-    public static boolean hasState(Legend legend, EnumProp prop) {
-        return states.get(legend).contains(prop.getState());
+    public static boolean hasProperty(Legend legend, EnumProp... props) {
+        List<State> stateList = new ArrayList<>();
+        for (var prop : props) {
+            stateList.add(prop.getState());
+        }
+
+        return states.get(legend).containsAll(stateList);
     }
 
     public static List<State> getStates(Legend entity) {
@@ -35,6 +40,7 @@ public class Rules {
      * @return The first state of the entity or NormalState if there is none.
      */
     public static State getFirstState(Legend entity) {
+        System.out.println(states);
         return states.getOrDefault(entity, new ArrayList<>()).stream().findFirst().orElse(new NormalState());
     }
 
@@ -67,5 +73,14 @@ public class Rules {
      */
     public static void clearStates() {
         states.forEach((k, v) -> v.clear());
+    }
+
+
+    public static boolean isWin() {
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN));
+    }
+
+    public static boolean isDefeat() {
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT));
     }
 }

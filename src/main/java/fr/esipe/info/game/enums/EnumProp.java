@@ -25,9 +25,11 @@ public enum EnumProp {
 
     public State getState() {
         return switch (this) {
+            case YOU -> new YouState();
             case SINK -> new SinkState();
             case MELT -> new MeltState();
             case HOT -> new HotState();
+            case WIN -> new WinState();
             case DEFEAT -> new DefeatState();
             case PUSH -> new PushState();
             case STOP -> new StopState();

@@ -35,7 +35,6 @@ public class Board {
         Rules.add(Legend.BABA_ENTITY, EnumProp.YOU);
         Rules.add(Legend.FLAG_ENTITY, EnumProp.WIN);
         Rules.add(Legend.ROCK_ENTITY, EnumProp.PUSH);
-
     }
 
     /**
@@ -168,6 +167,9 @@ public class Board {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
+                if (to.getLegend().equals(Legend.FLAG_ENTITY)) {
+                    System.out.println("bob");
+                }
                 entity.executeAction(to);
             }
         }

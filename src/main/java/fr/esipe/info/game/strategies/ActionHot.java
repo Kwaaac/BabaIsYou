@@ -9,7 +9,7 @@ public class ActionHot implements ActionStrategy {
     @Override
     public void execute(BoardEntity from, BoardEntity to) {
         if (to != null) {
-            if (Rules.hasState(to.getLegend(), EnumProp.MELT)) {
+            if (Rules.hasProperty(to.getLegend(), EnumProp.MELT)) {
                 GameManager.getInstance().removeGameObject(to);
             }
         }
