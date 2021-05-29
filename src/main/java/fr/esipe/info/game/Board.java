@@ -128,7 +128,7 @@ public class Board {
         System.out.println(entity.getStates());
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
-        if(nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())){
+        if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
         if (!this.isMoveAuthorized(newPos)) {
@@ -141,7 +141,7 @@ public class Board {
         return addEntity(entity);
     }
 
-    private BoardEntity getFirstEntityFromList(VectorCoord vc){
+    private BoardEntity getFirstEntityFromList(VectorCoord vc) {
         return this.getEntitiesFromVector(vc).stream().findFirst().orElse(null);
     }
 

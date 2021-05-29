@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.example.fr.umlv.zen5</groupId>
+            <groupId>.fr.umlv</groupId>
             <artifactId>zen5</artifactId>
             <version>5.0</version>
         </dependency>
