@@ -7,6 +7,7 @@ import java.util.Objects;
 public abstract class AbstractGameObject implements GameObject {
     private VectorCoord pos;
 
+
     public AbstractGameObject(VectorCoord pos) {
         this.pos = Objects.requireNonNull(pos);
     }
@@ -39,4 +40,6 @@ public abstract class AbstractGameObject implements GameObject {
     public int hashCode() {
         return Objects.hash(pos);
     }
+
+
 }

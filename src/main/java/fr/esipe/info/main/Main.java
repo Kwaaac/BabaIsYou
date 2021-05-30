@@ -11,15 +11,19 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        Application.run(new Color(0f, 0f, 0f, .0f), context -> {
 
-            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_01.getFileStream());
-            LevelManager levelManager = new LevelManager("bob", encoded);
+        Application.run(new Color(0f, 0f, 0f, 1f), context -> {
             GameManager gameManager = GameManager.getInstance();
-            gameManager.setLevelManager(levelManager);
-            levelManager.displayBoard();
+            gameManager.setHeight((int) context.getScreenInfo().getHeight());
+            gameManager.setWidth((int) context.getScreenInfo().getWidth());
 
-            while (levelManager.processEvent(context.pollEvent()) && !levelManager.isLose() && !levelManager.isWin()) {
+            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileStream());
+            LevelManager levelManager = new LevelManager("bob", encoded);
+            gameManager.setLevelManager(levelManager);
+            context.renderFrame(levelManager::render);
+
+
+            while (levelManager.processEvent(context) && !levelManager.isLose() && !levelManager.isWin()) {
 
             }
 

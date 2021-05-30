@@ -7,15 +7,18 @@ import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.game.states.State;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
+    private Sprite sprite;
 
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
+        this.sprite = new Sprite(entity.getImageStream());
     }
 
     @Override
@@ -67,6 +70,11 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     }
 
     @Override
+    public void draw(Graphics2D graphics) {
+        sprite.draw(graphics, getPos().getxCoord(), getPos().getyCoord());
+    }
+
+    @Override
     public boolean isWord() {
         return entity.getType() != Type.ENTITY;
     }
@@ -110,4 +118,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public int compareTo(Entity o) {
         return Integer.compare(entity.getWeight(), o.entity.getWeight());
     }
+
+
 }
