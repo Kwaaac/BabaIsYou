@@ -89,10 +89,10 @@ public class Rules {
     }
 
     public static boolean isWin() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN));
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN, EnumProp.YOU));
     }
 
     public static boolean isDefeat() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT));
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT, EnumProp.YOU));
     }
 }
