@@ -13,12 +13,12 @@ import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
-    private Sprite sprite;
+    private final Sprite sprite;
 
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
-        this.sprite = new Sprite(entity.getImageStream());
+        this.sprite = new Sprite(entity.getImageStream(), entity.getGraphicColor());
     }
 
     @Override
