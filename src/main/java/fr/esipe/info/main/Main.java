@@ -16,7 +16,7 @@ public class Main {
             gameManager.setHeight((int) context.getScreenInfo().getHeight());
             gameManager.setWidth((int) context.getScreenInfo().getWidth());
 
-            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_02.getFileStream());
+            EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileStream());
             LevelManager levelManager = new LevelManager("bob", encoded);
             gameManager.setLevelManager(levelManager);
             context.renderFrame(levelManager::render);
