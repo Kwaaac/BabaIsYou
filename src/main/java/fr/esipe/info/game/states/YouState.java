@@ -12,6 +12,4 @@ public class YouState extends State {
     public boolean isSteppable() {
         return false;
     }
-
-
 }

@@ -88,7 +88,7 @@ public class EncryptionDecorator {
         for (int line = 0; line < height; line++) {
             var arrayList = new ArrayList<List<BoardEntity>>();
             for (int column = 0; column < width; column++) {
-                var linked = new LinkedList<BoardEntity>();
+                var linked = new ArrayList<BoardEntity>();
                 arrayList.add(linked);
             }
             board.add(arrayList);

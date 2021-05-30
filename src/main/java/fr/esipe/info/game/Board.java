@@ -49,12 +49,9 @@ public class Board {
         playerIsYou.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (entity != null && !entity.isWord()) {
-                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
-                    System.out.println("test");
-                }
-                var test = Rules.hasProperty(entity.getLegend(), EnumProp.YOU);
-                if (test) {
+                if (Rules.hasProperty(entity.getLegend(), EnumProp.YOU)) {
                     playerIsYou.add(entity);
+                    Rules.add(entity.getLegend(), EnumProp.PUSH);
                 }
             }
         })));
@@ -65,31 +62,37 @@ public class Board {
 
     }
 
+    private void applyRuleOrSwap(BoardEntity nounEntity, BoardEntity operatorEntity, BoardEntity thirdEntity) {
+        if (operatorEntity.isOperator()) {
+            if (thirdEntity.isProperty()) {
+                Rules.add(nounEntity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
+            }
+            if (thirdEntity.isNoun()) {
+                swapEntities(nounEntity, thirdEntity);
+            }
+        }
+    }
+
     /**
      * add a new Rule to the game or swap every entity
      *
-     * @param entity the noun
-     * @param dir    the direction (Normally either DOWN or RIGHT)
+     * @param nounEntity the noun
+     * @param dir        the direction (Normally either DOWN or RIGHT)
      */
-    private void createRuleOrSwapEntity(BoardEntity entity, VectorCoord dir) {
-        var vectorn1 = VectorCoord.addTwoVectors(entity.getPos(), dir);
-        var vectorn2 = VectorCoord.addTwoVectors(vectorn1, dir);
-        BoardEntity entityOperator;
+    private void createRuleOrSwapEntity(BoardEntity nounEntity, VectorCoord dir) {
+        var vec = VectorCoord.addTwoVectors(nounEntity.getPos(), dir);
+        BoardEntity operatorEntity;
         BoardEntity thirdEntity;
         try {
-            entityOperator = getFirstEntityFromList(vectorn1);
-            thirdEntity = getFirstEntityFromList(vectorn2);
-        } catch (IllegalArgumentException e) {
+            operatorEntity = getFirstEntityFromList(VectorCoord.addTwoVectors(nounEntity.getPos(), dir));
+            thirdEntity = getFirstEntityFromList(VectorCoord.addTwoVectors(vec, dir));
+            Objects.requireNonNull(operatorEntity);
+            Objects.requireNonNull(thirdEntity);
+        } catch (IllegalArgumentException | NullPointerException e) {
             return;
         }
-        if (entityOperator != null && thirdEntity != null && entityOperator.isOperator()) {
-            if (thirdEntity.isProperty()) {
-                Rules.add(entity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
-            }
-            if (thirdEntity.isNoun()) {
-                swapEntities(entity, thirdEntity);
-            }
-        }
+
+        applyRuleOrSwap(nounEntity, operatorEntity, thirdEntity);
     }
 
     private void updateRules() {
@@ -106,7 +109,6 @@ public class Board {
         })));
         setPlayable();
     }
-
 
     private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
@@ -192,12 +194,13 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
-        System.out.println(entity.getStates());
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
         if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
+
+
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }

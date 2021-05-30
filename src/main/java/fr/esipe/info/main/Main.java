@@ -11,7 +11,6 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-
         Application.run(new Color(0f, 0f, 0f, 1f), context -> {
             GameManager gameManager = GameManager.getInstance();
             gameManager.setHeight((int) context.getScreenInfo().getHeight());
