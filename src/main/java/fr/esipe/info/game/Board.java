@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.*;
 
 public class Board {
-    private final List<List<List<BoardEntity>>> board;
-    private final List<BoardEntity> playerIsYou = new ArrayList<>();
+    private List<List<List<BoardEntity>>> board;
+    private List<BoardEntity> playerIsYou = new ArrayList<>();
     private final Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
 
     private int height;
