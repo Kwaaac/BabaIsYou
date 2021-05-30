@@ -46,6 +46,7 @@ public class Rules {
     }
 
     public Rules clone() {
+        var newMap = new HashMap<Legend, List<State>>();
         return new Rules(new HashMap<>(states));
     }
 
@@ -99,11 +100,11 @@ public class Rules {
     }
 
     public boolean isWin() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN));
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN, EnumProp.YOU));
     }
 
     public boolean isDefeat() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT));
+        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT, EnumProp.YOU));
     }
 
 

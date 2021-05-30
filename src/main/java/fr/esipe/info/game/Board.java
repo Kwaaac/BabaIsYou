@@ -14,6 +14,7 @@ import java.util.*;
 public class Board {
     private List<List<List<BoardEntity>>> board;
     private List<BoardEntity> playerIsYou = new ArrayList<>();
+    private Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
 
     private Rules rules = new Rules();
 
@@ -61,8 +62,10 @@ public class Board {
         return rules.clone();
     }
 
-    private List<BoardEntity> clonePlayerYou() {
-        return new ArrayList<>(this.playerIsYou);
+    private List<BoardEntity> clonePlayerYou(){
+        var isYou = new ArrayList<BoardEntity>();
+        this.playerIsYou.forEach(player -> isYou.add(player.clone()));
+        return isYou;
     }
 
     private List<List<List<BoardEntity>>> cloneBoard() {
@@ -86,22 +89,32 @@ public class Board {
      */
     private void setPlayable() {
         playerIsYou.clear();
+        mapPlayerMove.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (entity != null && !entity.isWord()) {
-                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
-                    System.out.println("test");
-                }
-                var test = rules.hasProperty(entity.getLegend(), EnumProp.YOU);
-                if (test) {
+                if (rules.hasProperty(entity.getLegend(), EnumProp.YOU)) {
                     playerIsYou.add(entity);
+                    mapPlayerMove.put(entity, false);
+
+                    rules.add(entity.getLegend(), EnumProp.PUSH);
                 }
             }
         })));
-        System.out.println(playerIsYou);
     }
 
     private void swapEntities(BoardEntity from, BoardEntity to) {
 
+    }
+
+    private void applyRuleOrSwap(BoardEntity nounEntity, BoardEntity operatorEntity, BoardEntity thirdEntity) {
+        if (operatorEntity.isOperator()) {
+            if (thirdEntity.isProperty()) {
+                rules.add(nounEntity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
+            }
+            if (thirdEntity.isNoun()) {
+                swapEntities(nounEntity, thirdEntity);
+            }
+        }
     }
 
     /**
@@ -231,6 +244,9 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
+
+        mapPlayerMove.remove(entity);
+
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
         if (nextEntity != null && rules.isMovable(nextEntity) && !newPos.equals(entity.getPos())) {
@@ -239,9 +255,11 @@ public class Board {
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }
+
         if (!removeEntity(entity)) {
             return false;
         }
+
         entity.setPos(newPos);
         return addEntity(entity);
     }
@@ -265,7 +283,7 @@ public class Board {
     }
 
     public void move(VectorCoord vc) {
-        var flag = false;
+        var flagUpdate = false;
 
         setPlayable();
         for (var entity : playerIsYou) {
@@ -274,7 +292,7 @@ public class Board {
                 continue;
             }
 
-            entity.executeAction(entity);
+            entity.executeAction(entity, rules);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
             var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));

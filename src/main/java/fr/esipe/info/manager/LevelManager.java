@@ -4,7 +4,12 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
+import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.main.Main;
+import fr.esipe.info.memento.History;
+import fr.esipe.info.memento.Memento;
+import fr.esipe.info.memento.commands.Command;
+import fr.esipe.info.memento.commands.MoveCommand;
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
 
@@ -16,7 +21,8 @@ import java.util.Objects;
 
 public class LevelManager {
     private final String levelName;
-    private final Board board;
+    private Board board;
+    private History history;
     private final EncryptionDecorator encoded;
 
     private Clip music;
@@ -28,7 +34,7 @@ public class LevelManager {
         this.levelName = levelName;
         this.encoded = encoded;
         this.board = new Board(this.encoded.readData());
-
+        this.history = new History();
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
             this.music = AudioSystem.getClip();
@@ -61,18 +67,22 @@ public class LevelManager {
         if (event.getAction().equals(Event.Action.KEY_PRESSED)) {
             switch (event.getKey()) {
                 case UP:
+                    this.push(new MoveCommand(this,"up"), new Memento(this));
                     board.move(VectorCoord.vectorUP());
                     break;
 
                 case DOWN:
+                    this.push(new MoveCommand(this,"down"), new Memento(this));
                     board.move(VectorCoord.vectorDOWN());
                     break;
 
                 case LEFT:
+                    this.push(new MoveCommand(this,"left"), new Memento(this));
                     board.move(VectorCoord.vectorLEFT());
                     break;
 
                 case RIGHT:
+                    this.push(new MoveCommand(this,"right"), new Memento(this));
                     board.move(VectorCoord.vectorRIGHT());
                     break;
 
@@ -89,7 +99,9 @@ public class LevelManager {
                         music.start();
                     }
                     break;
-
+                case Z:
+                    this.undo();
+                    break;
             }
 
             context.renderFrame(this::render);
@@ -103,6 +115,28 @@ public class LevelManager {
         this.board.removeEntity(boardEntity);
     }
 
+    public Rules getRules(){
+        return this.board.getRules();
+    }
+
+    /**
+     *
+     * */
+    public void push(Command command, Memento memento){
+        this.history.push(Objects.requireNonNull(command), Objects.requireNonNull(memento));
+    }
+
+    public void undo(){
+        this.history.undo();
+    }
+
+    public Board backup(){
+        return this.board.clone();
+    }
+
+    public void restore(Board board){
+        this.board = Objects.requireNonNull(board);
+    }
 
     public boolean isWin() {
         return win;
