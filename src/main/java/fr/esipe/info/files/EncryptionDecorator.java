@@ -22,14 +22,14 @@ public class EncryptionDecorator {
     }
 
     public List<List<List<BoardEntity>>> readData() {
-        return this.decode(file.lines().collect(Collectors.joining("\r")));
+        return this.decode(file.lines().collect(Collectors.toList()));
     }
 
-    private List<List<List<BoardEntity>>> decode(String data) {
+    private List<List<List<BoardEntity>>> decode(List<String> data) {
         int i = 0;
         List<Legend> legend = Arrays.asList(Legend.values());
         List<List<List<BoardEntity>>> result = initBoard(data);
-        Iterator<String> iterator = data.lines().iterator();
+        Iterator<String> iterator = data.iterator();
 
         for (List<List<BoardEntity>> lists : result) {
             String line = iterator.next();
@@ -60,9 +60,9 @@ public class EncryptionDecorator {
      * @param data file data
      * @return height of the board
      */
-    private int heightBoard(String data) {
+    private int heightBoard(List<String> data) {
         Objects.requireNonNull(data);
-        return (int) data.lines().count();
+        return data.size();
     }
 
     /***
@@ -70,25 +70,23 @@ public class EncryptionDecorator {
      * @param data file data
      * @return width of the board
      */
-    private int widthBoard(String data) {
+    private int widthBoard(List<String> data) {
         Objects.requireNonNull(data);
-        int count;
-        for (count = 0; data.charAt(count) != '\r'; count++) ;
-        return count;
+        return data.get(0).length();
     }
 
     /**
      * @param data file data
      * @return board in 3D from this file data
      */
-    private List<List<List<BoardEntity>>> initBoard(String data) {
+    private List<List<List<BoardEntity>>> initBoard(List<String> data) {
         int height = heightBoard(data);
         int width = widthBoard(data);
         List<List<List<BoardEntity>>> board = new ArrayList<>(height);
         for (int line = 0; line < height; line++) {
             var arrayList = new ArrayList<List<BoardEntity>>();
             for (int column = 0; column < width; column++) {
-                var linked = new LinkedList<BoardEntity>();
+                var linked = new ArrayList<BoardEntity>();
                 arrayList.add(linked);
             }
             board.add(arrayList);
