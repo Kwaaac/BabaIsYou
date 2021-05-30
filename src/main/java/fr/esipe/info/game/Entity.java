@@ -5,13 +5,14 @@ import fr.esipe.info.game.enums.ColorPrint;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.rule.Rules;
+import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
 
 import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
-public class Entity extends AbstractGameObject implements BoardEntity {
+public class Entity extends AbstractGameObject implements BoardEntity{
     private Legend entity;
     private Sprite sprite;
 
@@ -19,6 +20,17 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
         this.sprite = new Sprite(entity.getImageStream());
+    }
+
+    public Entity(Entity target){
+        super(target.getPos().clone());
+        this.entity = target.entity;
+        this.sprite = target.sprite;
+    }
+
+    @Override
+    public Entity clone(){
+        return new Entity(this);
     }
 
     @Override
@@ -83,7 +95,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     @Override
     public String toString() {
         return "Entity{" +
-                entity +
+                entity + ", " + getStates() +
                 '}';
     }
 
@@ -115,9 +127,10 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     }
 
     @Override
-    public int compareTo(Entity o) {
-        return Integer.compare(entity.getWeight(), o.entity.getWeight());
+    public int compareTo(BoardEntity o) {
+        var oState = o.getStates().stream().findFirst().orElse(new NormalState()).getProp().getWeight();
+        var thisState = this.getStates().stream().findFirst().orElse(new NormalState()).getProp().getWeight();
+
+        return oState - thisState;
     }
-
-
 }

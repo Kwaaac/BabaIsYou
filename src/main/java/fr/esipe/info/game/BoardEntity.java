@@ -6,7 +6,7 @@ import fr.esipe.info.game.states.State;
 import java.awt.*;
 import java.util.List;
 
-public interface BoardEntity extends GameObject, Comparable<Entity> {
+public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
     String printCommandLineEntity();
 
     Legend getLegend();
@@ -26,6 +26,8 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
     boolean isMovable();
 
     List<State> getStates();
+
+    Entity clone();
 
     void draw(Graphics2D graphics);
 }

@@ -13,5 +13,8 @@ public class YouState extends State {
         return false;
     }
 
-
+    @Override
+    public boolean isMovable(){
+        return true;
+    }
 }

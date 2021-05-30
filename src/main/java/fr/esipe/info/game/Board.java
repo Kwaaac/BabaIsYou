@@ -8,16 +8,15 @@ import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.manager.GameManager;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Board {
-    private final List<List<List<BoardEntity>>> board;
-    private final List<BoardEntity> playerIsYou = new ArrayList<>();
+    private List<List<List<BoardEntity>>> board;
+    private List<BoardEntity> playerIsYou = new ArrayList<>();
 
-    private final int height;
-    private final int width;
+    private int height;
+    private int width;
 
     public Board(List<List<List<BoardEntity>>> board) {
         Objects.requireNonNull(board);
@@ -36,8 +35,41 @@ public class Board {
         GameManager.getInstance().setCellSize(Math.min(winWidth / width, winHeight / height));
 
         updateRules();
+    }
 
-        Rules.displayRules();
+    public Board(Board target){
+        if(target != null){
+            this.board = target.cloneBoard();
+            this.playerIsYou = target.clonePlayerYou();
+            this.width = target.width;
+            this.height = target.height;
+        }
+    }
+
+    public Board clone(){
+        return new Board(this);
+    }
+
+    public List<BoardEntity> getPlayerIsYou() {
+        return playerIsYou;
+    }
+
+    private List<BoardEntity> clonePlayerYou(){
+        return new ArrayList<>(this.playerIsYou);
+    }
+
+    private List<List<List<BoardEntity>>> cloneBoard(){
+        List<List<List<BoardEntity>>> result = new ArrayList<>();
+        for(int line = 0; line < this.height; line++){
+            var lineBoard = new ArrayList<List<BoardEntity>>();
+            for(int column = 0; column < this.width; column++){
+                var linked = new LinkedList<BoardEntity>();
+                this.board.get(line).get(column).forEach(cell -> linked.add(cell.clone()));
+                lineBoard.add(column, linked);
+            }
+            result.add(line,lineBoard);
+        }
+        return result;
     }
 
     /**
@@ -94,7 +126,7 @@ public class Board {
 
     private void updateRules() {
         Rules.clearStates();
-        board.forEach(row -> row.forEach(cell -> cell.stream().findFirst().ifPresent(entity -> {
+        board.forEach(row -> row.forEach(cell -> cell.stream().forEach(entity -> {
             if (entity.isNoun()) {
                 createRuleOrSwapEntity(entity, VectorCoord.vectorDOWN());
                 createRuleOrSwapEntity(entity, VectorCoord.vectorRIGHT());
@@ -192,7 +224,6 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
-        System.out.println(entity.getStates());
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
         if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
@@ -209,9 +240,14 @@ public class Board {
     }
 
     private BoardEntity getFirstEntityFromList(VectorCoord vc) {
-        return this.getEntitiesFromVector(vc).stream().findFirst().orElse(null);
+        var entities = this.getEntitiesFromVector(vc);
+        Collections.sort(entities);
+        return entities.stream().findFirst().orElse(null);
     }
 
+    /**
+     *
+     * */
     private boolean isMoveAuthorized(VectorCoord vectorCoord) {
         var entitiesInNewCoord = this.getEntitiesFromVector(vectorCoord);
         if (entitiesInNewCoord.isEmpty()) {
@@ -226,7 +262,9 @@ public class Board {
 
         for (BoardEntity entity : playerIsYou) {
             entity.executeAction(entity);
-            var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
+            var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
+            Collections.sort(entitiesFromTo);
+            var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
                 entity.executeAction(to);
                 if (to.isWord()) {
@@ -234,7 +272,6 @@ public class Board {
                 }
             }
         }
-
         if (flagUpdate) {
             updateRules();
         }
