@@ -47,7 +47,6 @@ public class Rules {
      * @return The first state of the entity or NormalState if there is none.
      */
     public static State getFirstState(Legend entity) {
-        System.out.println(states);
         return states.getOrDefault(entity, new ArrayList<>()).stream().findFirst().orElse(new NormalState());
     }
 

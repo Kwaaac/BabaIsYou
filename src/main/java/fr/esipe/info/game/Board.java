@@ -37,6 +37,9 @@ public class Board {
         updateRules();
     }
 
+    /**
+     * Contructor of clone
+     * */
     public Board(Board target){
         if(target != null){
             this.board = target.cloneBoard();
@@ -55,7 +58,9 @@ public class Board {
     }
 
     private List<BoardEntity> clonePlayerYou(){
-        return new ArrayList<>(this.playerIsYou);
+        var isYou = new ArrayList<BoardEntity>();
+        this.playerIsYou.forEach(player -> isYou.add(player.clone()));
+        return isYou;
     }
 
     private List<List<List<BoardEntity>>> cloneBoard(){
@@ -81,16 +86,12 @@ public class Board {
         playerIsYou.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (entity != null && !entity.isWord()) {
-                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
-                    System.out.println("test");
-                }
                 var test = Rules.hasProperty(entity.getLegend(), EnumProp.YOU);
                 if (test) {
                     playerIsYou.add(entity);
                 }
             }
         })));
-        System.out.println(playerIsYou);
     }
 
     private void swapEntities(BoardEntity from, BoardEntity to) {
@@ -259,7 +260,6 @@ public class Board {
 
     public void move(VectorCoord vc) {
         var flagUpdate = false;
-
         for (BoardEntity entity : playerIsYou) {
             entity.executeAction(entity);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));

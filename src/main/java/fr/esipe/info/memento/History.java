@@ -21,9 +21,11 @@ public class History {
         }
         this.history.add(new Pair(command, memento));
         this.virtualSize = this.history.size();
+        System.out.println(this.history);
     }
 
     public boolean undo(){
+        System.out.println(this.history);
         Pair pair = this.getUndo();
         if(pair == null){
             return false;

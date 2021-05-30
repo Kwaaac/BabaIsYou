@@ -8,7 +8,6 @@ public class ActionSink implements ActionStrategy{
     @Override
     public void execute(BoardEntity from, BoardEntity to) {
         if(to != null && !from.equals(to)){
-            System.out.println("Application de SINK");
             GameManager.getInstance().removeGameObject(to);
             GameManager.getInstance().removeGameObject(from);
             LevelManager.lose();
