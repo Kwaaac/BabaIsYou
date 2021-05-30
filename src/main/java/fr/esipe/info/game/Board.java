@@ -9,7 +9,6 @@ import fr.esipe.info.manager.GameManager;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -190,29 +189,21 @@ public class Board {
         return strRow.toString();
     }
 
-    private boolean moveEntity(Iterator<BoardEntity> playerIterator, BoardEntity entity, VectorCoord vc) {
+    private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
         System.out.println(entity.getStates());
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
-
-        if (nextEntity != null && Rules.hasProperty(entity.getLegend(), EnumProp.YOU) && Rules.hasProperty(nextEntity.getLegend(), EnumProp.YOU)) {
-            playerIterator.next();
-        }
-
         if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
-            this.moveEntity(playerIterator, nextEntity, vc);
+            this.moveEntity(nextEntity, vc);
         }
-
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }
-
         if (!removeEntity(entity)) {
             return false;
         }
-
         entity.setPos(newPos);
         return addEntity(entity);
     }
@@ -231,17 +222,21 @@ public class Board {
     }
 
     public void move(VectorCoord vc) {
-        var playerIterator = playerIsYou.iterator();
-        while (playerIterator.hasNext()) {
-            var entity = playerIterator.next();
+        var flagUpdate = false;
+
+        for (BoardEntity entity : playerIsYou) {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
-            if (moveEntity(playerIterator, entity, vc)) {
+            if (moveEntity(entity, vc)) {
                 entity.executeAction(to);
                 if (to.isWord()) {
-                    updateRules();
+                    flagUpdate = true;
                 }
             }
+        }
+
+        if (flagUpdate) {
+            updateRules();
         }
         System.out.println(this);
     }

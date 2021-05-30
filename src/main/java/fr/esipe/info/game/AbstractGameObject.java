@@ -7,6 +7,7 @@ import java.util.Objects;
 public abstract class AbstractGameObject implements GameObject {
     private VectorCoord pos;
 
+
     public AbstractGameObject(VectorCoord pos) {
         this.pos = Objects.requireNonNull(pos);
     }
@@ -17,6 +18,10 @@ public abstract class AbstractGameObject implements GameObject {
 
     public VectorCoord getPos() {
         return pos;
+    }
+
+    public void addPos(VectorCoord pos) {
+        this.pos.addVector(pos);
     }
 
     public void setPos(VectorCoord pos) {
