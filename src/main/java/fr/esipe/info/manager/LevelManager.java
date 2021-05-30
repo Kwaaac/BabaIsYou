@@ -4,7 +4,10 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
+import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
+
+import java.awt.*;
 
 public class LevelManager {
     private final String levelName;
@@ -25,7 +28,14 @@ public class LevelManager {
     }
 
 
-    public boolean processEvent(Event event)  {
+    public void render(Graphics2D graphics) {
+        graphics.clearRect(0, 0, GameManager.getInstance().getWidth(), GameManager.getInstance().getHeight());
+        board.displayGraphic(graphics);
+    }
+
+    public boolean processEvent(ApplicationContext context) {
+        var event = context.pollEvent();
+
         if (event == null) {
             return true;
         }
@@ -55,6 +65,8 @@ public class LevelManager {
                     /*TODO: Sauvegarde*/
                     break;
             }
+
+            context.renderFrame(this::render);
         }
 
 

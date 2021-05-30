@@ -8,9 +8,12 @@ public class GameManager {
      */
     private static volatile GameManager instance;
     private LevelManager levelManager;
+    private int width;
+    private int height;
+
+    private int cellSize;
 
     private GameManager() {
-
     }
 
     public static GameManager getInstance() {
@@ -32,6 +35,30 @@ public class GameManager {
 
     public void setLevelManager(LevelManager levelManager) {
         this.levelManager = levelManager;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    public void setCellSize(int cellSize) {
+        this.cellSize = cellSize;
     }
 
     public void removeGameObject(BoardEntity boardEntity) {

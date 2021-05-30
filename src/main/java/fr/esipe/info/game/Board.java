@@ -5,7 +5,9 @@ import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.game.states.NormalState;
+import fr.esipe.info.manager.GameManager;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +29,11 @@ public class Board {
         this.board = board;
         this.height = board.size();
         this.width = board.get(0).size();
+
+        var winHeight = GameManager.getInstance().getHeight();
+        var winWidth = GameManager.getInstance().getWidth();
+
+        GameManager.getInstance().setCellSize(Math.min(winWidth / width, winHeight / height));
 
         updateRules();
 
@@ -232,5 +239,9 @@ public class Board {
             updateRules();
         }
         System.out.println(this);
+    }
+
+    public void displayGraphic(Graphics2D graphics) {
+        board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> entity.draw(graphics))));
     }
 }
