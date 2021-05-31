@@ -146,6 +146,4 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public int compareTo(Entity o) {
         return Integer.compare(entity.getWeight(), o.entity.getWeight());
     }
-
-
 }

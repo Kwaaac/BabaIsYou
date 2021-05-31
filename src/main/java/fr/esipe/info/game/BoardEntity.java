@@ -31,4 +31,6 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
     void draw(Graphics2D graphics);
 
     void changeDirAnim(VectorCoord dir);
+
+    void nextAnim();
 }

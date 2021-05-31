@@ -53,9 +53,9 @@ public class LevelManager {
         System.out.println(board);
     }
 
-    public void render(Graphics2D graphics) {
+    public void render(Graphics2D graphics, boolean updateAnim) {
         graphics.clearRect(0, 0, GameManager.getInstance().getWidth(), GameManager.getInstance().getHeight());
-        board.displayGraphic(graphics);
+        board.displayGraphic(graphics, updateAnim);
     }
 
     public boolean processEvent(ApplicationContext context) {
@@ -99,7 +99,7 @@ public class LevelManager {
 
             }
 
-            context.renderFrame(this::render);
+            context.renderFrame(graphics->render(graphics, false));
         }
 
 

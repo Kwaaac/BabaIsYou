@@ -267,7 +267,7 @@ public class Board {
         System.out.println(this);
     }
 
-    public void displayGraphic(Graphics2D graphics) {
+    public void displayGraphic(Graphics2D graphics, boolean updateAnim) {
         var gm = GameManager.getInstance();
         var cellSize = gm.getCellSize();
         var widthDelta = gm.getWidthDelta();
@@ -279,6 +279,9 @@ public class Board {
                 graphics.fillRect(j * cellSize + widthDelta, i * cellSize + heightDelta, cellSize, cellSize);
                 for (var entity : board.get(i).get(j)) {
                     entity.draw(graphics);
+                    if (updateAnim) {
+                        entity.nextAnim();
+                    }
                 }
             }
         }
