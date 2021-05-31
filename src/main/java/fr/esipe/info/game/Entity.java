@@ -13,7 +13,10 @@ import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
-    private final Sprite sprite;
+    private Sprite sprite;
+
+    private int direction = 0;
+    private int anim = 0;
 
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
@@ -21,13 +24,10 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         this.sprite = new Sprite(entity.getImageStream(), entity.getGraphicColor());
     }
 
+
     @Override
     public Legend getLegend() {
         return entity;
-    }
-
-    public void changeNoun(Legend noun) {
-        this.entity = noun;
     }
 
     @Override
