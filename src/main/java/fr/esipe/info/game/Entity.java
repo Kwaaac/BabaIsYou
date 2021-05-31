@@ -13,21 +13,30 @@ import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
-    private final Sprite sprite;
+    private Sprite[][] sprite;
+
+    private int direction = 0;
+    private int anim = 0;
 
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
-        this.sprite = new Sprite(entity.getImageStream(), entity.getGraphicColor());
+        this.sprite = new Sprite[4][3];
+
+        for (int i = 0; i < sprite.length; i++) {
+            for (int j = 1; j <= sprite[0].length; j++) {
+                System.out.println(enumEntity.getImagePath() + i + "_" + j + ".png");
+                sprite[i][j - 1] = new Sprite(enumEntity.getImagePath() + i + "_" + j + ".png", enumEntity.getGraphicColor());
+            }
+            if (!entity.equals(Legend.BABA_ENTITY)) {
+                break;
+            }
+        }
     }
 
     @Override
     public Legend getLegend() {
         return entity;
-    }
-
-    public void changeNoun(Legend noun) {
-        this.entity = noun;
     }
 
     @Override
@@ -71,7 +80,26 @@ public class Entity extends AbstractGameObject implements BoardEntity {
 
     @Override
     public void draw(Graphics2D graphics) {
-        sprite.draw(graphics, getPos().getxCoord(), getPos().getyCoord());
+        sprite[direction][anim].draw(graphics, getPos().getxCoord(), getPos().getyCoord());
+    }
+
+    public void nextAnim() {
+        anim = (anim + 1) % 3;
+    }
+
+    public void changeDirAnim(VectorCoord dir) {
+        // For now only the entity BABA has direction animation
+        if (entity.equals(Legend.BABA_ENTITY)) {
+            if (dir.equals(VectorCoord.vectorDOWN())) {
+                direction = 1;
+            } else if (dir.equals(VectorCoord.vectorLEFT())) {
+                direction = 2;
+            } else if (dir.equals(VectorCoord.vectorUP())) {
+                direction = 3;
+            } else {
+                direction = 0;
+            }
+        }
     }
 
     @Override
@@ -118,6 +146,4 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public int compareTo(Entity o) {
         return Integer.compare(entity.getWeight(), o.entity.getWeight());
     }
-
-
 }

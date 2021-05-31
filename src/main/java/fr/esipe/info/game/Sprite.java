@@ -40,8 +40,11 @@ public class Sprite {
     }
 
     public void draw(Graphics2D graphics, int x, int y) {
-        var cellSize = GameManager.getInstance().getCellSize();
+        var gm = GameManager.getInstance();
+        var cellSize = gm.getCellSize();
+        var widthDelta = gm.getWidthDelta();
+        var heightDelta = gm.getHeightDelta();
         paintComponent(graphics);
-        graphics.drawImage(image, y * cellSize, x * cellSize, cellSize, cellSize, null);
+        graphics.drawImage(image, y * cellSize + widthDelta, x * cellSize + heightDelta, cellSize, cellSize, null);
     }
 }

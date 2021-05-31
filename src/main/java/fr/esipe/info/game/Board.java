@@ -40,6 +40,14 @@ public class Board {
         Rules.displayRules();
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     /**
      * Method that fecth the entity with the "YOU" property
      * <p>
@@ -245,6 +253,7 @@ public class Board {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
+                entity.changeDirAnim(vc);
                 entity.executeAction(to);
                 if (to.isWord()) {
                     flag = true;
@@ -258,7 +267,23 @@ public class Board {
         System.out.println(this);
     }
 
-    public void displayGraphic(Graphics2D graphics) {
-        board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> entity.draw(graphics))));
+    public void displayGraphic(Graphics2D graphics, boolean updateAnim) {
+        var gm = GameManager.getInstance();
+        var cellSize = gm.getCellSize();
+        var widthDelta = gm.getWidthDelta();
+        var heightDelta = gm.getHeightDelta();
+
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(0).size(); j++) {
+                graphics.setColor(Color.BLACK);
+                graphics.fillRect(j * cellSize + widthDelta, i * cellSize + heightDelta, cellSize, cellSize);
+                for (var entity : board.get(i).get(j)) {
+                    entity.draw(graphics);
+                    if (updateAnim) {
+                        entity.nextAnim();
+                    }
+                }
+            }
+        }
     }
 }

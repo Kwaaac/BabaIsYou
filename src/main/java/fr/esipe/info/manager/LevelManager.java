@@ -41,14 +41,21 @@ public class LevelManager {
 
     }
 
+    public int getNumberCellWidth() {
+        return board.getWidth();
+    }
+
+    public int getNumberCellHeight() {
+        return board.getHeight();
+    }
+
     public void displayBoard() {
         System.out.println(board);
     }
 
-
-    public void render(Graphics2D graphics) {
+    public void render(Graphics2D graphics, boolean updateAnim) {
         graphics.clearRect(0, 0, GameManager.getInstance().getWidth(), GameManager.getInstance().getHeight());
-        board.displayGraphic(graphics);
+        board.displayGraphic(graphics, updateAnim);
     }
 
     public boolean processEvent(ApplicationContext context) {
@@ -92,7 +99,7 @@ public class LevelManager {
 
             }
 
-            context.renderFrame(this::render);
+            context.renderFrame(graphics->render(graphics, false));
         }
 
 
@@ -102,7 +109,6 @@ public class LevelManager {
     public void removeEntity(BoardEntity boardEntity) {
         this.board.removeEntity(boardEntity);
     }
-
 
     public boolean isWin() {
         return win;
