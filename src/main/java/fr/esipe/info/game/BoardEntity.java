@@ -1,5 +1,6 @@
 package fr.esipe.info.game;
 
+import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.State;
 
@@ -28,4 +29,6 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
     List<State> getStates();
 
     void draw(Graphics2D graphics);
+
+    void changeDirAnim(VectorCoord dir);
 }

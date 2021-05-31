@@ -253,6 +253,7 @@ public class Board {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
+                entity.changeDirAnim(vc);
                 entity.executeAction(to);
                 if (to.isWord()) {
                     flag = true;
@@ -275,7 +276,6 @@ public class Board {
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board.get(0).size(); j++) {
                 graphics.setColor(Color.BLACK);
-                System.out.println(widthDelta);
                 graphics.fillRect(j * cellSize + widthDelta, i * cellSize + heightDelta, cellSize, cellSize);
                 for (var entity : board.get(i).get(j)) {
                     entity.draw(graphics);
