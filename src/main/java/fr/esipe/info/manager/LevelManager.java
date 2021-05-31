@@ -4,23 +4,41 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
+import fr.esipe.info.main.Main;
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
 
+import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.util.Objects;
 
 public class LevelManager {
     private final String levelName;
     private final Board board;
     private final EncryptionDecorator encoded;
 
+    private Clip music;
+
     private static boolean win = false;
     private static boolean lose = false;
 
-    public LevelManager(String levelName, EncryptionDecorator encoded) {
+    public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
         this.levelName = levelName;
         this.encoded = encoded;
         this.board = new Board(this.encoded.readData());
+
+        try {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
+            this.music = AudioSystem.getClip();
+            music.open(audio);
+            music.loop(Clip.LOOP_CONTINUOUSLY);
+            music.start();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void displayBoard() {
@@ -64,6 +82,14 @@ public class LevelManager {
                 case S:
                     /*TODO: Sauvegarde*/
                     break;
+                case M:
+                    if (music.isRunning()) {
+                        music.stop();
+                    } else {
+                        music.start();
+                    }
+                    break;
+
             }
 
             context.renderFrame(this::render);
