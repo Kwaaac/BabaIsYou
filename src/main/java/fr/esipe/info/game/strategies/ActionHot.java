@@ -1,15 +1,15 @@
 package fr.esipe.info.game.strategies;
 
 import fr.esipe.info.game.BoardEntity;
-import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.game.enums.EnumProp;
+import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.manager.GameManager;
 
 public class ActionHot implements ActionStrategy {
     @Override
-    public void execute(BoardEntity from, BoardEntity to) {
+    public void execute(Rules rules, BoardEntity from, BoardEntity to) {
         if (to != null) {
-            if (Rules.hasProperty(to.getLegend(), EnumProp.MELT)) {
+            if (rules.hasProperty(to.getLegend(), EnumProp.MELT)) {
                 GameManager.getInstance().removeGameObject(to);
             }
         }

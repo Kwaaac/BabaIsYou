@@ -15,6 +15,8 @@ public class Board {
     private List<List<List<BoardEntity>>> board;
     private List<BoardEntity> playerIsYou = new ArrayList<>();
 
+    private Rules rules = new Rules();
+
     private int height;
     private int width;
 
@@ -37,16 +39,17 @@ public class Board {
         updateRules();
     }
 
-    public Board(Board target){
-        if(target != null){
+    public Board(Board target) {
+        if (target != null) {
             this.board = target.cloneBoard();
             this.playerIsYou = target.clonePlayerYou();
+            this.rules = target.getRules();
             this.width = target.width;
             this.height = target.height;
         }
     }
 
-    public Board clone(){
+    public Board clone() {
         return new Board(this);
     }
 
@@ -54,20 +57,24 @@ public class Board {
         return playerIsYou;
     }
 
-    private List<BoardEntity> clonePlayerYou(){
+    public Rules getRules() {
+        return rules.clone();
+    }
+
+    private List<BoardEntity> clonePlayerYou() {
         return new ArrayList<>(this.playerIsYou);
     }
 
-    private List<List<List<BoardEntity>>> cloneBoard(){
+    private List<List<List<BoardEntity>>> cloneBoard() {
         List<List<List<BoardEntity>>> result = new ArrayList<>();
-        for(int line = 0; line < this.height; line++){
+        for (int line = 0; line < this.height; line++) {
             var lineBoard = new ArrayList<List<BoardEntity>>();
-            for(int column = 0; column < this.width; column++){
+            for (int column = 0; column < this.width; column++) {
                 var linked = new LinkedList<BoardEntity>();
                 this.board.get(line).get(column).forEach(cell -> linked.add(cell.clone()));
                 lineBoard.add(column, linked);
             }
-            result.add(line,lineBoard);
+            result.add(line, lineBoard);
         }
         return result;
     }
@@ -84,7 +91,7 @@ public class Board {
                 if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
                     System.out.println("test");
                 }
-                var test = Rules.hasProperty(entity.getLegend(), EnumProp.YOU);
+                var test = rules.hasProperty(entity.getLegend(), EnumProp.YOU);
                 if (test) {
                     playerIsYou.add(entity);
                 }
@@ -116,7 +123,7 @@ public class Board {
         }
         if (entityOperator != null && thirdEntity != null && entityOperator.isOperator()) {
             if (thirdEntity.isProperty()) {
-                Rules.add(entity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
+                rules.add(entity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
             }
             if (thirdEntity.isNoun()) {
                 swapEntities(entity, thirdEntity);
@@ -125,7 +132,7 @@ public class Board {
     }
 
     private void updateRules() {
-        Rules.clearStates();
+        rules.clearStates();
         board.forEach(row -> row.forEach(cell -> cell.stream().forEach(entity -> {
             if (entity.isNoun()) {
                 createRuleOrSwapEntity(entity, VectorCoord.vectorDOWN());
@@ -133,7 +140,7 @@ public class Board {
             }
 
             if (entity.isWord()) {
-                Rules.add(entity.getLegend(), EnumProp.PUSH);
+                rules.add(entity.getLegend(), EnumProp.PUSH);
             }
         })));
         setPlayable();
@@ -226,7 +233,7 @@ public class Board {
         Objects.requireNonNull(vc);
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
-        if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
+        if (nextEntity != null && rules.isMovable(nextEntity) && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
         if (!this.isMoveAuthorized(newPos)) {
@@ -247,26 +254,26 @@ public class Board {
 
     /**
      *
-     * */
+     */
     private boolean isMoveAuthorized(VectorCoord vectorCoord) {
         var entitiesInNewCoord = this.getEntitiesFromVector(vectorCoord);
         if (entitiesInNewCoord.isEmpty()) {
             return true;
         }
 
-        return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().findFirst().orElse(new NormalState()).isSteppable());
+        return entitiesInNewCoord.stream().anyMatch(boardEntity -> rules.getStates(boardEntity).stream().findFirst().orElse(new NormalState()).isSteppable());
     }
 
     public void move(VectorCoord vc) {
         var flagUpdate = false;
 
         for (BoardEntity entity : playerIsYou) {
-            entity.executeAction(entity);
+            entity.executeAction(entity, rules);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
             var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
-                entity.executeAction(to);
+                entity.executeAction(to, rules);
                 if (to.isWord()) {
                     flagUpdate = true;
                 }
@@ -277,6 +284,7 @@ public class Board {
         }
         System.out.println(this);
     }
+
 
     public void displayGraphic(Graphics2D graphics) {
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> entity.draw(graphics))));

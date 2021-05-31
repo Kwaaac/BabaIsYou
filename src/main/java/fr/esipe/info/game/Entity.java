@@ -7,12 +7,12 @@ import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
+import fr.esipe.info.manager.GameManager;
 
 import java.awt.*;
-import java.util.List;
 import java.util.Objects;
 
-public class Entity extends AbstractGameObject implements BoardEntity{
+public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
     private Sprite sprite;
 
@@ -22,14 +22,14 @@ public class Entity extends AbstractGameObject implements BoardEntity{
         this.sprite = new Sprite(entity.getImageStream());
     }
 
-    public Entity(Entity target){
+    public Entity(Entity target) {
         super(target.getPos().clone());
         this.entity = target.entity;
         this.sprite = target.sprite;
     }
 
     @Override
-    public Entity clone(){
+    public Entity clone() {
         return new Entity(this);
     }
 
@@ -58,27 +58,12 @@ public class Entity extends AbstractGameObject implements BoardEntity{
     }
 
     @Override
-    public void executeAction(BoardEntity to) {
+    public void executeAction(BoardEntity to, Rules rules) {
         if (to.getLegend().equals(Legend.BLANK)) {
             return;
         }
-        State state = Rules.getFirstState(to.getLegend());
-        state.getActionStrategy().execute(this, to);
-    }
-
-    @Override
-    public boolean isSteppable() {
-        return Rules.isSteppable(entity);
-    }
-
-    @Override
-    public boolean isMovable() {
-        return Rules.isMovable(entity);
-    }
-
-    @Override
-    public List<State> getStates() {
-        return Rules.getStates(entity);
+        State state = rules.getFirstState(to.getLegend());
+        state.getActionStrategy().execute(rules, this, to);
     }
 
     @Override
@@ -95,7 +80,7 @@ public class Entity extends AbstractGameObject implements BoardEntity{
     @Override
     public String toString() {
         return "Entity{" +
-                entity + ", " + getStates() +
+                entity +
                 '}';
     }
 
@@ -128,8 +113,11 @@ public class Entity extends AbstractGameObject implements BoardEntity{
 
     @Override
     public int compareTo(BoardEntity o) {
-        var oState = o.getStates().stream().findFirst().orElse(new NormalState()).getProp().getWeight();
-        var thisState = this.getStates().stream().findFirst().orElse(new NormalState()).getProp().getWeight();
+        var rules = GameManager.getInstance().getLevelManager().getRules();
+
+
+        var oState = rules.getStates(o).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
+        var thisState = rules.getStates(this).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
 
         return oState - thisState;
     }
