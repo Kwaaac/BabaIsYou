@@ -7,7 +7,6 @@ import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Rules {
     private final Map<Legend, List<State>> states;
@@ -47,7 +46,7 @@ public class Rules {
     }
 
     public Rules clone() {
-        return new Rules(states.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+        return new Rules(new HashMap<>(states));
     }
 
     public List<State> getStates(BoardEntity entity) {
