@@ -14,7 +14,8 @@ import java.util.*;
 public class Board {
     private List<List<List<BoardEntity>>> board;
     private List<BoardEntity> playerIsYou = new ArrayList<>();
-    private final Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
+
+    private Rules rules = new Rules();
 
     private int height;
     private int width;
@@ -38,19 +39,17 @@ public class Board {
         updateRules();
     }
 
-    /**
-     * Contructor of clone
-     * */
-    public Board(Board target){
-        if(target != null){
+    public Board(Board target) {
+        if (target != null) {
             this.board = target.cloneBoard();
             this.playerIsYou = target.clonePlayerYou();
+            this.rules = target.getRules();
             this.width = target.width;
             this.height = target.height;
         }
     }
 
-    public Board clone(){
+    public Board clone() {
         return new Board(this);
     }
 
@@ -58,22 +57,24 @@ public class Board {
         return playerIsYou;
     }
 
-    private List<BoardEntity> clonePlayerYou(){
-        var isYou = new ArrayList<BoardEntity>();
-        this.playerIsYou.forEach(player -> isYou.add(player.clone()));
-        return isYou;
+    public Rules getRules() {
+        return rules.clone();
     }
 
-    private List<List<List<BoardEntity>>> cloneBoard(){
+    private List<BoardEntity> clonePlayerYou() {
+        return new ArrayList<>(this.playerIsYou);
+    }
+
+    private List<List<List<BoardEntity>>> cloneBoard() {
         List<List<List<BoardEntity>>> result = new ArrayList<>();
-        for(int line = 0; line < this.height; line++){
+        for (int line = 0; line < this.height; line++) {
             var lineBoard = new ArrayList<List<BoardEntity>>();
-            for(int column = 0; column < this.width; column++){
+            for (int column = 0; column < this.width; column++) {
                 var linked = new LinkedList<BoardEntity>();
                 this.board.get(line).get(column).forEach(cell -> linked.add(cell.clone()));
                 lineBoard.add(column, linked);
             }
-            result.add(line,lineBoard);
+            result.add(line, lineBoard);
         }
         return result;
     }
@@ -85,58 +86,53 @@ public class Board {
      */
     private void setPlayable() {
         playerIsYou.clear();
-        mapPlayerMove.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (entity != null && !entity.isWord()) {
-                if (Rules.hasProperty(entity.getLegend(), EnumProp.YOU)) {
+                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
+                    System.out.println("test");
+                }
+                var test = rules.hasProperty(entity.getLegend(), EnumProp.YOU);
+                if (test) {
                     playerIsYou.add(entity);
-                    mapPlayerMove.put(entity, false);
-
-                    Rules.add(entity.getLegend(), EnumProp.PUSH);
                 }
             }
         })));
+        System.out.println(playerIsYou);
     }
 
     private void swapEntities(BoardEntity from, BoardEntity to) {
 
     }
 
-    private void applyRuleOrSwap(BoardEntity nounEntity, BoardEntity operatorEntity, BoardEntity thirdEntity) {
-        if (operatorEntity.isOperator()) {
-            if (thirdEntity.isProperty()) {
-                Rules.add(nounEntity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
-            }
-            if (thirdEntity.isNoun()) {
-                swapEntities(nounEntity, thirdEntity);
-            }
-        }
-    }
-
     /**
      * add a new Rule to the game or swap every entity
      *
-     * @param nounEntity the noun
-     * @param dir        the direction (Normally either DOWN or RIGHT)
+     * @param entity the noun
+     * @param dir    the direction (Normally either DOWN or RIGHT)
      */
-    private void createRuleOrSwapEntity(BoardEntity nounEntity, VectorCoord dir) {
-        var vec = VectorCoord.addTwoVectors(nounEntity.getPos(), dir);
-        BoardEntity operatorEntity;
+    private void createRuleOrSwapEntity(BoardEntity entity, VectorCoord dir) {
+        var vectorn1 = VectorCoord.addTwoVectors(entity.getPos(), dir);
+        var vectorn2 = VectorCoord.addTwoVectors(vectorn1, dir);
+        BoardEntity entityOperator;
         BoardEntity thirdEntity;
         try {
-            operatorEntity = getFirstEntityFromList(VectorCoord.addTwoVectors(nounEntity.getPos(), dir));
-            thirdEntity = getFirstEntityFromList(VectorCoord.addTwoVectors(vec, dir));
-            Objects.requireNonNull(operatorEntity);
-            Objects.requireNonNull(thirdEntity);
-        } catch (IllegalArgumentException | NullPointerException e) {
+            entityOperator = getFirstEntityFromList(vectorn1);
+            thirdEntity = getFirstEntityFromList(vectorn2);
+        } catch (IllegalArgumentException e) {
             return;
         }
-
-        applyRuleOrSwap(nounEntity, operatorEntity, thirdEntity);
+        if (entityOperator != null && thirdEntity != null && entityOperator.isOperator()) {
+            if (thirdEntity.isProperty()) {
+                rules.add(entity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
+            }
+            if (thirdEntity.isNoun()) {
+                swapEntities(entity, thirdEntity);
+            }
+        }
     }
 
     private void updateRules() {
-        Rules.clearStates();
+        rules.clearStates();
         board.forEach(row -> row.forEach(cell -> cell.stream().forEach(entity -> {
             if (entity.isNoun()) {
                 createRuleOrSwapEntity(entity, VectorCoord.vectorDOWN());
@@ -144,11 +140,12 @@ public class Board {
             }
 
             if (entity.isWord()) {
-                Rules.add(entity.getLegend(), EnumProp.PUSH);
+                rules.add(entity.getLegend(), EnumProp.PUSH);
             }
         })));
         setPlayable();
     }
+
 
     private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
@@ -234,24 +231,17 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
-
-        mapPlayerMove.remove(entity);
-
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
-
-        if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
+        if (nextEntity != null && rules.isMovable(nextEntity) && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
-
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }
-
         if (!removeEntity(entity)) {
             return false;
         }
-
         entity.setPos(newPos);
         return addEntity(entity);
     }
@@ -264,44 +254,37 @@ public class Board {
 
     /**
      *
-     * */
+     */
     private boolean isMoveAuthorized(VectorCoord vectorCoord) {
         var entitiesInNewCoord = this.getEntitiesFromVector(vectorCoord);
         if (entitiesInNewCoord.isEmpty()) {
             return true;
         }
 
-        return entitiesInNewCoord.stream().anyMatch(boardEntity -> boardEntity.getStates().stream().findFirst().orElse(new NormalState()).isSteppable());
+        return entitiesInNewCoord.stream().anyMatch(boardEntity -> rules.getStates(boardEntity).stream().findFirst().orElse(new NormalState()).isSteppable());
     }
 
     public void move(VectorCoord vc) {
-        var flag = false;
+        var flagUpdate = false;
 
-        setPlayable();
-        for (var entity : playerIsYou) {
-            /* The entity has already moved */
-            System.out.println(mapPlayerMove.get(entity));
-            if (mapPlayerMove.getOrDefault(entity, true)) {
-                continue;
-            }
-
-            entity.executeAction(entity);
+        for (BoardEntity entity : playerIsYou) {
+            entity.executeAction(entity, rules);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
             var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
-                entity.executeAction(to);
+                entity.executeAction(to, rules);
                 if (to.isWord()) {
-                    flag = true;
+                    flagUpdate = true;
                 }
             }
         }
-
-        if (flag) {
+        if (flagUpdate) {
             updateRules();
         }
         System.out.println(this);
     }
+
 
     public void displayGraphic(Graphics2D graphics) {
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> entity.draw(graphics))));

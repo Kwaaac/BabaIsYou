@@ -23,6 +23,7 @@ public class Memento {
     public void restore(){
         System.out.println("************************** RESTORE **************************");
         System.out.println(this.backupBoard.getPlayerIsYou());
+        System.out.println(this.backupBoard.getRules());
         this.levelManager.restore(this.backupBoard);
     }
 

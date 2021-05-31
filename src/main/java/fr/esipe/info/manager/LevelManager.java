@@ -4,6 +4,7 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
+import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.memento.History;
 import fr.esipe.info.memento.Memento;
 import fr.esipe.info.memento.commands.Command;
@@ -50,22 +51,22 @@ public class LevelManager {
             switch (event.getKey()) {
                 case UP:
                     board.move(VectorCoord.vectorUP());
-                    this.pushCommand(new MoveCommand(this,"up"));
+                    this.pushCommand(new MoveCommand(this, "up"));
                     break;
 
                 case DOWN:
                     board.move(VectorCoord.vectorDOWN());
-                    this.pushCommand(new MoveCommand(this,"down"));
+                    this.pushCommand(new MoveCommand(this, "down"));
                     break;
 
                 case LEFT:
                     board.move(VectorCoord.vectorLEFT());
-                    this.pushCommand(new MoveCommand(this,"left"));
+                    this.pushCommand(new MoveCommand(this, "left"));
                     break;
 
                 case RIGHT:
                     board.move(VectorCoord.vectorRIGHT());
-                    this.pushCommand(new MoveCommand(this,"right"));
+                    this.pushCommand(new MoveCommand(this, "right"));
                     break;
 
                 case UNDEFINED:
@@ -81,7 +82,6 @@ public class LevelManager {
 
             context.renderFrame(this::render);
         }
-
 
         return true;
     }
@@ -107,7 +107,7 @@ public class LevelManager {
         LevelManager.lose = true;
     }
 
-    public Board backup(){
+    public Board backup() {
         return this.board.clone();
     }
 
@@ -115,11 +115,15 @@ public class LevelManager {
         this.board = backupBoard;
     }
 
-    public void pushCommand(Command command){
+    public void pushCommand(Command command) {
         this.history.push(command, new Memento(this));
     }
 
-    public void undo(){
+    public void undo() {
         this.history.undo();
+    }
+
+    public Rules getRules() {
+        return getRules();
     }
 }

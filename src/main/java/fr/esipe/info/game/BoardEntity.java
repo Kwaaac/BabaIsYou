@@ -1,10 +1,9 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.states.State;
+import fr.esipe.info.game.rule.Rules;
 
 import java.awt.*;
-import java.util.List;
 
 public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
     String printCommandLineEntity();
@@ -19,13 +18,7 @@ public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
 
     boolean isProperty();
 
-    void executeAction(BoardEntity entity);
-
-    boolean isSteppable();
-
-    boolean isMovable();
-
-    List<State> getStates();
+    void executeAction(BoardEntity entity, Rules rules);
 
     Entity clone();
 
