@@ -265,10 +265,16 @@ public class Board {
     }
 
     public void move(VectorCoord vc) {
-        var flagUpdate = false;
+        var flag = false;
 
-        for (BoardEntity entity : playerIsYou) {
-            entity.executeAction(entity, rules);
+        setPlayable();
+        for (var entity : playerIsYou) {
+            /* The entity has already moved */
+            if (mapPlayerMove.getOrDefault(entity, true)) {
+                continue;
+            }
+
+            entity.executeAction(entity);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
             var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
