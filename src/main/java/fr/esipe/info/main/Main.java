@@ -6,10 +6,14 @@ import fr.esipe.info.manager.GameManager;
 import fr.esipe.info.manager.LevelManager;
 import fr.umlv.zen5.Application;
 
+import javax.sound.sampled.AudioInputStream;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        AudioInputStream audioInputStream;
+
 
         Application.run(new Color(0f, 0f, 0f, 1f), context -> {
             GameManager gameManager = GameManager.getInstance();
@@ -17,7 +21,7 @@ public class Main {
             gameManager.setWidth((int) context.getScreenInfo().getWidth());
 
             EncryptionDecorator encoded = new EncryptionDecorator(Level.LEVEL_00.getFileStream());
-            LevelManager levelManager = new LevelManager("bob", encoded);
+            LevelManager levelManager = new LevelManager("bob", encoded, "/Music/baba.wav");
             gameManager.setLevelManager(levelManager);
             context.renderFrame(levelManager::render);
 
