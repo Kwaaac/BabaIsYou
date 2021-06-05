@@ -16,6 +16,9 @@ public class Board {
     private final List<BoardEntity> playerIsYou = new ArrayList<>();
     private final Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
 
+    private final Set<Legend> entitySet = new HashSet<>();
+
+
     private final int height;
     private final int width;
 
@@ -36,6 +39,8 @@ public class Board {
         GameManager.getInstance().setCellSize(Math.min(winWidth / width, winHeight / height));
 
         updateRules();
+
+        addPresentEntity();
 
         Rules.displayRules();
     }
@@ -68,8 +73,26 @@ public class Board {
         })));
     }
 
-    private void swapEntities(BoardEntity from, BoardEntity to) {
+    private void addPresentEntity() {
+        board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
+            if (!entity.isWord()) {
+                entitySet.add(entity.getLegend());
+            }
+        })));
+    }
 
+    private void swapEntities(Legend from, Legend to) {
+        if (!entitySet.contains(from)) {
+            return;
+        }
+        entitySet.remove(from);
+        entitySet.add(to);
+        System.out.println(entitySet);
+        board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
+            if (entity.getLegend().equals(from)) {
+                entity.changeEntity(to);
+            }
+        })));
     }
 
     private void applyRuleOrSwap(BoardEntity nounEntity, BoardEntity operatorEntity, BoardEntity thirdEntity) {
@@ -78,7 +101,7 @@ public class Board {
                 Rules.add(nounEntity.getLegend().getEntity(), EnumProp.valueOf(thirdEntity.getLegend().getName()));
             }
             if (thirdEntity.isNoun()) {
-                swapEntities(nounEntity, thirdEntity);
+                swapEntities(nounEntity.getLegend().getEntity(), thirdEntity.getLegend().getEntity());
             }
         }
     }

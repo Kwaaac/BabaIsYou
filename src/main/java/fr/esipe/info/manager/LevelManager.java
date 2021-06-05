@@ -17,7 +17,6 @@ import java.util.Objects;
 public class LevelManager {
     private final String levelName;
     private final Board board;
-    private final EncryptionDecorator encoded;
 
     private Clip music;
 
@@ -26,8 +25,7 @@ public class LevelManager {
 
     public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
         this.levelName = levelName;
-        this.encoded = encoded;
-        this.board = new Board(this.encoded.readData());
+        this.board = new Board(encoded.readData());
 
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
@@ -99,7 +97,7 @@ public class LevelManager {
 
             }
 
-            context.renderFrame(graphics->render(graphics, false));
+            context.renderFrame(graphics -> render(graphics, false));
         }
 
 

@@ -23,10 +23,20 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         this.entity = Objects.requireNonNull(enumEntity);
         this.sprite = new Sprite[4][3];
 
+        updateSprite();
+    }
+
+    @Override
+    public void changeEntity(Legend newLegend) {
+        entity = newLegend;
+        updateSprite();
+    }
+
+    private void updateSprite() {
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 1; j <= sprite[0].length; j++) {
-                System.out.println(enumEntity.getImagePath() + i + "_" + j + ".png");
-                sprite[i][j - 1] = new Sprite(enumEntity.getImagePath() + i + "_" + j + ".png", enumEntity.getGraphicColor());
+                System.out.println(this.entity.getImagePath() + i + "_" + j + ".png");
+                sprite[i][j - 1] = new Sprite(this.entity.getImagePath() + i + "_" + j + ".png", this.entity.getGraphicColor());
             }
             if (!entity.equals(Legend.BABA_ENTITY)) {
                 break;

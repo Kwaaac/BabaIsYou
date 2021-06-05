@@ -12,6 +12,8 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
 
     Legend getLegend();
 
+    void changeEntity(Legend newLegend);
+
     boolean isWord();
 
     boolean isNoun();
