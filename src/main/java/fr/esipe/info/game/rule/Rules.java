@@ -9,14 +9,32 @@ import fr.esipe.info.game.states.State;
 import java.util.*;
 
 public class Rules {
-    private final Map<Legend, List<State>> states;
+    private Map<Legend, List<State>> states;
 
     private Rules(Map<Legend, List<State>> states) {
         this.states = states;
     }
 
+    public Rules(Rules target){
+        if(target != null){
+            this.states = target.cloneMap();
+        }
+    }
+
     public Rules() {
-        this(new HashMap<>());
+        this.states = new HashMap<>();
+    }
+
+    private Map<Legend, List<State>> cloneMap(){
+        var newMap = new HashMap<Legend, List<State>>();
+        this.states.keySet().forEach(legend -> newMap.put(legend, cloneListState(this.states.get(legend))));
+        return newMap;
+    }
+
+    private List<State> cloneListState(List<State> statesList){
+        var newListState = new ArrayList<State>();
+        newListState.addAll(statesList);
+        return newListState;
     }
 
     /**
@@ -46,8 +64,7 @@ public class Rules {
     }
 
     public Rules clone() {
-        var newMap = new HashMap<Legend, List<State>>();
-        return new Rules(new HashMap<>(states));
+        return new Rules(this);
     }
 
     public List<State> getStates(BoardEntity entity) {
