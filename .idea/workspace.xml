@@ -104,7 +104,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.10881393" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="profiler.jvm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -115,11 +115,11 @@
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\entity" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\target\classes\levels" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="fr.esipe.info" />
@@ -142,13 +142,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

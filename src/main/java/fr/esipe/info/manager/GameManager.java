@@ -61,14 +61,6 @@ public class GameManager {
         this.cellSize = cellSize;
     }
 
-    public int getHeightDelta() {
-        return (height - levelManager.getNumberCellHeight() * cellSize) / 2;
-    }
-
-    public int getWidthDelta() {
-        return (width - levelManager.getNumberCellWidth() * cellSize) / 2;
-    }
-
     public void removeGameObject(BoardEntity boardEntity) {
         if (boardEntity != null) {
             levelManager.removeEntity(boardEntity);
