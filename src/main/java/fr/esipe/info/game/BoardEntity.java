@@ -1,5 +1,6 @@
 package fr.esipe.info.game;
 
+import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.rule.Rules;
 
@@ -9,6 +10,8 @@ public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
     String printCommandLineEntity();
 
     Legend getLegend();
+
+    void changeEntity(Legend newLegend);
 
     boolean isWord();
 
@@ -23,4 +26,8 @@ public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
     Entity clone();
 
     void draw(Graphics2D graphics);
+
+    void changeDirAnim(VectorCoord dir);
+
+    void nextAnim();
 }

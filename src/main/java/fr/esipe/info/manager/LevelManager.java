@@ -33,7 +33,7 @@ public class LevelManager {
     public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
         this.levelName = levelName;
         this.encoded = encoded;
-        this.board = new Board(this.encoded.readData());
+        this.board = new Board(encoded.readData());
         this.history = new History();
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
@@ -47,14 +47,21 @@ public class LevelManager {
 
     }
 
+    public int getNumberCellWidth() {
+        return board.getWidth();
+    }
+
+    public int getNumberCellHeight() {
+        return board.getHeight();
+    }
+
     public void displayBoard() {
         System.out.println(board);
     }
 
-
-    public void render(Graphics2D graphics) {
+    public void render(Graphics2D graphics, boolean updateAnim) {
         graphics.clearRect(0, 0, GameManager.getInstance().getWidth(), GameManager.getInstance().getHeight());
-        board.displayGraphic(graphics);
+        board.displayGraphic(graphics, updateAnim);
     }
 
     public boolean processEvent(ApplicationContext context) {
@@ -104,7 +111,7 @@ public class LevelManager {
                     break;
             }
 
-            context.renderFrame(this::render);
+            context.renderFrame(graphics -> render(graphics, false));
         }
 
 
