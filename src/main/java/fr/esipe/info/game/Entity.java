@@ -70,6 +70,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
             return;
         }
         State state = Rules.getFirstState(to.getLegend());
+        System.out.println(state);
         state.getActionStrategy().execute(this, to);
     }
 

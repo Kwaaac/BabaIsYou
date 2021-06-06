@@ -276,8 +276,9 @@ public class Board {
             entity.executeAction(entity);
             var to = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc)).stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
+                System.out.println("aled");
                 entity.changeDirAnim(vc);
-                entity.executeAction(to);
+                to.executeAction(entity);
                 if (to.isWord()) {
                     flag = true;
                 }
