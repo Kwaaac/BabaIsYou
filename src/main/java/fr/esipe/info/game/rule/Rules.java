@@ -6,17 +6,20 @@ import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Rules {
-    private Map<Legend, List<State>> states;
+    private Map<Legend, Set<State>> states;
 
-    private Rules(Map<Legend, List<State>> states) {
+    private Rules(Map<Legend, Set<State>> states) {
         this.states = states;
     }
 
-    public Rules(Rules target){
-        if(target != null){
+    public Rules(Rules target) {
+        if (target != null) {
             this.states = target.cloneMap();
         }
     }
@@ -25,14 +28,14 @@ public class Rules {
         this.states = new HashMap<>();
     }
 
-    private Map<Legend, List<State>> cloneMap(){
-        var newMap = new HashMap<Legend, List<State>>();
+    private Map<Legend, Set<State>> cloneMap() {
+        var newMap = new HashMap<Legend, Set<State>>();
         this.states.keySet().forEach(legend -> newMap.put(legend, cloneListState(this.states.get(legend))));
         return newMap;
     }
 
-    private List<State> cloneListState(List<State> statesList){
-        var newListState = new ArrayList<State>();
+    private Set<State> cloneListState(Set<State> statesList) {
+        var newListState = new TreeSet<State>();
         newListState.addAll(statesList);
         return newListState;
     }
@@ -45,7 +48,7 @@ public class Rules {
      * @return True is the state is assiociated with the entity, False otherwise
      */
     public boolean hasProperty(Legend legend, EnumProp... props) {
-        List<State> stateList = new ArrayList<>();
+        var stateList = new TreeSet<State>();
         for (var prop : props) {
             stateList.add(prop.getState());
         }
@@ -67,8 +70,8 @@ public class Rules {
         return new Rules(this);
     }
 
-    public List<State> getStates(BoardEntity entity) {
-        return states.getOrDefault(entity.getLegend(), new ArrayList<>());
+    public Set<State> getStates(BoardEntity entity) {
+        return states.getOrDefault(entity.getLegend(), new TreeSet<>());
     }
 
     /**
@@ -79,11 +82,11 @@ public class Rules {
      */
     public State getFirstState(Legend entity) {
         System.out.println(states);
-        return states.getOrDefault(entity, new ArrayList<>()).stream().findFirst().orElse(new NormalState());
+        return states.getOrDefault(entity, new TreeSet<>()).stream().findFirst().orElse(new NormalState());
     }
 
     public boolean isMovable(BoardEntity entity) {
-        return states.getOrDefault(entity.getLegend(), new ArrayList<>()).stream().anyMatch(State::isMovable);
+        return states.getOrDefault(entity.getLegend(), new TreeSet<>()).stream().anyMatch(State::isMovable);
     }
 
     /**
@@ -96,12 +99,10 @@ public class Rules {
         var props = states.get(entity);
 
         if (props == null) {
-            props = new ArrayList<>();
+            props = new TreeSet<>();
             props.add(new NormalState());
         }
         props.add(prop.getState());
-
-        Collections.sort(props);
 
         states.put(entity, props);
     }

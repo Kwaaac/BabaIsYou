@@ -62,7 +62,7 @@ public class Board {
         return rules.clone();
     }
 
-    private List<BoardEntity> clonePlayerYou(){
+    private List<BoardEntity> clonePlayerYou() {
         var isYou = new ArrayList<BoardEntity>();
         this.playerIsYou.forEach(player -> isYou.add(player.clone()));
         return isYou;
@@ -308,8 +308,7 @@ public class Board {
         }
         System.out.println(this);
     }
-
-
+    
     public void displayGraphic(Graphics2D graphics) {
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> entity.draw(graphics))));
     }
