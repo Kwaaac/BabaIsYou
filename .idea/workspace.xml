@@ -89,27 +89,28 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="ignore.preview.features.used" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Music" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/levels" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.10881393" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="profiler.jvm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Music" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\levels" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\YOU" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\WIN" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\STOP" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\PUSH" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\entity" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\target\classes\levels" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="fr.esipe.info" />
@@ -132,13 +133,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -216,11 +219,6 @@
       <workItem from="1622363890810" duration="3502000" />
       <workItem from="1622367443728" duration="11068000" />
       <workItem from="1622993904356" duration="3034000" />
-      <workItem from="1622543755745" duration="3637000" />
-      <workItem from="1622725762789" duration="21000" />
-      <workItem from="1622909779392" duration="2394000" />
-      <workItem from="1622912210712" duration="33000" />
-      <workItem from="1622978652673" duration="4926000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>
