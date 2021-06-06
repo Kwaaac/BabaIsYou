@@ -15,11 +15,12 @@ public class Board {
     private List<List<List<BoardEntity>>> board;
     private List<BoardEntity> playerIsYou = new ArrayList<>();
     private Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
-
+    private final Set<Legend> entitySet = new HashSet<>();
     private Rules rules = new Rules();
 
     private int height;
     private int width;
+
 
     public Board(List<List<List<BoardEntity>>> board) {
         Objects.requireNonNull(board);
@@ -80,6 +81,14 @@ public class Board {
             result.add(line, lineBoard);
         }
         return result;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     /**
@@ -158,7 +167,6 @@ public class Board {
         })));
         setPlayable();
     }
-
 
     private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
@@ -244,14 +252,14 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
-
         mapPlayerMove.remove(entity);
-
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
+        entity.executeAction(nextEntity, rules);
         if (nextEntity != null && rules.isMovable(nextEntity) && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
+
         if (!this.isMoveAuthorized(newPos)) {
             return false;
         }
