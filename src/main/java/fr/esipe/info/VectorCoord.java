@@ -14,6 +14,17 @@ public class VectorCoord {
         this.yCoord = yCoord;
     }
 
+    public VectorCoord(VectorCoord target){
+        if(target != null){
+            this.xCoord = target.xCoord;
+            this.yCoord = target.yCoord;
+        }
+    }
+
+    public VectorCoord clone(){
+        return new VectorCoord(this);
+    }
+
     public static VectorCoord vectorOutOfTheLoop() {
         return new VectorCoord(-1, -1);
     }

@@ -1,18 +1,14 @@
 package fr.esipe.info.game;
 
-import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.Legend;
-import fr.esipe.info.game.states.State;
+import fr.esipe.info.game.rule.Rules;
 
 import java.awt.*;
-import java.util.List;
 
-public interface BoardEntity extends GameObject, Comparable<Entity> {
+public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
     String printCommandLineEntity();
 
     Legend getLegend();
-
-    void changeEntity(Legend newLegend);
 
     boolean isWord();
 
@@ -22,17 +18,9 @@ public interface BoardEntity extends GameObject, Comparable<Entity> {
 
     boolean isProperty();
 
-    void executeAction(BoardEntity entity);
+    void executeAction(BoardEntity entity, Rules rules);
 
-    boolean isSteppable();
-
-    boolean isMovable();
-
-    List<State> getStates();
+    Entity clone();
 
     void draw(Graphics2D graphics);
-
-    void changeDirAnim(VectorCoord dir);
-
-    void nextAnim();
 }
