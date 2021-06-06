@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/levels/level03.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level02.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +36,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="priotity-state" />
+        <entry key="$PROJECT_DIR$" value="undo-feature" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,19 +52,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-15.0.2/lib/src.zip!/java.base/java/util/ArrayList.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-15.0.2/lib/src.zip!/java.base/java/util/LinkedList.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-15.0.2/lib/src.zip!/java.base/java/util/LinkedList.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-15.0.2/lib/src.zip!/java.base/java/util/AbstractCollection.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1sU2EbRuzCyswBGV5RBWqT8nk2S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -288,11 +274,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Factory creation for any word" />
     <MESSAGE value="import board from file" />
-    <MESSAGE value="wip" />
     <MESSAGE value="All actions ready (I think so)" />
     <MESSAGE value="push and push multiple is done" />
     <MESSAGE value="push and push multiple are done&#10;&#10;Signed-off-by: Brice Mikembo &lt;bmikembo@etud.u-pem.fr&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="push and push multiple is done" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -302,6 +288,11 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -310,7 +301,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BabaIsYou$Main.ic" NAME="Main Coverage Results" MODIFIED="1620925781059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/BabaIsYou$Main.ic" NAME="Main Coverage Results" MODIFIED="1622390558490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>fr.esipe.info.manager.*</FILTER>
     </SUITE>
   </component>

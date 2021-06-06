@@ -12,4 +12,9 @@ public class YouState extends State {
     public boolean isSteppable() {
         return false;
     }
+
+    @Override
+    public boolean isMovable(){
+        return true;
+    }
 }

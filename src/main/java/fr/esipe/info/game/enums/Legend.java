@@ -16,6 +16,7 @@ public enum Legend {
     WALL_NOUN('W', Type.NOUN, "WALL", ColorPrint.ANSI_GREEN, new Color(78, 76, 64), 1, "/Sprites/WALL/noun/text_wall_"),
     ROCK_NOUN('R', Type.NOUN, "ROCK", ColorPrint.ANSI_GREEN, new Color(134, 81, 41), 1, "/Sprites/ROCK/noun/text_rock_"),
     SKULL_NOUN('K', Type.NOUN, "SKULL", ColorPrint.ANSI_GREEN, new Color(183, 57, 24), 1, "/Sprites/SKULL/noun/text_skull_"),
+    LAVA_NOUN('L', Type.NOUN, "LAVA", ColorPrint.ANSI_GREEN, new Color(241, 98, 35, 232), 1, "/Sprites/LAVA/noun/text_lava_"),
     WATER_NOUN('T', Type.NOUN, "WATER", ColorPrint.ANSI_BLUE, new Color(17, 159, 236), 1, "/Sprites/WATER/noun/text_water_"),
 
     /**
@@ -27,6 +28,8 @@ public enum Legend {
     ROCK_ENTITY('r', Type.ENTITY, "ROCK", ColorPrint.ANSI_WHITE, new Color(177, 150, 15), 0, "/Sprites/ROCK/entity/rock_"),
     SKULL_ENTITY('k', Type.ENTITY, "SKULL", ColorPrint.ANSI_WHITE, new Color(183, 57, 24), 0, "/Sprites/SKULL/entity/skull_"),
     WATER_ENTITY('t', Type.ENTITY, "WATER", ColorPrint.ANSI_BLUE, new Color(17, 159, 236), 0, "/Sprites/WATER/entity/water_"),
+    LAVA_ENTITY('l', Type.ENTITY, "LAVA", ColorPrint.ANSI_GREEN, new Color(227, 143, 12), 1, "/Sprites/LAVA/entity/water_"),
+
     /**
      * Operator
      */

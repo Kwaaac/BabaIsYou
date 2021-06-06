@@ -4,7 +4,12 @@ import fr.esipe.info.VectorCoord;
 import fr.esipe.info.files.EncryptionDecorator;
 import fr.esipe.info.game.Board;
 import fr.esipe.info.game.BoardEntity;
+import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.main.Main;
+import fr.esipe.info.memento.History;
+import fr.esipe.info.memento.Memento;
+import fr.esipe.info.memento.commands.Command;
+import fr.esipe.info.memento.commands.MoveCommand;
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
 
@@ -15,8 +20,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class LevelManager {
-    private final String levelName;
-    private final Board board;
+    private final History history;
+    private String levelName;
+    private Board board;
+    private final EncryptionDecorator encoded;
 
     private Clip music;
 
@@ -25,6 +32,8 @@ public class LevelManager {
 
     public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
         this.levelName = levelName;
+        this.encoded = encoded;
+        this.history = new History();
         this.board = new Board(encoded.readData());
 
         try {
@@ -67,18 +76,22 @@ public class LevelManager {
             switch (event.getKey()) {
                 case UP:
                     board.move(VectorCoord.vectorUP());
+                    this.pushCommand(new MoveCommand(this, "up"));
                     break;
 
                 case DOWN:
                     board.move(VectorCoord.vectorDOWN());
+                    this.pushCommand(new MoveCommand(this, "down"));
                     break;
 
                 case LEFT:
                     board.move(VectorCoord.vectorLEFT());
+                    this.pushCommand(new MoveCommand(this, "left"));
                     break;
 
                 case RIGHT:
                     board.move(VectorCoord.vectorRIGHT());
+                    this.pushCommand(new MoveCommand(this, "right"));
                     break;
 
                 case UNDEFINED:
@@ -87,19 +100,13 @@ public class LevelManager {
                 case S:
                     /*TODO: Sauvegarde*/
                     break;
-                case M:
-                    if (music.isRunning()) {
-                        music.stop();
-                    } else {
-                        music.start();
-                    }
+                case Z:
+                    this.undo();
                     break;
-
             }
 
             context.renderFrame(graphics -> render(graphics, false));
         }
-
 
         return true;
     }
@@ -122,5 +129,25 @@ public class LevelManager {
 
     public static void lose() {
         LevelManager.lose = true;
+    }
+
+    public Board backup() {
+        return this.board.clone();
+    }
+
+    public void restore(Board backupBoard) {
+        this.board = backupBoard;
+    }
+
+    public void pushCommand(Command command) {
+        this.history.push(command, new Memento(this));
+    }
+
+    public void undo() {
+        this.history.undo();
+    }
+
+    public Rules getRules() {
+        return getRules();
     }
 }
