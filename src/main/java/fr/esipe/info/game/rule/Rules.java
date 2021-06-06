@@ -1,6 +1,5 @@
 package fr.esipe.info.game.rule;
 
-import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.NormalState;
@@ -9,33 +8,7 @@ import fr.esipe.info.game.states.State;
 import java.util.*;
 
 public class Rules {
-    private Map<Legend, List<State>> states;
-
-    private Rules(Map<Legend, List<State>> states) {
-        this.states = states;
-    }
-
-    public Rules(Rules target){
-        if(target != null){
-            this.states = target.cloneMap();
-        }
-    }
-
-    public Rules() {
-        this.states = new HashMap<>();
-    }
-
-    private Map<Legend, List<State>> cloneMap(){
-        var newMap = new HashMap<Legend, List<State>>();
-        this.states.keySet().forEach(legend -> newMap.put(legend, cloneListState(this.states.get(legend))));
-        return newMap;
-    }
-
-    private List<State> cloneListState(List<State> statesList){
-        var newListState = new ArrayList<State>();
-        newListState.addAll(statesList);
-        return newListState;
-    }
+    private static final Map<Legend, List<State>> states = new HashMap<>();
 
     /**
      * Check if the given entity every properties
@@ -44,7 +17,7 @@ public class Rules {
      * @param props  the given state
      * @return True is the state is assiociated with the entity, False otherwise
      */
-    public boolean hasProperty(Legend legend, EnumProp... props) {
+    public static boolean hasProperty(Legend legend, EnumProp... props) {
         List<State> stateList = new ArrayList<>();
         for (var prop : props) {
             stateList.add(prop.getState());
@@ -59,16 +32,12 @@ public class Rules {
         return entity.containsAll(stateList);
     }
 
-    public void displayRules() {
+    public static void displayRules() {
         System.out.println(states);
     }
 
-    public Rules clone() {
-        return new Rules(this);
-    }
-
-    public List<State> getStates(BoardEntity entity) {
-        return states.getOrDefault(entity.getLegend(), new ArrayList<>());
+    public static List<State> getStates(Legend entity) {
+        return states.getOrDefault(entity, new ArrayList<>());
     }
 
     /**
@@ -77,13 +46,17 @@ public class Rules {
      * @param entity the given entity
      * @return The first state of the entity or NormalState if there is none.
      */
-    public State getFirstState(Legend entity) {
+    public static State getFirstState(Legend entity) {
         System.out.println(states);
         return states.getOrDefault(entity, new ArrayList<>()).stream().findFirst().orElse(new NormalState());
     }
 
-    public boolean isMovable(BoardEntity entity) {
-        return states.getOrDefault(entity.getLegend(), new ArrayList<>()).stream().anyMatch(State::isMovable);
+    public static boolean isSteppable(Legend entity) {
+        return states.getOrDefault(entity, new ArrayList<>()).stream().anyMatch(State::isSteppable);
+    }
+
+    public static boolean isMovable(Legend entity) {
+        return states.getOrDefault(entity, new ArrayList<>()).stream().anyMatch(State::isMovable);
     }
 
     /**
@@ -92,7 +65,7 @@ public class Rules {
      * @param entity An entity's noun
      * @param prop   an new propriety
      */
-    public void add(Legend entity, EnumProp prop) {
+    public static void add(Legend entity, EnumProp prop) {
         var props = states.get(entity);
 
         if (props == null) {
@@ -109,26 +82,18 @@ public class Rules {
     /**
      * Clear every states
      */
-    public void clearStates() {
+    public static void clearStates() {
         states.forEach((k, v) -> {
             v.clear();
             v.add(new NormalState());
         });
     }
 
-    public boolean isWin() {
+    public static boolean isWin() {
         return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN, EnumProp.YOU));
     }
 
-    public boolean isDefeat() {
+    public static boolean isDefeat() {
         return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT, EnumProp.YOU));
-    }
-
-
-    @Override
-    public String toString() {
-        return "Rules{" +
-                "states=" + states +
-                '}';
     }
 }
