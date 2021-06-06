@@ -59,6 +59,9 @@ public class Entity extends AbstractGameObject implements BoardEntity {
 
     @Override
     public void executeAction(BoardEntity to, Rules rules) {
+        if(to == null){
+            return;
+        }
         if (to.getLegend().equals(Legend.BLANK)) {
             return;
         }

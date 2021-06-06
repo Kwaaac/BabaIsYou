@@ -61,7 +61,7 @@ public class LevelManager {
 
     public void render(Graphics2D graphics, boolean updateAnim) {
         graphics.clearRect(0, 0, GameManager.getInstance().getWidth(), GameManager.getInstance().getHeight());
-        board.displayGraphic(graphics, updateAnim);
+        board.displayGraphic(graphics);
     }
 
     public boolean processEvent(ApplicationContext context) {

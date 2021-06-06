@@ -252,13 +252,11 @@ public class Board {
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
-
         mapPlayerMove.remove(entity);
-
         var newPos = normalizeMovementVector(entity.getPos(), vc);
         var nextEntity = this.getFirstEntityFromList(newPos);
-
-        if (nextEntity != null && nextEntity.isMovable() && !newPos.equals(entity.getPos())) {
+        entity.executeAction(nextEntity, rules);
+        if (nextEntity != null && rules.isMovable(nextEntity) && !newPos.equals(entity.getPos())) {
             this.moveEntity(nextEntity, vc);
         }
 
