@@ -4,17 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="">
+    <list default="true" id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/SINK/text_sink_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/entity/water_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun/text_water_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/levels/level03.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level02.txt" afterDir="false" />
     </list>
-    <list id="687bdaea-e13b-4689-9045-510bbb9277ac" name="Changes by mikem" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +50,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="priotity-state" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,7 +98,7 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="ignore.preview.features.used" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Music" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -99,10 +108,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Music" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\SINK" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\levels" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\PUSH" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
@@ -179,7 +189,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8461305a-9437-4b38-a7fd-0da851b889bf" name="Default Changelist" comment="" />
+      <changelist id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="" />
       <created>1620912738925</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -215,7 +225,7 @@
       <workItem from="1622325082111" duration="7558000" />
       <workItem from="1622363890810" duration="3502000" />
       <workItem from="1622367443728" duration="11068000" />
-      <workItem from="1622993904356" duration="3034000" />
+      <workItem from="1622399404321" duration="1935000" />
       <workItem from="1622543755745" duration="3637000" />
       <workItem from="1622725762789" duration="21000" />
       <workItem from="1622909779392" duration="2394000" />
@@ -282,8 +292,7 @@
     <MESSAGE value="All actions ready (I think so)" />
     <MESSAGE value="push and push multiple is done" />
     <MESSAGE value="push and push multiple are done&#10;&#10;Signed-off-by: Brice Mikembo &lt;bmikembo@etud.u-pem.fr&gt;" />
-    <MESSAGE value="correction undo with rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="correction undo with rules" />
+    <option name="LAST_COMMIT_MESSAGE" value="push and push multiple is done" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -293,21 +302,6 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/History.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

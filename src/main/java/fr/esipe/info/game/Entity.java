@@ -5,41 +5,48 @@ import fr.esipe.info.game.enums.ColorPrint;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.rule.Rules;
-import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
-import fr.esipe.info.manager.GameManager;
 
 import java.awt.*;
+import java.util.List;
 import java.util.Objects;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
-    private final Sprite sprite;
+    private Sprite[][] sprite;
+
+    private int direction = 0;
+    private int anim = 0;
 
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
-        this.sprite = new Sprite(entity.getImageStream(), entity.getGraphicColor());
-    }
+        this.sprite = new Sprite[4][3];
 
-    public Entity(Entity target) {
-        super(target.getPos().clone());
-        this.entity = target.entity;
-        this.sprite = target.sprite;
+        updateSprite();
     }
 
     @Override
-    public Entity clone() {
-        return new Entity(this);
+    public void changeEntity(Legend newLegend) {
+        entity = newLegend;
+        updateSprite();
+    }
+
+    private void updateSprite() {
+        for (int i = 0; i < sprite.length; i++) {
+            for (int j = 1; j <= sprite[0].length; j++) {
+                System.out.println(this.entity.getImagePath() + i + "_" + j + ".png");
+                sprite[i][j - 1] = new Sprite(this.entity.getImagePath() + i + "_" + j + ".png", this.entity.getGraphicColor());
+            }
+            if (!entity.equals(Legend.BABA_ENTITY)) {
+                break;
+            }
+        }
     }
 
     @Override
     public Legend getLegend() {
         return entity;
-    }
-
-    public void changeNoun(Legend noun) {
-        this.entity = noun;
     }
 
     @Override
@@ -58,20 +65,52 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     }
 
     @Override
-    public void executeAction(BoardEntity to, Rules rules) {
-        if(to == null){
-            return;
-        }
+    public void executeAction(BoardEntity to) {
         if (to.getLegend().equals(Legend.BLANK)) {
             return;
         }
-        State state = rules.getFirstState(to.getLegend());
-        state.getActionStrategy().execute(rules, this, to);
+        State state = Rules.getFirstState(to.getLegend());
+        System.out.println(state);
+        state.getActionStrategy().execute(this, to);
+    }
+
+    @Override
+    public boolean isSteppable() {
+        return Rules.isSteppable(entity);
+    }
+
+    @Override
+    public boolean isMovable() {
+        return Rules.isMovable(entity);
+    }
+
+    @Override
+    public List<State> getStates() {
+        return Rules.getStates(entity);
     }
 
     @Override
     public void draw(Graphics2D graphics) {
-        sprite.draw(graphics, getPos().getxCoord(), getPos().getyCoord());
+        sprite[direction][anim].draw(graphics, getPos().getxCoord(), getPos().getyCoord());
+    }
+
+    public void nextAnim() {
+        anim = (anim + 1) % 3;
+    }
+
+    public void changeDirAnim(VectorCoord dir) {
+        // For now only the entity BABA has direction animation
+        if (entity.equals(Legend.BABA_ENTITY)) {
+            if (dir.equals(VectorCoord.vectorDOWN())) {
+                direction = 1;
+            } else if (dir.equals(VectorCoord.vectorLEFT())) {
+                direction = 2;
+            } else if (dir.equals(VectorCoord.vectorUP())) {
+                direction = 3;
+            } else {
+                direction = 0;
+            }
+        }
     }
 
     @Override
@@ -115,13 +154,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     }
 
     @Override
-    public int compareTo(BoardEntity o) {
-        var rules = GameManager.getInstance().getLevelManager().getRules();
-
-
-        var oState = rules.getStates(o).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
-        var thisState = rules.getStates(this).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
-
-        return oState - thisState;
+    public int compareTo(Entity o) {
+        return Integer.compare(entity.getWeight(), o.entity.getWeight());
     }
 }
