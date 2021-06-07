@@ -100,6 +100,11 @@ public class LevelManager {
                 case S:
                     /*TODO: Sauvegarde*/
                     break;
+
+                case M:
+                    music.stop();
+                    break;
+
                 case Z:
                     this.undo();
                     break;
@@ -148,6 +153,6 @@ public class LevelManager {
     }
 
     public Rules getRules() {
-        return getRules();
+        return board.getRules();
     }
 }

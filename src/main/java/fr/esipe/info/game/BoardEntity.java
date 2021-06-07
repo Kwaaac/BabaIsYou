@@ -7,6 +7,7 @@ import fr.esipe.info.game.rule.Rules;
 import java.awt.*;
 
 public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
+    
     String printCommandLineEntity();
 
     Legend getLegend();
