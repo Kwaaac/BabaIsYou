@@ -102,12 +102,13 @@ public class Board {
         playerIsYou.clear();
         mapPlayerMove.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
-            if (entity != null && !entity.isWord()) {
-                if (rules.hasProperty(entity.getLegend(), EnumProp.YOU)) {
+            if (!entity.isWord()) {
+                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
+                    System.out.println("aled");
+                }
+                if (rules.hasProperty(entity, EnumProp.YOU)) {
                     playerIsYou.add(entity);
                     mapPlayerMove.put(entity, false);
-
-                    rules.add(entity.getLegend(), EnumProp.PUSH);
                 }
             }
         })));
@@ -127,7 +128,6 @@ public class Board {
         }
         entitySet.remove(from);
         entitySet.add(to);
-        System.out.println(entitySet);
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (entity.getLegend().equals(from)) {
                 entity.changeEntity(to);
@@ -181,6 +181,7 @@ public class Board {
             }
         })));
         setPlayable();
+        rules.isWin(playerIsYou);
     }
 
     private VectorCoord checkVector(VectorCoord vc) {
@@ -331,6 +332,7 @@ public class Board {
 
         if (flag) {
             updateRules();
+
         }
         System.out.println(this);
     }

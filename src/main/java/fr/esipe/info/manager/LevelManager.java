@@ -72,7 +72,7 @@ public class LevelManager {
             return true;
         }
 
-        if (event.getAction().equals(Event.Action.KEY_PRESSED)) {
+        if (event.getAction().equals(Event.Action.KEY_RELEASED)) {
             switch (event.getKey()) {
                 case UP:
                     board.move(VectorCoord.vectorUP());

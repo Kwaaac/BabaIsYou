@@ -26,7 +26,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
 
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 1; j <= sprite[0].length; j++) {
-                System.out.println(enumEntity.getImagePath() + i + "_" + j + ".png");
                 sprite[i][j - 1] = new Sprite(enumEntity.getImagePath() + i + "_" + j + ".png", enumEntity.getGraphicColor());
             }
             if (!entity.equals(Legend.BABA_ENTITY)) {
@@ -34,6 +33,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
             }
         }
     }
+
     @Override
     public void changeEntity(Legend newLegend) {
         entity = newLegend;
@@ -55,7 +55,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     private void updateSprite() {
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 1; j <= sprite[0].length; j++) {
-                System.out.println(this.entity.getImagePath() + i + "_" + j + ".png");
                 sprite[i][j - 1] = new Sprite(this.entity.getImagePath() + i + "_" + j + ".png", this.entity.getGraphicColor());
             }
             if (!entity.equals(Legend.BABA_ENTITY)) {
@@ -86,7 +85,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
 
     @Override
     public void executeAction(BoardEntity to, Rules rules) {
-        if(to == null){
+        if (to == null) {
             return;
         }
         if (to.getLegend().equals(Legend.BLANK)) {

@@ -41,7 +41,6 @@ public class EncryptionDecorator {
         return result;
     }
 
-
     private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend, int lineIndex) {
         int indexString = 0;
         for (int i = 0; i < line.size(); i++) {

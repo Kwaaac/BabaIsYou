@@ -5,11 +5,9 @@ import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
+import fr.esipe.info.manager.LevelManager;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Rules {
     private Map<Legend, Set<State>> states;
@@ -47,19 +45,34 @@ public class Rules {
      * @param props  the given state
      * @return True is the state is assiociated with the entity, False otherwise
      */
-    public boolean hasProperty(Legend legend, EnumProp... props) {
+    private boolean hasProperty(Legend legend, EnumProp... props) {
+        if (props.length == 0) {
+            throw new IllegalArgumentException("The property cannot be empty");
+        }
+
         Set<State> stateList = new TreeSet<>();
         for (var prop : props) {
             stateList.add(prop.getState());
         }
 
-        var entity = states.get(legend);
+        var entityPropreties = states.get(legend);
 
-        if (entity == null) {
+        if (entityPropreties == null) {
             return false;
         }
 
-        return entity.containsAll(stateList);
+        return entityPropreties.containsAll(stateList);
+    }
+
+    /**
+     * Check if the given entity every properties
+     *
+     * @param entity the given entity
+     * @param props  the given state
+     * @return True is the state is assiociated with the entity, False otherwise
+     */
+    public boolean hasProperty(BoardEntity entity, EnumProp... props) {
+        return hasProperty(entity.getLegend(), props);
     }
 
     public void displayRules() {
@@ -117,14 +130,11 @@ public class Rules {
         });
     }
 
-    public boolean isWin() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN));
+    public void isWin(List<BoardEntity> playerIsYou) {
+        if (playerIsYou.stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN))) {
+            LevelManager.win();
+        }
     }
-
-    public boolean isDefeat() {
-        return states.keySet().stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT));
-    }
-
 
     @Override
     public String toString() {
