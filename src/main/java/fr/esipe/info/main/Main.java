@@ -44,14 +44,14 @@ public class Main {
                 }
             }
             if (args[i].equals("--execute")) {
-                gameRules.add(Legend.valueOf(args[++i]), EnumProp.valueOf(args[i + 2]));
+                gameRules.add(Legend.getEntity(args[++i]), EnumProp.valueOf(args[i + 2]));
                 i += 2;
             }
         }
 
-
         Application.run(new Color(17, 15, 15), context -> {
             GameManager gameManager = GameManager.getInstance();
+            gameManager.setRules(gameRules);
             gameManager.setHeight((int) context.getScreenInfo().getHeight());
             gameManager.setWidth((int) context.getScreenInfo().getWidth());
 

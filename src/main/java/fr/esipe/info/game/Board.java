@@ -167,6 +167,7 @@ public class Board {
 
     private void updateRules() {
         rules.clearStates();
+
         board.forEach(row -> row.forEach(cell -> cell.stream().forEach(entity -> {
             if (entity.isNoun()) {
                 createRuleOrSwapEntity(entity, VectorCoord.vectorDOWN());

@@ -5,6 +5,7 @@ import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.states.NormalState;
 import fr.esipe.info.game.states.State;
+import fr.esipe.info.manager.GameManager;
 import fr.esipe.info.manager.LevelManager;
 
 import java.util.*;
@@ -128,6 +129,10 @@ public class Rules {
             v.clear();
             v.add(new NormalState());
         });
+
+        var cheatRules = GameManager.getInstance().getCheatRules();
+
+        cheatRules.states.forEach((entity, properties) -> properties.forEach(property -> add(entity, property.getProp())));
     }
 
     public void isWin(List<BoardEntity> playerIsYou) {

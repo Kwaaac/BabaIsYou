@@ -76,6 +76,10 @@ public class GameManager {
         return (width - levelManager.getNumberCellWidth() * cellSize) / 2;
     }
 
+    public Rules getCheatRules() {
+        return gameRules;
+    }
+
     public void removeGameObject(BoardEntity boardEntity) {
         if (boardEntity != null) {
             levelManager.removeEntity(boardEntity);

@@ -92,6 +92,26 @@ public enum Legend {
         return Legend.valueOf(name + "_ENTITY");
     }
 
+    public static Legend getEntity(String name) {
+        return Legend.valueOf(name + "_ENTITY");
+    }
+
+    public static Legend getLegendFromString(String name) {
+        for (var property : EnumProp.values()) {
+            if (property.name().equals(name)) {
+                return Legend.valueOf(name + "_PROPERTY");
+            }
+        }
+
+        for (var property : EnumProp.values()) {
+            if (property.name().equals(name)) {
+                return Legend.valueOf(name + "_ENTITY");
+            }
+        }
+
+        throw new IllegalArgumentException("No such Enum");
+    }
+
     public String getImagePath() {
         return imagePath;
     }
