@@ -36,8 +36,10 @@ public class Main {
                 try {
                     if (Files.isDirectory(path)) {
                         levels.addAll(Files.list(path).collect(Collectors.toList()));
-                    } else {
+                    } else if (Files.exists(path)) {
                         levels.add(path);
+                    } else {
+                        throw new IllegalArgumentException("File does not exist");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
