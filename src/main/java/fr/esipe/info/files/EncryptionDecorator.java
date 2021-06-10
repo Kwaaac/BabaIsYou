@@ -6,8 +6,12 @@ import fr.esipe.info.game.Entity;
 import fr.esipe.info.game.enums.Legend;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,11 +25,13 @@ public class EncryptionDecorator {
                 new InputStreamReader(file));
     }
 
-    public List<List<List<BoardEntity>>> readData() {
-        return this.decode(file.lines().collect(Collectors.toList()));
+    public static List<List<List<BoardEntity>>> readData(Path file) throws IOException {
+        try (var reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
+            return decode(reader.lines().collect(Collectors.toList()));
+        }
     }
 
-    private List<List<List<BoardEntity>>> decode(List<String> data) {
+    private static List<List<List<BoardEntity>>> decode(List<String> data) {
         int i = 0;
         List<Legend> legend = Arrays.asList(Legend.values());
         List<List<List<BoardEntity>>> result = initBoard(data);
@@ -41,7 +47,7 @@ public class EncryptionDecorator {
         return result;
     }
 
-    private void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend, int lineIndex) {
+    private static void decodeLine(List<List<BoardEntity>> line, String dataLine, List<Legend> legend, int lineIndex) {
         int indexString = 0;
         for (int i = 0; i < line.size(); i++) {
             var vectorCoord = new VectorCoord(lineIndex, i);
@@ -59,7 +65,7 @@ public class EncryptionDecorator {
      * @param data file data
      * @return height of the board
      */
-    private int heightBoard(List<String> data) {
+    private static int heightBoard(List<String> data) {
         Objects.requireNonNull(data);
         return data.size();
     }
@@ -69,7 +75,7 @@ public class EncryptionDecorator {
      * @param data file data
      * @return width of the board
      */
-    private int widthBoard(List<String> data) {
+    private static int widthBoard(List<String> data) {
         Objects.requireNonNull(data);
         return data.get(0).length();
     }
@@ -78,7 +84,7 @@ public class EncryptionDecorator {
      * @param data file data
      * @return board in 3D from this file data
      */
-    private List<List<List<BoardEntity>>> initBoard(List<String> data) {
+    private static List<List<List<BoardEntity>>> initBoard(List<String> data) {
         int height = heightBoard(data);
         int width = widthBoard(data);
         List<List<List<BoardEntity>>> board = new ArrayList<>(height);

@@ -103,9 +103,6 @@ public class Board {
         mapPlayerMove.clear();
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (!entity.isWord()) {
-                if (entity.getLegend().equals(Legend.BABA_ENTITY)) {
-                    System.out.println("aled");
-                }
                 if (rules.hasProperty(entity, EnumProp.YOU)) {
                     playerIsYou.add(entity);
                     mapPlayerMove.put(entity, false);

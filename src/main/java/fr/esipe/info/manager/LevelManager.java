@@ -17,31 +17,31 @@ import javax.sound.sampled.*;
 import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class LevelManager {
     private final History history;
-    private String levelName;
     private Board board;
-    private final EncryptionDecorator encoded;
 
     private Clip music;
 
     private static boolean win = false;
     private static boolean lose = false;
 
-    public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
-        this.levelName = levelName;
-        this.encoded = encoded;
+    public LevelManager(Path file) throws IOException {
         this.history = new History();
-        this.board = new Board(encoded.readData());
+        this.board = new Board(EncryptionDecorator.readData(file));
+
+        win = false;
+        lose = false;
 
         try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/Music/baba.wav"))));
             this.music = AudioSystem.getClip();
-            music.open(audio);
-            music.loop(Clip.LOOP_CONTINUOUSLY);
-            music.start();
+            //music.open(audio);
+            // music.loop(Clip.LOOP_CONTINUOUSLY);
+            // music.start();
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
