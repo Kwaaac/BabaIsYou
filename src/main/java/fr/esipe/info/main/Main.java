@@ -61,7 +61,7 @@ public class Main {
                     gameManager.setLevelManager(levelManager);
                     context.renderFrame(graphics -> levelManager.render(graphics, false));
 
-                    while (levelManager.processEvent(context) && !levelManager.isLose() && !levelManager.isWin()) {
+                    while (levelManager.processEvent(context) && !levelManager.isLose() && !levelManager.isWin() && !levelManager.isQuit() && !levelManager.isNext()) {
                         if (chrono.getTimePassed() > 500) {
                             chrono.reset();
                             context.renderFrame(graphics -> levelManager.render(graphics, true));
@@ -71,10 +71,12 @@ public class Main {
                     if (levelManager.isWin()) {
                         System.out.println("Bravo, c'est une victoire !");
                     } else if (levelManager.isLose()) {
-
                         System.out.println("Bravo, c'est une défaite ! (euh bravo ?)");
-                    } else {
+                    } else if (levelManager.isQuit()) {
                         System.out.println("Bye Bye!");
+                        context.exit(0);
+                    } else {
+                        System.out.println("Niveau suivant");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

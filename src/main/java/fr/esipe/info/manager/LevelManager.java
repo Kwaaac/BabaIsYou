@@ -28,6 +28,8 @@ public class LevelManager {
 
     private static boolean win = false;
     private static boolean lose = false;
+    private static boolean quit = false;
+    private static boolean next = false;
 
     public LevelManager(Path file) throws IOException {
         this.history = new History();
@@ -35,6 +37,8 @@ public class LevelManager {
 
         win = false;
         lose = false;
+        quit = false;
+        next = false;
 
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/Music/baba.wav"))));
@@ -95,6 +99,7 @@ public class LevelManager {
                     break;
 
                 case UNDEFINED:
+                    quit();
                     return false;
 
                 case S:
@@ -103,6 +108,10 @@ public class LevelManager {
 
                 case M:
                     music.stop();
+                    break;
+
+                case SPACE:
+                    next();
                     break;
 
                 case Z:
@@ -128,12 +137,28 @@ public class LevelManager {
         return lose;
     }
 
+    public boolean isQuit() {
+        return quit;
+    }
+
+    public boolean isNext() {
+        return next;
+    }
+
     public static void win() {
         LevelManager.win = true;
     }
 
     public static void lose() {
         LevelManager.lose = true;
+    }
+
+    public static void quit() {
+        LevelManager.quit = true;
+    }
+
+    public static void next() {
+        LevelManager.next = true;
     }
 
     public Board backup() {
