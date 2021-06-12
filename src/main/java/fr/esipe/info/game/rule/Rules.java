@@ -46,23 +46,12 @@ public class Rules {
      * @param props  the given state
      * @return True is the state is assiociated with the entity, False otherwise
      */
-    private boolean hasProperty(Legend legend, EnumProp... props) {
-        if (props.length == 0) {
-            throw new IllegalArgumentException("The property cannot be empty");
-        }
+    private boolean hasProperty(Legend legend, EnumProp props) {
+        Objects.requireNonNull(props);
 
-        Set<State> stateList = new TreeSet<>();
-        for (var prop : props) {
-            stateList.add(prop.getState());
-        }
+        var entityPropreties = states.getOrDefault(legend, new TreeSet<>());
 
-        var entityPropreties = states.get(legend);
-
-        if (entityPropreties == null) {
-            return false;
-        }
-
-        return entityPropreties.containsAll(stateList);
+        return entityPropreties.contains(props.getState());
     }
 
     /**
@@ -72,7 +61,7 @@ public class Rules {
      * @param props  the given state
      * @return True is the state is assiociated with the entity, False otherwise
      */
-    public boolean hasProperty(BoardEntity entity, EnumProp... props) {
+    public boolean hasProperty(BoardEntity entity, EnumProp props) {
         return hasProperty(entity.getLegend(), props);
     }
 

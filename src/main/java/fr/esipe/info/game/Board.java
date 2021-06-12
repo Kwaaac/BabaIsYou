@@ -231,7 +231,6 @@ public class Board {
         return newPos;
     }
 
-
     private boolean isInsideBoard(VectorCoord vc) {
         var x = vc.getxCoord();
         var y = vc.getyCoord();
@@ -283,6 +282,7 @@ public class Board {
         }
 
         entity.setPos(newPos);
+        entity.changeDirAnim(vc);
         return addEntity(entity);
     }
 
@@ -307,11 +307,12 @@ public class Board {
     public void move(VectorCoord vc) {
         var flag = false;
 
-        setPlayable();
+        mapPlayerMove.clear();
+        playerIsYou.forEach(you -> mapPlayerMove.put(you, false));
+
         for (var entity : playerIsYou) {
-            /* The entity has already moved */
-            System.out.println(mapPlayerMove.get(entity));
-            if (mapPlayerMove.getOrDefault(entity, true)) {
+
+            if (!mapPlayerMove.containsKey(entity)) {
                 continue;
             }
 
@@ -320,7 +321,6 @@ public class Board {
             Collections.sort(entitiesFromTo);
             var to = entitiesFromTo.stream().findFirst().orElse(new Entity(Legend.BLANK, VectorCoord.vectorOutOfTheLoop()));
             if (moveEntity(entity, vc)) {
-                entity.changeDirAnim(vc);
                 entity.executeAction(to, this.rules);
                 if (to.isWord()) {
                     flag = true;
@@ -329,8 +329,8 @@ public class Board {
         }
 
         if (flag) {
+            setPlayable();
             updateRules();
-
         }
         System.out.println(this);
     }

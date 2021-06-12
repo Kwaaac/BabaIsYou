@@ -32,13 +32,14 @@ public class LevelManager {
     private static boolean next = false;
 
     public LevelManager(Path file) throws IOException {
-        this.history = new History();
-        this.board = new Board(EncryptionDecorator.readData(file));
-
         win = false;
         lose = false;
         quit = false;
         next = false;
+
+        this.history = new History();
+        this.board = new Board(EncryptionDecorator.readData(file));
+
 
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/Music/baba.wav"))));
