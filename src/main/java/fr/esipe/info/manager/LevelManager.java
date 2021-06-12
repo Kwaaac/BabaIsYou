@@ -17,31 +17,36 @@ import javax.sound.sampled.*;
 import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class LevelManager {
     private final History history;
-    private String levelName;
     private Board board;
-    private final EncryptionDecorator encoded;
 
     private Clip music;
 
     private static boolean win = false;
     private static boolean lose = false;
+    private static boolean quit = false;
+    private static boolean next = false;
 
-    public LevelManager(String levelName, EncryptionDecorator encoded, String musicPath) {
-        this.levelName = levelName;
-        this.encoded = encoded;
+    public LevelManager(Path file) throws IOException {
+        win = false;
+        lose = false;
+        quit = false;
+        next = false;
+
         this.history = new History();
-        this.board = new Board(encoded.readData());
+        this.board = new Board(EncryptionDecorator.readData(file));
+
 
         try {
-            AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream(musicPath))));
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/Music/baba.wav"))));
             this.music = AudioSystem.getClip();
-            music.open(audio);
-            music.loop(Clip.LOOP_CONTINUOUSLY);
-            music.start();
+            //music.open(audio);
+            // music.loop(Clip.LOOP_CONTINUOUSLY);
+            // music.start();
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
@@ -95,6 +100,7 @@ public class LevelManager {
                     break;
 
                 case UNDEFINED:
+                    quit();
                     return false;
 
                 case S:
@@ -103,6 +109,10 @@ public class LevelManager {
 
                 case M:
                     music.stop();
+                    break;
+
+                case SPACE:
+                    next();
                     break;
 
                 case Z:
@@ -128,12 +138,28 @@ public class LevelManager {
         return lose;
     }
 
+    public boolean isQuit() {
+        return quit;
+    }
+
+    public boolean isNext() {
+        return next;
+    }
+
     public static void win() {
         LevelManager.win = true;
     }
 
     public static void lose() {
         LevelManager.lose = true;
+    }
+
+    public static void quit() {
+        LevelManager.quit = true;
+    }
+
+    public static void next() {
+        LevelManager.next = true;
     }
 
     public Board backup() {

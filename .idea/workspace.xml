@@ -5,17 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/entity/lava_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/entity/lava_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/entity/lava_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/noun/text_lava_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/noun/text_lava_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/LAVA/noun/text_lava_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/HOT/text_hot_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/HOT/text_hot_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/HOT/text_hot_0_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/MELT/text_melt_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/MELT/text_melt_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/MELT/text_melt_0_3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level05.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level05.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,39 +99,40 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="ignore.preview.features.used" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Sprites/WATER/noun" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/HOT" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.10881393" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\HOT" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\MELT" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\SINK" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\levels" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\noun" />
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\noun" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\baba\entity" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="fr.esipe.info" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.5">
+    <configuration name="5" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="15" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="fr.esipe.info.main.Main" />
       <module name="BabaIsYou" />
+      <option name="PROGRAM_PARAMETERS" value="--level-name resources/levels/level05.txt " />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main" />
       <extension name="coverage">
         <pattern>
@@ -131,6 +140,36 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="15" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="fr.esipe.info.main.Main" />
+      <module name="BabaIsYou" />
+      <option name="PROGRAM_PARAMETERS" value="--levels-name resources/levels --execute BABA IS WIN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.esipe.info.manager.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,6 +204,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.5" />
       <item itemvalue="Maven.BabaIsYou [clean,compile,package,install]" />
     </list>
   </component>
@@ -216,7 +256,8 @@
       <workItem from="1623048795241" duration="1756000" />
       <workItem from="1623094006250" duration="1524000" />
       <workItem from="1623169502566" duration="8248000" />
-      <workItem from="1623223787146" duration="3907000" />
+      <workItem from="1623223787146" duration="26325000" />
+      <workItem from="1623486929962" duration="6027000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>
@@ -289,12 +330,17 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="entityPropreties.toArray()[1]" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,6 +1,7 @@
 package fr.esipe.info.manager;
 
 import fr.esipe.info.game.BoardEntity;
+import fr.esipe.info.game.rule.Rules;
 
 public class GameManager {
     /**
@@ -12,6 +13,8 @@ public class GameManager {
     private int height;
 
     private int cellSize;
+
+    private Rules gameRules = new Rules();
 
     private GameManager() {
     }
@@ -27,6 +30,10 @@ public class GameManager {
             }
             return instance;
         }
+    }
+
+    public void setRules(Rules rules) {
+        this.gameRules = rules;
     }
 
     public LevelManager getLevelManager() {
@@ -67,6 +74,10 @@ public class GameManager {
 
     public int getWidthDelta() {
         return (width - levelManager.getNumberCellWidth() * cellSize) / 2;
+    }
+
+    public Rules getCheatRules() {
+        return gameRules;
     }
 
     public void removeGameObject(BoardEntity boardEntity) {

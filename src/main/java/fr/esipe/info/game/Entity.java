@@ -163,7 +163,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     public int compareTo(BoardEntity o) {
         var rules = GameManager.getInstance().getLevelManager().getRules();
 
-
         var oState = rules.getStates(o).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
         var thisState = rules.getStates(this).stream().findFirst().orElse(new NormalState()).getProp().getWeight();
 

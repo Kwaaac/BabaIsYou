@@ -2,7 +2,7 @@ package fr.esipe.info;
 
 import java.util.Objects;
 
-public class VectorCoord {
+public class VectorCoord implements Comparable<VectorCoord> {
     private int xCoord;
     private int yCoord;
 
@@ -14,14 +14,14 @@ public class VectorCoord {
         this.yCoord = yCoord;
     }
 
-    public VectorCoord(VectorCoord target){
-        if(target != null){
+    public VectorCoord(VectorCoord target) {
+        if (target != null) {
             this.xCoord = target.xCoord;
             this.yCoord = target.yCoord;
         }
     }
 
-    public VectorCoord clone(){
+    public VectorCoord clone() {
         return new VectorCoord(this);
     }
 
@@ -102,5 +102,10 @@ public class VectorCoord {
                 "xCoord=" + xCoord +
                 ", yCoord=" + yCoord +
                 '}';
+    }
+
+    @Override
+    public int compareTo(VectorCoord o) {
+        return Integer.compare(xCoord, o.xCoord) - Integer.compare(yCoord, o.yCoord);
     }
 }

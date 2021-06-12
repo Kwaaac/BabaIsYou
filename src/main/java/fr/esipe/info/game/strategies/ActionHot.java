@@ -10,7 +10,7 @@ public class ActionHot implements ActionStrategy {
     public void execute(Rules rules, BoardEntity from, BoardEntity to) {
         if (to != null) {
             if (rules.hasProperty(to, EnumProp.MELT)) {
-                GameManager.getInstance().removeGameObject(to);
+                GameManager.getInstance().removeGameObject(from);
             }
         }
     }

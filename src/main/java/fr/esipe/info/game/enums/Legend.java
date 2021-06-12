@@ -28,7 +28,7 @@ public enum Legend {
     ROCK_ENTITY('r', Type.ENTITY, "ROCK", ColorPrint.ANSI_WHITE, new Color(177, 150, 15), 0, "/Sprites/ROCK/entity/rock_"),
     SKULL_ENTITY('k', Type.ENTITY, "SKULL", ColorPrint.ANSI_WHITE, new Color(183, 57, 24), 0, "/Sprites/SKULL/entity/skull_"),
     WATER_ENTITY('t', Type.ENTITY, "WATER", ColorPrint.ANSI_BLUE, new Color(17, 159, 236), 0, "/Sprites/WATER/entity/water_"),
-    LAVA_ENTITY('l', Type.ENTITY, "LAVA", ColorPrint.ANSI_GREEN, new Color(227, 143, 12), 1, "/Sprites/LAVA/entity/water_"),
+    LAVA_ENTITY('l', Type.ENTITY, "LAVA", ColorPrint.ANSI_GREEN, new Color(227, 143, 12), 1, "/Sprites/LAVA/entity/lava_"),
 
     /**
      * Operator
@@ -43,7 +43,9 @@ public enum Legend {
     PUSH('P', Type.PROPERTY, "PUSH", ColorPrint.ANSI_YELLOW_BACKGROUND, new Color(134, 81, 41), 1, "/Sprites/PROPERTY/PUSH/text_push_"),
     WIN('!', Type.PROPERTY, "WIN", ColorPrint.ANSI_YELLOW_BACKGROUND, new Color(255, 240, 0), 1, "/Sprites/PROPERTY/WIN/text_win_"),
     DEFEAT('X', Type.PROPERTY, "DEFEAT", ColorPrint.ANSI_YELLOW_BACKGROUND, new Color(183, 57, 24), 1, "/Sprites/PROPERTY/DEFEAT/text_defeat_"),
-    SINK('N', Type.PROPERTY, "SINK", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(17, 159, 236), 1, "/Sprites/PROPERTY/SINK/text_sink_");
+    SINK('N', Type.PROPERTY, "SINK", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(17, 159, 236), 1, "/Sprites/PROPERTY/SINK/text_sink_"),
+    MELT('M', Type.PROPERTY, "MELT", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(8, 114, 141), 1, "/Sprites/PROPERTY/MELT/text_melt_"),
+    HOT('H', Type.PROPERTY, "HOT", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(205, 68, 12), 1, "/Sprites/PROPERTY/HOT/text_hot_");
 
     private final char aChar;
     private final Type type;
@@ -90,6 +92,26 @@ public enum Legend {
 
     public Legend getEntity() {
         return Legend.valueOf(name + "_ENTITY");
+    }
+
+    public static Legend getEntity(String name) {
+        return Legend.valueOf(name + "_ENTITY");
+    }
+
+    public static Legend getLegendFromString(String name) {
+        for (var property : EnumProp.values()) {
+            if (property.name().equals(name)) {
+                return Legend.valueOf(name + "_PROPERTY");
+            }
+        }
+
+        for (var property : EnumProp.values()) {
+            if (property.name().equals(name)) {
+                return Legend.valueOf(name + "_ENTITY");
+            }
+        }
+
+        throw new IllegalArgumentException("No such Enum");
     }
 
     public String getImagePath() {

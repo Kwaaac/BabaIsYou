@@ -10,7 +10,7 @@ public class ActionMelt implements ActionStrategy {
     public void execute(Rules rules, BoardEntity from, BoardEntity to) {
         if (to != null) {
             if (rules.hasProperty(to, EnumProp.HOT)) {
-                GameManager.getInstance().removeGameObject(from);
+                GameManager.getInstance().removeGameObject(to);
             }
         }
     }
