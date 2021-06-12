@@ -16,6 +16,8 @@ public class Board {
     private List<BoardEntity> playerIsYou = new ArrayList<>();
     private final Map<BoardEntity, Boolean> mapPlayerMove = new HashMap<>();
 
+    private final List<BoardEntity> turnAction = new ArrayList<>();
+
     private final Set<Legend> entitySet = new HashSet<>();
 
     private Rules rules = new Rules();
@@ -107,6 +109,11 @@ public class Board {
                     playerIsYou.add(entity);
                     mapPlayerMove.put(entity, false);
                 }
+
+                if (rules.hasProperty(entity, EnumProp.FIRE)) {
+                    turnAction.add(entity);
+                }
+
             }
         })));
     }
@@ -309,6 +316,8 @@ public class Board {
 
         mapPlayerMove.clear();
         playerIsYou.forEach(you -> mapPlayerMove.put(you, false));
+        System.out.println(turnAction);
+        turnAction.forEach(entity -> entity.executePreciceAction(entity, rules, EnumProp.FIRE));
 
         for (var entity : playerIsYou) {
 

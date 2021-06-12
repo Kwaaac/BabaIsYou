@@ -40,7 +40,6 @@ public class LevelManager {
         this.history = new History();
         this.board = new Board(EncryptionDecorator.readData(file));
 
-
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(Main.class.getResourceAsStream("/Music/baba.wav"))));
             this.music = AudioSystem.getClip();

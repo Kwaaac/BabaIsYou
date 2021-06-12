@@ -11,6 +11,7 @@ public enum EnumProp {
     MELT(7),
     HOT(7),
     DEFEAT(6),
+    FIRE(1),
     SINK(8);
 
     private int weight;
@@ -33,6 +34,7 @@ public enum EnumProp {
             case DEFEAT -> new DefeatState();
             case PUSH -> new PushState();
             case STOP -> new StopState();
+            case FIRE -> new FireState();
             default -> new NormalState();
         };
     }

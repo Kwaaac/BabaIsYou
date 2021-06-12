@@ -51,7 +51,8 @@ public class Rules {
 
         var entityPropreties = states.getOrDefault(legend, new TreeSet<>());
 
-        return entityPropreties.contains(props.getState());
+        var state = props.getState();
+        return entityPropreties.contains(state);
     }
 
     /**
@@ -84,7 +85,6 @@ public class Rules {
      * @return The first state of the entity or NormalState if there is none.
      */
     public State getFirstState(Legend entity) {
-        System.out.println(states);
         return states.getOrDefault(entity, new TreeSet<>()).stream().findFirst().orElse(new NormalState());
     }
 

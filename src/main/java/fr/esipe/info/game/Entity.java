@@ -2,6 +2,7 @@ package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
 import fr.esipe.info.game.enums.ColorPrint;
+import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
 import fr.esipe.info.game.rule.Rules;
@@ -11,10 +12,12 @@ import fr.esipe.info.manager.GameManager;
 
 import java.awt.*;
 import java.util.Objects;
+import java.util.Set;
 
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
     private Sprite[][] sprite;
+    private int turnsBeforeActive = -1;
 
     private int direction = 0;
     private int anim = 0;
@@ -40,6 +43,16 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         updateSprite();
     }
 
+    @Override
+    public int turnsBeforeActive() {
+        return turnsBeforeActive;
+    }
+
+
+    @Override
+    public void setTurnBeforeActive(int count) {
+        turnsBeforeActive = count;
+    }
 
     public Entity(Entity target) {
         super(target.getPos().clone());
@@ -88,11 +101,31 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         if (to == null) {
             return;
         }
+
         if (to.getLegend().equals(Legend.BLANK)) {
             return;
         }
+
         State state = rules.getFirstState(to.getLegend());
         state.getActionStrategy().execute(rules, this, to);
+    }
+
+    @Override
+    public void executePreciceAction(BoardEntity to, Rules rules, EnumProp prop) {
+        if (to == null) {
+            return;
+        }
+
+        if (to.getLegend().equals(Legend.BLANK)) {
+            return;
+        }
+
+        Set<State> states = rules.getStates(this);
+        State state = prop.getState();
+
+        if (states.contains(state)) {
+            state.getActionStrategy().execute(rules, this, to);
+        }
     }
 
     @Override
