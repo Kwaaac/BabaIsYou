@@ -21,9 +21,6 @@ public class Memento {
      *  At some point, a previous state of levelManager can be restored using a memento object.
      */
     public void restore(){
-        System.out.println("************************** RESTORE **************************");
-        System.out.println(this.backupBoard.getPlayerIsYou());
-        System.out.println(this.backupBoard.getRules());
         this.levelManager.restore(this.backupBoard);
     }
 

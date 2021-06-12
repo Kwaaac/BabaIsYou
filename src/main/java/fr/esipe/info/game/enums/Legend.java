@@ -45,7 +45,8 @@ public enum Legend {
     DEFEAT('X', Type.PROPERTY, "DEFEAT", ColorPrint.ANSI_YELLOW_BACKGROUND, new Color(183, 57, 24), 1, "/Sprites/PROPERTY/DEFEAT/text_defeat_"),
     SINK('N', Type.PROPERTY, "SINK", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(17, 159, 236), 1, "/Sprites/PROPERTY/SINK/text_sink_"),
     MELT('M', Type.PROPERTY, "MELT", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(8, 114, 141), 1, "/Sprites/PROPERTY/MELT/text_melt_"),
-    HOT('H', Type.PROPERTY, "HOT", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(205, 68, 12), 1, "/Sprites/PROPERTY/HOT/text_hot_");
+    HOT('H', Type.PROPERTY, "HOT", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(205, 68, 12), 1, "/Sprites/PROPERTY/HOT/text_hot_"),
+    FIRE('E', Type.PROPERTY, "FIRE", ColorPrint.ANSI_BLUE_BACKGROUND, new Color(205, 68, 12), 1, "/Sprites/PROPERTY/FIRE/text_fire_");
 
     private final char aChar;
     private final Type type;

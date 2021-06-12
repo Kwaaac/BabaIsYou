@@ -34,9 +34,7 @@ public class Rules {
     }
 
     private Set<State> cloneListState(Set<State> statesList) {
-        var newListState = new TreeSet<State>();
-        newListState.addAll(statesList);
-        return newListState;
+        return new TreeSet<>(statesList);
     }
 
     /**

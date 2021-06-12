@@ -14,6 +14,9 @@ import java.awt.*;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Class that reprensent an entity of the board
+ */
 public class Entity extends AbstractGameObject implements BoardEntity {
     private Legend entity;
     private Sprite[][] sprite;
@@ -22,6 +25,12 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     private int direction = 0;
     private int anim = 0;
 
+    /**
+     * Constructor
+     *
+     * @param enumEntity
+     * @param vc
+     */
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
         this.entity = Objects.requireNonNull(enumEntity);
@@ -37,34 +46,61 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         }
     }
 
-    @Override
-    public void changeEntity(Legend newLegend) {
-        entity = newLegend;
-        updateSprite();
-    }
-
-    @Override
-    public int turnsBeforeActive() {
-        return turnsBeforeActive;
-    }
-
-
-    @Override
-    public void setTurnBeforeActive(int count) {
-        turnsBeforeActive = count;
-    }
-
+    /**
+     * Secondary constructor using a created entity
+     *
+     * @param target
+     */
     public Entity(Entity target) {
         super(target.getPos().clone());
         this.entity = target.entity;
         this.sprite = target.sprite;
     }
 
+    /**
+     * Change the legend contained in the entity
+     *
+     * @param newLegend the new legend
+     */
+    @Override
+    public void changeEntity(Legend newLegend) {
+        entity = newLegend;
+        updateSprite();
+    }
+
+    /**
+     * Getter of the number of turn before execute the action.
+     *
+     * @return the number of turn
+     */
+    @Override
+    public int turnsBeforeActive() {
+        return turnsBeforeActive;
+    }
+
+    /**
+     * Setter of the number of turn before execute the action.
+     *
+     * @param count the number of turn
+     */
+    @Override
+    public void setTurnBeforeActive(int count) {
+        turnsBeforeActive = count;
+    }
+
+    /**
+     * Clone an Entity
+     *
+     * @return cloned entity
+     */
     @Override
     public Entity clone() {
         return new Entity(this);
     }
 
+    /**
+     * Update the sprite of the entity, intervene when changing legend
+     */
     private void updateSprite() {
         for (int i = 0; i < sprite.length; i++) {
             for (int j = 1; j <= sprite[0].length; j++) {
@@ -76,26 +112,64 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         }
     }
 
+    /**
+     * Getter of the legend of the entity
+     *
+     * @return Legend
+     */
     @Override
     public Legend getLegend() {
         return entity;
     }
 
+    /**
+     * Check if the entity is a noun
+     *
+     * @return True if the entity is a noun, false otherwise
+     */
     @Override
     public boolean isNoun() {
         return entity.getType() == Type.NOUN;
     }
 
+    /**
+     * Check if the entity is an operator
+     *
+     * @return True if the entity is a operator, false otherwise
+     */
     @Override
     public boolean isOperator() {
         return entity.getType() == Type.OPERATOR;
     }
 
+
+    /**
+     * Check if the entity is a word
+     *
+     * @return True if the entity is a word, false otherwise
+     */
+    @Override
+    public boolean isWord() {
+        return entity.getType() != Type.ENTITY;
+    }
+
+
+    /**
+     * Check if the entity is a property
+     *
+     * @return True if the entity is a property, false otherwise
+     */
     @Override
     public boolean isProperty() {
         return entity.getType() == Type.PROPERTY;
     }
 
+    /**
+     * Execute the action from the entity to an other entity based on it's first state
+     *
+     * @param to    the entity applying the action
+     * @param rules Rules of the level
+     */
     @Override
     public void executeAction(BoardEntity to, Rules rules) {
         if (to == null) {
@@ -110,6 +184,13 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         state.getActionStrategy().execute(rules, this, to);
     }
 
+    /**
+     * Execute the action from the entity to an other entity based on the given property
+     *
+     * @param to    the entity applying the action
+     * @param rules Rules of the level
+     * @param prop  the given property
+     */
     @Override
     public void executePreciceAction(BoardEntity to, Rules rules, EnumProp prop) {
         if (to == null) {
@@ -128,15 +209,28 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         }
     }
 
+    /**
+     * Draw an entity calling the sprite to draw itself
+     *
+     * @param graphics graphics
+     */
     @Override
     public void draw(Graphics2D graphics) {
         sprite[direction][anim].draw(graphics, getPos().getxCoord(), getPos().getyCoord());
     }
 
+    /**
+     * Give the index of the next animations
+     */
     public void nextAnim() {
         anim = (anim + 1) % 3;
     }
 
+    /**
+     * Change the direction of the Baba is it's you
+     *
+     * @param dir direction
+     */
     public void changeDirAnim(VectorCoord dir) {
         // For now only the entity BABA has direction animation
         if (entity.equals(Legend.BABA_ENTITY)) {
@@ -152,11 +246,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         }
     }
 
-    @Override
-    public boolean isWord() {
-        return entity.getType() != Type.ENTITY;
-    }
-
 
     @Override
     public String toString() {
@@ -165,6 +254,11 @@ public class Entity extends AbstractGameObject implements BoardEntity {
                 '}';
     }
 
+    /**
+     * Return string of the entity in command line
+     *
+     * @return the string of the entity in command line
+     */
     @Override
     public String printCommandLineEntity() {
         var res = entity.getName().toUpperCase();

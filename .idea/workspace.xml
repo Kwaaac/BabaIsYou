@@ -5,17 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/FireState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionFire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/AbstractGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/AbstractGameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/Memento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/Memento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,11 +112,11 @@
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\SINK" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\FILE" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PLACEHOLDER" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="fr.esipe.info" />
@@ -129,7 +132,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="fr.esipe.info.main.Main" />
       <module name="BabaIsYou" />
-      <option name="PROGRAM_PARAMETERS" value="--level-name resources/levels/level00.txt --execute ROCK IS FIRE" />
+      <option name="PROGRAM_PARAMETERS" value="--level-name resources/levels/level00.txt" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main" />
       <extension name="coverage">
         <pattern>
@@ -254,7 +257,7 @@
       <workItem from="1623094006250" duration="1524000" />
       <workItem from="1623169502566" duration="8248000" />
       <workItem from="1623223787146" duration="26325000" />
-      <workItem from="1623486929962" duration="17263000" />
+      <workItem from="1623486929962" duration="25802000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>
@@ -328,7 +331,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java</url>
-          <line>128</line>
+          <line>126</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

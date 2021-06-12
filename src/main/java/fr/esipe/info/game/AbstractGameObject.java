@@ -7,18 +7,29 @@ import java.util.Objects;
 public abstract class AbstractGameObject implements GameObject {
     private VectorCoord pos;
 
+    /**
+     * Constructor
+     *
+     * @param pos
+     */
     public AbstractGameObject(VectorCoord pos) {
         this.pos = Objects.requireNonNull(pos);
     }
 
-    public AbstractGameObject(int x, int y) {
-        this.pos = new VectorCoord(x, y);
-    }
-
+    /**
+     * Return the vector of coordinates of the object
+     *
+     * @return vectorCoord position
+     */
     public VectorCoord getPos() {
         return pos;
     }
 
+    /**
+     * Set a new position to the object
+     *
+     * @param pos
+     */
     public void setPos(VectorCoord pos) {
         this.pos = pos;
     }

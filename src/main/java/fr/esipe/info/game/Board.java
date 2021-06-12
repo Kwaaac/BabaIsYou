@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
+/**
+ * This class reprensents the board of the game
+ */
 public class Board {
     private List<List<List<BoardEntity>>> board;
     private List<BoardEntity> playerIsYou = new ArrayList<>();
@@ -25,6 +28,11 @@ public class Board {
     private int height;
     private int width;
 
+    /**
+     * Constructor
+     *
+     * @param board
+     */
     public Board(List<List<List<BoardEntity>>> board) {
         Objects.requireNonNull(board);
 
@@ -44,6 +52,11 @@ public class Board {
         updateRules();
     }
 
+    /**
+     * Secondary constructor based on a created board
+     *
+     * @param target board
+     */
     public Board(Board target) {
         if (target != null) {
             this.board = target.cloneBoard();
@@ -57,22 +70,38 @@ public class Board {
         this.rules.displayRules();
     }
 
+    /**
+     * Clone the board
+     *
+     * @return new cloned board
+     */
     public Board clone() {
         return new Board(this);
     }
 
-    public List<BoardEntity> getPlayerIsYou() {
-        return playerIsYou;
-    }
-
+    /**
+     * Clone of the rules
+     *
+     * @return new cloned rules
+     */
     public Rules getRules() {
         return rules.clone();
     }
 
+    /**
+     * clone the list of player
+     *
+     * @return new list of player
+     */
     private List<BoardEntity> clonePlayerYou() {
         return new ArrayList<>(this.playerIsYou);
     }
 
+    /**
+     * Deep Clone of the board
+     *
+     * @return new list containing a board
+     */
     private List<List<List<BoardEntity>>> cloneBoard() {
         List<List<List<BoardEntity>>> result = new ArrayList<>();
         for (int line = 0; line < this.height; line++) {
@@ -87,10 +116,20 @@ public class Board {
         return result;
     }
 
+    /**
+     * getter of the height of the board
+     *
+     * @return the height of the board
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * getter of the width of the board
+     *
+     * @return the width of the board
+     */
     public int getWidth() {
         return width;
     }
@@ -99,6 +138,8 @@ public class Board {
      * Method that fecth the entity with the "YOU" property
      * <p>
      * Prevent to iterate over the board every time the player moves.
+     * <p>
+     * Also set up the turns based entity list
      */
     private void setPlayable() {
         playerIsYou.clear();
@@ -118,6 +159,9 @@ public class Board {
         })));
     }
 
+    /**
+     * TODO
+     */
     private void addPresentEntity() {
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (!entity.isWord()) {
@@ -126,6 +170,12 @@ public class Board {
         })));
     }
 
+    /**
+     * Change every "from" legend to the "to" legend.
+     *
+     * @param from the legend to be replaced
+     * @param to   the legend that will replace
+     */
     private void swapEntities(Legend from, Legend to) {
         if (!entitySet.contains(from)) {
             return;
@@ -139,6 +189,13 @@ public class Board {
         })));
     }
 
+    /**
+     * Method that create a rule or apply a swap between the entities
+     *
+     * @param nounEntity     the nouns of the sentence
+     * @param operatorEntity the operator of the sentence
+     * @param thirdEntity    the right entity of the sentence (either noun or property)
+     */
     private void applyRuleOrSwap(BoardEntity nounEntity, BoardEntity operatorEntity, BoardEntity thirdEntity) {
         if (operatorEntity.isOperator()) {
             if (thirdEntity.isProperty()) {
@@ -172,6 +229,9 @@ public class Board {
         applyRuleOrSwap(nounEntity, operatorEntity, thirdEntity);
     }
 
+    /**
+     * Update the rules of the level by reading every valid sentences in the level and translating them into rules
+     */
     private void updateRules() {
         rules.clearStates();
 
@@ -189,6 +249,11 @@ public class Board {
         rules.isWin(playerIsYou);
     }
 
+    /**
+     * Verify if the vector is inside the board
+     *
+     * @return the vector if nothing is wrong
+     */
     private VectorCoord checkVector(VectorCoord vc) {
         Objects.requireNonNull(vc);
         if (!isInsideBoard(vc)) {
@@ -209,12 +274,24 @@ public class Board {
         return board.get(vc.getxCoord()).get(vc.getyCoord());
     }
 
+    /**
+     * Remove an entity from the board
+     *
+     * @param entity the entity to be removed
+     * @return true if this list contained the specified element
+     */
     public boolean removeEntity(BoardEntity entity) {
         Objects.requireNonNull(entity);
         var pos = entity.getPos();
         return board.get(pos.getxCoord()).get(pos.getyCoord()).remove(entity);
     }
 
+    /**
+     * Add the given entity to the board based on this coodinates
+     *
+     * @param entity the given entity
+     * @return true (as specified by Collection.add)
+     */
     private boolean addEntity(BoardEntity entity) {
         Objects.requireNonNull(entity);
         var pos = entity.getPos();
@@ -222,9 +299,14 @@ public class Board {
     }
 
     /**
-     * @param entityPos
-     * @param mvtVector
-     * @return
+     * Normalize the movement
+     * <p>
+     * Move the entity with the given movement direction.
+     * If the new position is not allowed then the previous position of the entity is returned
+     *
+     * @param entityPos The entity to be moved
+     * @param mvtVector the movement direction
+     * @return The new position if the movement is authorized, the previous position of the entity otherwise.
      */
     private VectorCoord normalizeMovementVector(VectorCoord entityPos, VectorCoord mvtVector) {
         VectorCoord newPos;
@@ -238,6 +320,12 @@ public class Board {
         return newPos;
     }
 
+    /**
+     * Check is the given coodinates are inside the board;
+     *
+     * @param vc the given coordiantes
+     * @return True is the coordinates are inside the board, false otherwise.
+     */
     private boolean isInsideBoard(VectorCoord vc) {
         var x = vc.getxCoord();
         var y = vc.getyCoord();
@@ -245,6 +333,11 @@ public class Board {
         return x >= 0 && x < height && y >= 0 && y < width;
     }
 
+    /**
+     * Construct the string of the board
+     *
+     * @return the string of the board
+     */
     @Override
     public String toString() {
         var strRow = new StringBuilder();
@@ -269,6 +362,13 @@ public class Board {
         return strRow.toString();
     }
 
+    /**
+     * Check if the entity can move and if so move an entity to the given direction
+     *
+     * @param entity entity to be moved
+     * @param vc     the direction to move
+     * @return true of the entity was moved, false otherwise
+     */
     private boolean moveEntity(BoardEntity entity, VectorCoord vc) {
         Objects.requireNonNull(entity);
         Objects.requireNonNull(vc);
@@ -293,6 +393,12 @@ public class Board {
         return addEntity(entity);
     }
 
+    /**
+     * fetch the first entity from a cell
+     *
+     * @param vc coordinates of the cell
+     * @return the corresponding entity
+     */
     private BoardEntity getFirstEntityFromList(VectorCoord vc) {
         var entities = this.getEntitiesFromVector(vc);
         Collections.sort(entities);
@@ -300,7 +406,10 @@ public class Board {
     }
 
     /**
+     * Method that check if the move is authorized
      *
+     * @param vectorCoord
+     * @return
      */
     private boolean isMoveAuthorized(VectorCoord vectorCoord) {
         var entitiesInNewCoord = this.getEntitiesFromVector(vectorCoord);
@@ -311,6 +420,11 @@ public class Board {
         return entitiesInNewCoord.stream().anyMatch(boardEntity -> rules.getStates(boardEntity).stream().findFirst().orElse(new NormalState()).isSteppable());
     }
 
+    /**
+     * Move every "you" entities
+     *
+     * @param vc direction of the movement
+     */
     public void move(VectorCoord vc) {
         var flag = false;
 
@@ -318,13 +432,10 @@ public class Board {
         playerIsYou.forEach(you -> mapPlayerMove.put(you, false));
         System.out.println(turnAction);
         turnAction.forEach(entity -> entity.executePreciceAction(entity, rules, EnumProp.FIRE));
-
         for (var entity : playerIsYou) {
-
             if (!mapPlayerMove.containsKey(entity)) {
                 continue;
             }
-
             entity.executeAction(entity, this.rules);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
@@ -336,14 +447,18 @@ public class Board {
                 }
             }
         }
-
         if (flag) {
-            setPlayable();
             updateRules();
         }
         System.out.println(this);
     }
 
+    /**
+     * Display the board on the window
+     *
+     * @param graphics   graphics
+     * @param updateAnim does the animations needs to be updated
+     */
     public void displayGraphic(Graphics2D graphics, boolean updateAnim) {
         var gm = GameManager.getInstance();
         var cellSize = gm.getCellSize();
