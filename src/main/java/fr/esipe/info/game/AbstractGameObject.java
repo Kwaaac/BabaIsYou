@@ -4,7 +4,7 @@ import fr.esipe.info.VectorCoord;
 
 import java.util.Objects;
 
-public abstract class AbstractGameObject implements GameObject {
+abstract class AbstractGameObject implements GameObject {
     private VectorCoord pos;
 
     /**

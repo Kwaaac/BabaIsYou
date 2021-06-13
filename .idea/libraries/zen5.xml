@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="zen5">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/main/resources/lib/zen5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/zen5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

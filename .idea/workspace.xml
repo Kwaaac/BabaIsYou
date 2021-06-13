@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Project production files" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44993c6e-d5cc-4da0-8f2f-d9da191efa96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/FIRE/text_fire_0_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/zen5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/zen5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/VectorCoord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/files/EncryptionDecorator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/AbstractGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/AbstractGameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/BoardEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/ColorPrint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumLegend.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Legend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Level.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Operation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/Type.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/DefeatState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/DefeatState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/FireState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/FireState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/HotState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/HotState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/MeltState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/MeltState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/NormalState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/NormalState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/PushState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/PushState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/SinkState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/SinkState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/StopState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/StopState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/WinState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/WinState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/YouState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/states/YouState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionDefeat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionFire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionFire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionHot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionMelt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionNone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionSink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/game/strategies/ActionWin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/Chrono.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/Chrono.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/History.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/Memento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/Memento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/levels/level00.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/commands/Command.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/commands/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/esipe/info/memento/commands/MoveCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +112,9 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumOp.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/enums/EnumProp.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="NamedScopeManager">
+    <scope name="Unnamed" pattern="" />
+  </component>
   <component name="ProjectId" id="1sU2EbRuzCyswBGV5RBWqT8nk2S" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -95,28 +133,28 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="ignore.preview.features.used" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/Sprites/PROPERTY/HOT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/zen5.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.10881393" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\lib" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\HOT" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\MELT" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\SINK" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\build" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\PROPERTY\FILE" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\noun" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\LAVA\entity" />
       <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\noun" />
-      <recent name="C:\Users\maxro\ESIPE\BabaIsYou\src\main\resources\Sprites\WATER\entity" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="fr.esipe.info" />
@@ -161,15 +199,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -258,6 +294,7 @@
       <workItem from="1623169502566" duration="8248000" />
       <workItem from="1623223787146" duration="26325000" />
       <workItem from="1623486929962" duration="25802000" />
+      <workItem from="1623563332702" duration="21194000" />
     </task>
     <task id="LOCAL-00001" summary="Factory creation for any word">
       <created>1621069928143</created>
@@ -329,24 +366,6 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/game/rule/Rules.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/main/Main.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/esipe/info/manager/LevelManager.java</url>
-          <line>33</line>
-          <properties class="fr.esipe.info.manager.LevelManager" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

@@ -10,31 +10,51 @@ import fr.esipe.info.manager.LevelManager;
 
 import java.util.*;
 
+/**
+ * Class that contains the implementation of the rules of the game
+ * <p>
+ * The rules are based on a map where the keys are an entity and the value is a set of states
+ */
 public class Rules {
-    private Map<Legend, Set<State>> states;
+    private Map<Legend, Set<State>> states = new HashMap<>();
 
-    private Rules(Map<Legend, Set<State>> states) {
-        this.states = states;
-    }
 
+    /**
+     * Constructor base on another rule
+     *
+     * @param target the other Rule instance
+     */
     public Rules(Rules target) {
         if (target != null) {
             this.states = target.cloneMap();
         }
     }
 
+    /**
+     * Default constructor
+     */
     public Rules() {
-        this.states = new HashMap<>();
     }
 
+    /**
+     * Clone the map of rules
+     *
+     * @return A new Cloned map
+     */
     private Map<Legend, Set<State>> cloneMap() {
         var newMap = new HashMap<Legend, Set<State>>();
-        this.states.keySet().forEach(legend -> newMap.put(legend, cloneListState(this.states.get(legend))));
+        this.states.keySet().forEach(legend -> newMap.put(legend, cloneSetState(this.states.get(legend))));
         return newMap;
     }
 
-    private Set<State> cloneListState(Set<State> statesList) {
-        return new TreeSet<>(statesList);
+    /**
+     * Clone the set of states inside the map
+     *
+     * @param statesSet The given set to be cloned
+     * @return
+     */
+    private Set<State> cloneSetState(Set<State> statesSet) {
+        return new TreeSet<>(statesSet);
     }
 
     /**
@@ -64,14 +84,21 @@ public class Rules {
         return hasProperty(entity.getLegend(), props);
     }
 
-    public void displayRules() {
-        System.out.println(states);
-    }
-
+    /**
+     * Clone this instance of rule
+     *
+     * @return a new cloned rule
+     */
     public Rules clone() {
         return new Rules(this);
     }
 
+    /**
+     * Returns the states of the given entity
+     *
+     * @param entity Given entity to fetch the states
+     * @return The set of state of the entity
+     */
     public Set<State> getStates(BoardEntity entity) {
         return states.getOrDefault(entity.getLegend(), new TreeSet<>());
     }
@@ -86,6 +113,12 @@ public class Rules {
         return states.getOrDefault(entity, new TreeSet<>()).stream().findFirst().orElse(new NormalState());
     }
 
+    /**
+     * Is the given entity is movable
+     *
+     * @param entity The given entity
+     * @return True is the entity is movable,  false otherwise
+     */
     public boolean isMovable(BoardEntity entity) {
         return states.getOrDefault(entity.getLegend(), new TreeSet<>()).stream().anyMatch(State::isMovable);
     }
@@ -122,6 +155,12 @@ public class Rules {
         cheatRules.states.forEach((entity, properties) -> properties.forEach(property -> add(entity, property.getProp())));
     }
 
+    /**
+     * Verify is the given list of you has the win property.
+     * Declare the level has won if so.
+     *
+     * @param playerIsYou List of you entities
+     */
     public void isWin(List<BoardEntity> playerIsYou) {
         if (playerIsYou.stream().anyMatch(entity -> hasProperty(entity, EnumProp.WIN))) {
             LevelManager.win();

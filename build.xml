@@ -1,4 +1,4 @@
-<project name="BabaIsYou" basedir=".">
+<project name="BabaIsYou" default="jar" basedir=".">
     <description>
         Projet de programmation java, BabaIsYou
     </description>
@@ -11,6 +11,7 @@
 
     <target name="init" depends="clean">
         <tstamp/>
+        <mkdir dir="${doc}"/>
         <mkdir dir="${build}"/>
     </target>
 
@@ -36,8 +37,7 @@
         </jar>
     </target>
 
-    <target name="javadoc" depends="init">
-        <mkdir dir="${doc}"/>
+    <target name="javadoc">
         <javadoc sourcepath="${src}/main/java" destdir="${doc}" packagenames="fr.esipe.info.*">
             <classpath>
                 <pathelement path="${lib}/zen5.jar"/>
@@ -47,9 +47,9 @@
 
     <target name="clean"
             description="clean up">
-        <!-- Delete the ${build} and ${dist} directory trees -->
         <delete dir="${build}"/>
         <delete dir="${doc}"/>
+        <delete file="baba.jar"/>
     </target>
 
 </project>

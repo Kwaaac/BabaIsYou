@@ -1,7 +1,6 @@
 package fr.esipe.info.game;
 
 import fr.esipe.info.VectorCoord;
-import fr.esipe.info.game.enums.ColorPrint;
 import fr.esipe.info.game.enums.EnumProp;
 import fr.esipe.info.game.enums.Legend;
 import fr.esipe.info.game.enums.Type;
@@ -252,24 +251,6 @@ public class Entity extends AbstractGameObject implements BoardEntity {
         return "Entity{" +
                 entity +
                 '}';
-    }
-
-    /**
-     * Return string of the entity in command line
-     *
-     * @return the string of the entity in command line
-     */
-    @Override
-    public String printCommandLineEntity() {
-        var res = entity.getName().toUpperCase();
-
-        if (res.length() == 2) {
-            res = " " + res + " ";
-        } else if (res.length() == 3) {
-            res += " ";
-        }
-
-        return entity.getTextColor() + res + ColorPrint.ANSI_RESET.getAsciiCode();
     }
 
     @Override

@@ -7,25 +7,21 @@ import java.util.Objects;
 
 /**
  * The memento class stores the past state of the levelManager
- * */
+ */
 public class Memento {
     private Board backupBoard;
     private LevelManager levelManager;
 
-    public Memento(LevelManager levelManager){
+    public Memento(LevelManager levelManager) {
         this.levelManager = Objects.requireNonNull(levelManager);
         this.backupBoard = Objects.requireNonNull(levelManager.backup());
     }
 
     /**
-     *  At some point, a previous state of levelManager can be restored using a memento object.
+     * At some point, a previous state of levelManager can be restored using a memento object.
      */
-    public void restore(){
+    public void restore() {
         this.levelManager.restore(this.backupBoard);
-    }
-
-    public Board getBackupBoard() {
-        return backupBoard;
     }
 
     @Override

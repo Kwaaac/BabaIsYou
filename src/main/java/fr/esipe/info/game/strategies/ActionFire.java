@@ -4,6 +4,9 @@ import fr.esipe.info.game.BoardEntity;
 import fr.esipe.info.game.rule.Rules;
 import fr.esipe.info.manager.GameManager;
 
+/**
+ * Representation of the execution of the fire property
+ */
 public class ActionFire implements ActionStrategy {
     @Override
     public void execute(Rules rules, BoardEntity from, BoardEntity to) {

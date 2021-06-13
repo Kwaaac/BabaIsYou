@@ -7,14 +7,10 @@ import fr.esipe.info.game.rule.Rules;
 
 import java.awt.*;
 
+/**
+ * Interface that reprensent a entity of the board
+ */
 public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
-
-    /**
-     * Return string of the entity in command line
-     *
-     * @return the string of the entity in command line
-     */
-    String printCommandLineEntity();
 
     /**
      * Getter of the legend of the entity

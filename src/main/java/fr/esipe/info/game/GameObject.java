@@ -3,7 +3,7 @@ package fr.esipe.info.game;
 import fr.esipe.info.VectorCoord;
 
 /**
- * Interface taht reprensent an Object being inside the window
+ * Interface that reprensent an Object being inside the window
  */
 public interface GameObject {
     /**

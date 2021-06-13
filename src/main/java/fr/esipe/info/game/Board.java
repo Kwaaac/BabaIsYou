@@ -66,8 +66,6 @@ public class Board {
             this.height = target.height;
         }
         addPresentEntity();
-
-        this.rules.displayRules();
     }
 
     /**
@@ -331,35 +329,6 @@ public class Board {
         var y = vc.getyCoord();
 
         return x >= 0 && x < height && y >= 0 && y < width;
-    }
-
-    /**
-     * Construct the string of the board
-     *
-     * @return the string of the board
-     */
-    @Override
-    public String toString() {
-        var strRow = new StringBuilder();
-
-        for (var row : board) {
-            strRow.append("_____".repeat(row.size())).append("\n");
-            for (var col : row) {
-                strRow.append("|");
-                if (col.isEmpty()) {
-                    strRow.append("    ");
-                    continue;
-                }
-
-                for (var entity : col) {
-                    strRow.append(entity.printCommandLineEntity());
-                }
-
-            }
-            strRow.append("|\n");
-        }
-
-        return strRow.toString();
     }
 
     /**
