@@ -1,0 +1,55 @@
+<project name="BabaIsYou" basedir=".">
+    <description>
+        Projet de programmation java, BabaIsYou
+    </description>
+
+    <property name="src" location="src"/>
+    <property name="res" location="src/main/resources"/>
+    <property name="build" location="classes"/>
+    <property name="lib" location="lib"/>
+    <property name="doc" location="docs/doc"/>
+
+    <target name="init" depends="clean">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="compile" depends="init"
+            description="compile the source">
+        <javac srcdir="${src}" destdir="${build}">
+            <classpath>
+                <pathelement path="${lib}/zen5.jar"/>
+            </classpath>
+        </javac>
+        <copy todir="${build}">
+            <fileset dir="${res}"/>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile" description="Create the jar of the project">
+        <jar destfile="baba.jar" basedir="${build}">
+            <zipgroupfileset dir="${lib}" includes="zen5.jar"/>
+            <manifest>
+                <attribute name="Main-Class" value="fr.esipe.info.main.Main"/>
+            </manifest>
+            <fileset dir="${res}"/>
+        </jar>
+    </target>
+
+    <target name="javadoc" depends="init">
+        <mkdir dir="${doc}"/>
+        <javadoc sourcepath="${src}/main/java" destdir="${doc}" packagenames="fr.esipe.info.*">
+            <classpath>
+                <pathelement path="${lib}/zen5.jar"/>
+            </classpath>
+        </javadoc>
+    </target>
+
+    <target name="clean"
+            description="clean up">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build}"/>
+        <delete dir="${doc}"/>
+    </target>
+
+</project>
