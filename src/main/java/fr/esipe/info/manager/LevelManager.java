@@ -133,7 +133,6 @@ public class LevelManager {
                     return false;
 
                 case S:
-                    /*TODO: Sauvegarde*/
                     break;
 
                 case M:
@@ -157,6 +156,13 @@ public class LevelManager {
         }
 
         return true;
+    }
+
+    /**
+     * Stop the music of the level
+     */
+    public void stopMusic() {
+        music.stop();
     }
 
     /**
@@ -187,6 +193,7 @@ public class LevelManager {
     }
 
 
+
     /**
      * Tell if the player wants to pass to the next level
      *
@@ -194,6 +201,23 @@ public class LevelManager {
      */
     public boolean isNext() {
         return next;
+    }
+
+
+    /**
+     * Is the Level lost
+     *
+     * @return True is the level is lost, false otherwise
+     */
+    public boolean isLose() {
+        return lose;
+    }
+
+    /**
+     * Set the level to lost
+     */
+    public static void lose() {
+        LevelManager.lose = true;
     }
 
     /**

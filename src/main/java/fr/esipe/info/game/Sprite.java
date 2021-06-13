@@ -24,7 +24,6 @@ public class Sprite {
      */
     public Sprite(String filename, Color colorTheme) {
         Objects.requireNonNull(filename);
-        System.out.println(filename);
         try {
             this.image = ImageIO.read(Objects.requireNonNull(Sprite.class.getResourceAsStream(filename)));
         } catch (IOException e) {

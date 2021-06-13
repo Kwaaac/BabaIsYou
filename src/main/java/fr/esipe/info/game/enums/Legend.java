@@ -46,6 +46,11 @@ public enum Legend {
      */
     WATER_NOUN('T', Type.NOUN, "WATER", new Color(17, 159, 236), "/Sprites/WATER/noun/text_water_"),
 
+    /**
+     * Represent the noun GRASS
+     */
+    GRASS_NOUN('G', Type.NOUN, "GRASS", new Color(153, 123, 5), "/Sprites/GRASS/noun/text_grass_"),
+
     /*
      * Entity
      */
@@ -77,6 +82,11 @@ public enum Legend {
      * Represent the Entity LAVA
      */
     LAVA_ENTITY('l', Type.ENTITY, "LAVA", new Color(227, 143, 12), "/Sprites/LAVA/entity/lava_"),
+
+    /**
+     * Represent the Entity GRASS
+     */
+    GRASS_ENTITY('g', Type.ENTITY, "GRASS", new Color(153, 123, 5), "/Sprites/GRASS/entity/grass_"),
 
     /*
      * Operator

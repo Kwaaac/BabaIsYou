@@ -30,6 +30,10 @@ public class Main {
         var levels = new ArrayList<Path>();
         var chrono = new Chrono();
 
+        if (args.length == 0) {
+            levels.add(Paths.get("classes", "levels", "level_bonus.txt"));
+        }
+
         if (args.length % 2 == 1) {
             throw new IllegalArgumentException("Wrong use of arguments");
         }
@@ -41,7 +45,6 @@ public class Main {
                 }
                 var path = Paths.get(args[++i]);
                 try {
-                    System.out.println(path.toAbsolutePath());
                     if (Files.isDirectory(path)) {
                         levels.addAll(Files.list(path).collect(Collectors.toList()));
                     } else if (Files.exists(path)) {
@@ -59,8 +62,6 @@ public class Main {
             }
         }
 
-        System.out.println(levels);
-
         Application.run(new Color(17, 15, 15), context -> {
             GameManager gameManager = GameManager.getInstance();
             gameManager.setRules(gameRules);
@@ -73,7 +74,7 @@ public class Main {
                     gameManager.setLevelManager(levelManager);
                     context.renderFrame(graphics -> levelManager.render(graphics, false));
 
-                    while (levelManager.processEvent(context) && !levelManager.isWin() && !levelManager.isQuit() && !levelManager.isNext()) {
+                    while (levelManager.processEvent(context) && !levelManager.isLose() && !levelManager.isWin() && !levelManager.isQuit() && !levelManager.isNext()) {
                         if (chrono.getTimePassed() > 500) {
                             chrono.reset();
                             context.renderFrame(graphics -> levelManager.render(graphics, true));
@@ -85,9 +86,14 @@ public class Main {
                     } else if (levelManager.isQuit()) {
                         System.out.println("Bye Bye!");
                         context.exit(0);
+                    } else if (levelManager.isLose()) {
+                        System.out.println("Aie, c'est une défaite");
+                        context.exit(0);
                     } else {
                         System.out.println("Niveau suivant");
                     }
+
+                    levelManager.stopMusic();
                 } catch (IOException e) {
                     e.printStackTrace();
                     context.exit(1);

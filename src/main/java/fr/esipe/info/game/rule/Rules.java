@@ -167,6 +167,18 @@ public class Rules {
         }
     }
 
+    /**
+     * Verify is the given list of you has the Defeat property.
+     * Declare the level has lost if so.
+     *
+     * @param playerIsYou List of you entities
+     */
+    public void isDefeat(List<BoardEntity> playerIsYou) {
+        if (playerIsYou.stream().anyMatch(entity -> hasProperty(entity, EnumProp.DEFEAT))) {
+            LevelManager.lose();
+        }
+    }
+
     @Override
     public String toString() {
         return "Rules{" +

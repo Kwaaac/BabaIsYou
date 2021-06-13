@@ -157,9 +157,6 @@ public class Board {
         })));
     }
 
-    /**
-     * TODO
-     */
     private void addPresentEntity() {
         board.forEach(row -> row.forEach(cell -> cell.forEach(entity -> {
             if (!entity.isWord()) {
@@ -245,6 +242,7 @@ public class Board {
         })));
         setPlayable();
         rules.isWin(playerIsYou);
+        rules.isDefeat(playerIsYou);
     }
 
     /**
@@ -399,12 +397,12 @@ public class Board {
 
         mapPlayerMove.clear();
         playerIsYou.forEach(you -> mapPlayerMove.put(you, false));
-        System.out.println(turnAction);
         turnAction.forEach(entity -> entity.executePreciceAction(entity, rules, EnumProp.FIRE));
         for (var entity : playerIsYou) {
             if (!mapPlayerMove.containsKey(entity)) {
                 continue;
             }
+
             entity.executeAction(entity, this.rules);
             var entitiesFromTo = this.getEntitiesFromVector(this.normalizeMovementVector(entity.getPos(), vc));
             Collections.sort(entitiesFromTo);
@@ -419,7 +417,6 @@ public class Board {
         if (flag) {
             updateRules();
         }
-        System.out.println(this);
     }
 
     /**
