@@ -7,6 +7,9 @@ import fr.esipe.info.game.strategies.ActionNone;
  * Representation of the You state
  */
 public class YouState extends State {
+    /**
+     * Constructor
+     */
     public YouState() {
         super(new ActionNone(), EnumProp.YOU);
     }

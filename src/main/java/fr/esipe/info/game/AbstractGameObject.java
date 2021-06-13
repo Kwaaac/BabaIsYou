@@ -25,11 +25,7 @@ abstract class AbstractGameObject implements GameObject {
         return pos;
     }
 
-    /**
-     * Set a new position to the object
-     *
-     * @param pos
-     */
+    @Override
     public void setPos(VectorCoord pos) {
         this.pos = pos;
     }

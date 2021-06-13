@@ -16,7 +16,7 @@ public interface GameObject {
     /**
      * Set a new position to the object
      *
-     * @param pos
+     * @param pos new position
      */
     void setPos(VectorCoord pos);
 }

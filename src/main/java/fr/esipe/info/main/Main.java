@@ -20,7 +20,11 @@ import java.util.stream.Collectors;
  * Main class that launch the game
  */
 public class Main {
-
+    /**
+     * Main loop of the game
+     *
+     * @param args Arguments of the game
+     */
     public static void main(String[] args) {
         var gameRules = new Rules();
         var levels = new ArrayList<Path>();

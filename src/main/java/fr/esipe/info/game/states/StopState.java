@@ -7,6 +7,9 @@ import fr.esipe.info.game.strategies.ActionNone;
  * Representation of the Stop state
  */
 public class StopState extends State {
+    /**
+     * Constructor
+     */
     public StopState() {
         super(new ActionNone(), EnumProp.STOP);
     }

@@ -27,8 +27,8 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     /**
      * Constructor
      *
-     * @param enumEntity
-     * @param vc
+     * @param enumEntity The new legend
+     * @param vc the position of the entity
      */
     public Entity(Legend enumEntity, VectorCoord vc) {
         super(Objects.requireNonNull(vc));
@@ -48,7 +48,7 @@ public class Entity extends AbstractGameObject implements BoardEntity {
     /**
      * Secondary constructor using a created entity
      *
-     * @param target
+     * @param target old entity
      */
     public Entity(Entity target) {
         super(target.getPos().clone());

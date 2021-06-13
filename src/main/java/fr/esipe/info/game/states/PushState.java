@@ -7,6 +7,9 @@ import fr.esipe.info.game.strategies.ActionNone;
  * Representation of the Push state
  */
 public class PushState extends State {
+    /**
+     * Constructor
+     */
     public PushState() {
         super(new ActionNone(), EnumProp.PUSH);
     }

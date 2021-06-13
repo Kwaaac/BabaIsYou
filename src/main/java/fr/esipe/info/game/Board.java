@@ -31,7 +31,7 @@ public class Board {
     /**
      * Constructor
      *
-     * @param board
+     * @param board Old Board
      */
     public Board(List<List<List<BoardEntity>>> board) {
         Objects.requireNonNull(board);

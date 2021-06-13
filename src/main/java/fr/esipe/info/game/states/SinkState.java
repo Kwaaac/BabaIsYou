@@ -7,6 +7,9 @@ import fr.esipe.info.game.strategies.ActionSink;
  * Representation of the Sink state
  */
 public class SinkState extends State {
+    /**
+     * Constructor
+     */
     public SinkState() {
         super(new ActionSink(), EnumProp.SINK);
     }

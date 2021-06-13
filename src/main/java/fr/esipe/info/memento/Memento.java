@@ -9,9 +9,14 @@ import java.util.Objects;
  * The memento class stores the past state of the levelManager
  */
 public class Memento {
-    private Board backupBoard;
-    private LevelManager levelManager;
+    private final Board backupBoard;
+    private final LevelManager levelManager;
 
+    /**
+     * Constructor
+     *
+     * @param levelManager Level that is saved
+     */
     public Memento(LevelManager levelManager) {
         this.levelManager = Objects.requireNonNull(levelManager);
         this.backupBoard = Objects.requireNonNull(levelManager.backup());

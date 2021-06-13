@@ -7,6 +7,9 @@ import fr.esipe.info.game.strategies.ActionDefeat;
  * Representation of the Defeat state
  */
 public class DefeatState extends State {
+    /**
+     * Constructor
+     */
     public DefeatState() {
         super(new ActionDefeat(), EnumProp.DEFEAT);
     }

@@ -39,6 +39,7 @@ public class LevelManager {
      * Constructor
      *
      * @param file Path to the level to be played
+     * @throws IOException throw IOException if the file is not readable
      */
     public LevelManager(Path file) throws IOException {
         win = false;
@@ -109,22 +110,22 @@ public class LevelManager {
             switch (event.getKey()) {
                 case UP:
                     board.move(VectorCoord.vectorUP());
-                    this.pushCommand(new MoveCommand(this, "up"));
+                    this.pushCommand(new MoveCommand("up"));
                     break;
 
                 case DOWN:
                     board.move(VectorCoord.vectorDOWN());
-                    this.pushCommand(new MoveCommand(this, "down"));
+                    this.pushCommand(new MoveCommand("down"));
                     break;
 
                 case LEFT:
                     board.move(VectorCoord.vectorLEFT());
-                    this.pushCommand(new MoveCommand(this, "left"));
+                    this.pushCommand(new MoveCommand("left"));
                     break;
 
                 case RIGHT:
                     board.move(VectorCoord.vectorRIGHT());
-                    this.pushCommand(new MoveCommand(this, "right"));
+                    this.pushCommand(new MoveCommand("right"));
                     break;
 
                 case UNDEFINED:

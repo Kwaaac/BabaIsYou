@@ -120,7 +120,7 @@ public class GameManager {
     /**
      * Setter for the size of a cell
      *
-     * @return the size of a Cell
+     * @param cellSize Size of the cell
      */
     public void setCellSize(int cellSize) {
         this.cellSize = cellSize;

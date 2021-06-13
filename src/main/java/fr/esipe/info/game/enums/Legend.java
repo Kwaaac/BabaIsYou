@@ -194,6 +194,7 @@ public enum Legend {
     /**
      * Get the Entity version of a legend based on the given name
      *
+     * @param name the name of the entity
      * @return the entity version of the given name legend
      */
     public static Legend getEntity(String name) {

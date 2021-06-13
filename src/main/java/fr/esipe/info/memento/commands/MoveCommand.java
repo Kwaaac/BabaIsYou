@@ -1,22 +1,20 @@
 package fr.esipe.info.memento.commands;
 
-import fr.esipe.info.manager.LevelManager;
-
 import java.util.Objects;
 
 
+/**
+ * Class that represent the direction taken by the player to save it
+ */
 public class MoveCommand {
-    private LevelManager levelManager;
-    private String direction;
+    private final String direction;
 
     /**
      * Constructor
      *
-     * @param levelManager actual level
-     * @param direction    direction of the move
+     * @param direction direction of the move
      */
-    public MoveCommand(LevelManager levelManager, String direction) {
-        this.levelManager = Objects.requireNonNull(levelManager);
+    public MoveCommand(String direction) {
         this.direction = Objects.requireNonNull(direction);
     }
 

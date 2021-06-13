@@ -104,5 +104,10 @@ public interface BoardEntity extends GameObject, Comparable<BoardEntity> {
      */
     int turnsBeforeActive();
 
+    /**
+     * Set the cooldown of the turn
+     *
+     * @param count number of turns
+     */
     void setTurnBeforeActive(int count);
 }

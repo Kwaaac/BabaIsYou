@@ -26,7 +26,7 @@ public class VectorCoord implements Comparable<VectorCoord> {
     /**
      * Secondary constructor based on a coordinate
      *
-     * @param target
+     * @param target Old vector
      */
     public VectorCoord(VectorCoord target) {
         if (target != null) {
@@ -124,7 +124,7 @@ public class VectorCoord implements Comparable<VectorCoord> {
      *
      * @param vc1 first vector
      * @param vc2 second vector
-     * @return
+     * @return The addiction between the two vectors
      */
     public static VectorCoord addTwoVectors(VectorCoord vc1, VectorCoord vc2) {
         return new VectorCoord(vc1.xCoord + vc2.xCoord, vc1.yCoord + vc2.yCoord);
