@@ -11,13 +11,17 @@ import fr.esipe.info.memento.Memento;
 import fr.esipe.info.memento.commands.MoveCommand;
 import fr.umlv.zen5.ApplicationContext;
 import fr.umlv.zen5.Event;
+import fr.umlv.zen5.KeyboardKey;
 
 import javax.sound.sampled.*;
 import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Objects;
+
+import static fr.umlv.zen5.KeyboardKey.*;
 
 /**
  * Class that reprensente a level of the game
@@ -25,8 +29,33 @@ import java.util.Objects;
  * Contains the music to be played and the history of every movements
  */
 public class LevelManager {
+    private final CommandRegistry commandRegistry = new CommandRegistry();
+
     private final History history;
     private Board board;
+
+    /**
+     * Event input handler
+     * <p>
+     * Render the board if an event has been detected
+     *
+     * @param context Application context of the game
+     * @return True if there is an event, false if an event makes the game to stop
+     */
+    public boolean processEvent(ApplicationContext context) {
+        var event = context.pollEvent();
+
+        if (event == null) {
+            return true;
+        }
+
+        if (event.getAction().equals(Event.Action.KEY_RELEASED)) {
+            commandRegistry.command(event.getKey()).action.run();
+            context.renderFrame(graphics -> render(graphics, false));
+        }
+
+        return true;
+    }
 
     private Clip music;
 
@@ -91,71 +120,39 @@ public class LevelManager {
         board.displayGraphic(graphics, updateAnim);
     }
 
-    /**
-     * Event input handler
-     * <p>
-     * Render the board if an event has been detected
-     *
-     * @param context Application context of the game
-     * @return True if there is an event, false if an event makes the game to stop
-     */
-    public boolean processEvent(ApplicationContext context) {
-        var event = context.pollEvent();
-
-        if (event == null) {
-            return true;
+    private class CommandRegistry {
+        private final HashMap<KeyboardKey, Command> map;
+        public CommandRegistry() {
+            this.map = new HashMap<>();
+            registerAllCommands();
         }
 
-        if (event.getAction().equals(Event.Action.KEY_RELEASED)) {
-            switch (event.getKey()) {
-                case UP:
-                    board.move(VectorCoord.vectorUP());
-                    this.pushCommand(new MoveCommand("up"));
-                    break;
-
-                case DOWN:
-                    board.move(VectorCoord.vectorDOWN());
-                    this.pushCommand(new MoveCommand("down"));
-                    break;
-
-                case LEFT:
-                    board.move(VectorCoord.vectorLEFT());
-                    this.pushCommand(new MoveCommand("left"));
-                    break;
-
-                case RIGHT:
-                    board.move(VectorCoord.vectorRIGHT());
-                    this.pushCommand(new MoveCommand("right"));
-                    break;
-
-                case UNDEFINED:
-                    quit();
-                    return false;
-
-                case S:
-                    break;
-
-                case M:
-                    if (music.isActive()) {
-                        music.stop();
-                    } else {
-                        music.start();
-                    }
-                    break;
-
-                case SPACE:
-                    next();
-                    break;
-
-                case Z:
-                    this.undo();
-                    break;
-            }
-
-            context.renderFrame(graphics -> render(graphics, false));
+        private void registerAllCommands() {
+            registerCommand(UP, () -> board.move(VectorCoord.vectorUP()));
+            registerCommand(DOWN, () -> board.move(VectorCoord.vectorDOWN()));
+            registerCommand(RIGHT, () -> board.move(VectorCoord.vectorRIGHT()));
+            registerCommand(LEFT, () -> board.move(VectorCoord.vectorLEFT()));
+            registerCommand(M, () -> {
+                if (music.isActive())
+                    music.stop();
+                else
+                    music.start();
+            });
+            registerCommand(SPACE, LevelManager::next);
+            registerCommand(UNDEFINED, LevelManager::quit);
         }
 
-        return true;
+        private void registerCommand(KeyboardKey key, Runnable action) {
+            var command = new Command(key.name(), action);
+            map.put(key, command);
+        }
+
+        public Command command(KeyboardKey key) {
+            return map.get(key);
+        }
+
+        private record Command(String key, Runnable action) {
+        }
     }
 
     /**
@@ -191,7 +188,6 @@ public class LevelManager {
     public boolean isQuit() {
         return quit;
     }
-
 
 
     /**
