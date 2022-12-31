@@ -1,5 +1,6 @@
 package fr.esipe.info.game.enums;
 
+import fr.esipe.info.game.factories.StateRegistry;
 import fr.esipe.info.game.states.*;
 
 /**
@@ -73,17 +74,6 @@ public enum EnumProp {
      * @return The property associated state
      */
     public State getState() {
-        return switch (this) {
-            case YOU -> new YouState();
-            case SINK -> new SinkState();
-            case MELT -> new MeltState();
-            case HOT -> new HotState();
-            case WIN -> new WinState();
-            case DEFEAT -> new DefeatState();
-            case PUSH -> new PushState();
-            case STOP -> new StopState();
-            case FIRE -> new FireState();
-            default -> new NormalState();
-        };
+        return StateRegistry.create(this);
     }
 }
